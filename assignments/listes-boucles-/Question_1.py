@@ -38,7 +38,7 @@ for t in copy_transactions:
 """Sort the unique transaction list in descending order to view the largest transactions first."""
 
 print('\n')
-
+# pas besoin de boucle ici
 sorted_transaction_descending = sorted(copy_transactions, reverse=True)
-
 print(sorted_transaction_descending)
+
