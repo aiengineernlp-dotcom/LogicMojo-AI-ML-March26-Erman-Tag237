@@ -7,4 +7,22 @@ for a in ages:
             valid_ages.append(a)
     else:
         pass
-    print(valid_ages)
+    '''Stores only valid ages in a new list.'''
+print(valid_ages)
+print('\n')
+'''Calculates the average age of valid customers.'''
+average = 0
+for c in valid_ages:
+    average =(sum(valid_ages)/len(valid_ages))
+print (f"\n the average is : {average}")
+
+print('\n')
+"""Displays the list of customers whose age is greater than 30."""
+is_greater_list = []
+for a in valid_ages:
+    if a>30:
+        is_greater_list.append(a)
+print(is_greater_list)
+
+
+
