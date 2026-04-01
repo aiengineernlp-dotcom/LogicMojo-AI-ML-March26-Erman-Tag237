@@ -1,5 +1,7 @@
 import re
 
+from fontTools.misc.cython import returns
+
 data = ["User: Mahipal | Phone: 9876543210 | Email: mahi@gmail.com | Amount: Rs.5000",
         "User: Ravi | Phone: 98765abc10 | Email: ravi#gmail.com | Amount: USD300",
         "User: NULL | Phone: 9123456789 | Email: test@yahoo.com | Amount: Rs.7000",
@@ -100,17 +102,27 @@ def extraction_data(data: list[str]) -> list[str]:
     return name_extracted, phone_extracted, email_extracted, amount_extracted # this a tuple so i will unpress it to list
 
 
-name_extracted, phone_extracted, email_extracted, amount_extracted = extraction_data(data_copy)
-print(f"NAME_EXTRACTED: {name_extracted}") # list after i unpress
-print(f"PHONE_EXTRACTED: {phone_extracted}") # list after i unpress
-print(f"EMAIL_EXTRACTED: {email_extracted}") # list after i unpress
-print(f"AMOUNT_EXTRACTED: {amount_extracted}") # list after i unpress
+# name_extracted, phone_extracted, email_extracted, amount_extracted = extraction_data(data_copy)
+# print(f"NAME_EXTRACTED: {name_extracted}") # list after i unpress
+# print(f"PHONE_EXTRACTED: {phone_extracted}") # list after i unpress
+# print(f"EMAIL_EXTRACTED: {email_extracted}") # list after i unpress
+# print(f"AMOUNT_EXTRACTED: {amount_extracted}") # list after i unpress
 
+print("=" * 140)
+print(f"    {'4. ADVANCED REGEX -> Extract currency: Rs,USD'}")
+def extract_currency(data: list[str]) -> list[str]:
+     currency_extracted = []
+     for record in data:
+         currency_search = re.findall(r"...[-]?\d+", record)
+         if currency_search:
+             currency_extracted.append(currency_search[-1])
+     return currency_extracted # I had an error that i will solve it later.
+     # the error is that "currency_search" need to be mor specific to avoid --> abc10 when i use the pattern r"...[-]?\d+"
 
+currency_extracted=extract_currency(data_copy)
+print(currency_extracted)
 
-#
-# print(f"    {'4. ADVANCED REGEX -> Extract currency: Rs,USD'}")
-# print("=" * 140)
+print("=" * 140)
 # print(f"    {'5. STRING CLEANING -> lowercase everything, remove special characters'}")
 # print("=" * 140)
 # print(f"    {'6. FINAL OUTPUT -> Return clean structured dataset:'}")
