@@ -123,7 +123,26 @@ currency_extracted=extract_currency(data_copy)
 print(currency_extracted)
 
 print("=" * 140)
-# print(f"    {'5. STRING CLEANING -> lowercase everything, remove special characters'}")
+print(f"    {'5. STRING CLEANING -> lowercase everything, remove special characters'}")
+
+
+def clean_data(data: list[str]) -> list[dict]:
+    final_data = []
+
+    for record in data:
+        record = re.sub("#","@",record)
+        record = record.lower()
+        record = re.sub("\|",",",record)
+        # record = record.replace("|",",")
+        final_data.append(record)
+    return final_data
+
+final_data = clean_data(data_copy)
+print(final_data)
+print("=" * 140)
+
+
+
 # print("=" * 140)
 # print(f"    {'6. FINAL OUTPUT -> Return clean structured dataset:'}")
 # """
