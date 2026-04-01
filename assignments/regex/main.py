@@ -20,48 +20,29 @@ def process_record(data:list) -> list:
     bad_records = []
 
     for record in data:
-        search_errors_record = re.search(r"#|NULL|null|[-]\d*|", record)
+        search_errors_record = re.search(r"#|NULL|null|[-]\d*", record)
         valid_phone_number = re.search(r"(\d{10})", record)
-        # valid_amount =
+        valid_amount_error = re.findall(r"[-]?\d+", record) # enleve les crochets si tu veux
+        neg_and_zero_amount_error = valid_amount_error[1]
+        convert_to_integer = int(neg_and_zero_amount_error)
+        # print((convert_to_integer))
         try:
-            if search_errors_record or not valid_phone_number or:
+            if search_errors_record or not valid_phone_number or convert_to_integer<=0 :
                 bad_records.append(record)
                 continue
             else:
                 good_records.append(record)
-                #print(good_records)
+                print(good_records)
         except:
             pass
-    return bad_records
 
+    return bad_records, good_records # I return 2listes in a -> tuple
+# result = process_record(data_copy) # I return 2listes in a -> tuple
+# print(result) # # I return 2listes in a -> tuple
 
-
-
-
-"""
-. 
-^
-$
-*
-+
-[]
-{}
-?
-\
-======
-re.search()
-re.findall()
-re.match()
-re.sub()
-re.split()
-
-"""
-
-
-
-d = process_record (data_copy)
-print(d)
-print("\n")
+bad_records, good_records = process_record(data_copy) # Je decompresse le tuple en deux listes
+print("GOOD R :", good_records)
+print("BAD R :", bad_records)
 #
 # print(f"    {'2. USE ASSERT -> Ensure: User name is not NULL, Amount > 0'}")
 # print("=" * 140)
@@ -81,34 +62,23 @@ print("\n")
 # print("=" * 140)
 #
 #
-# import re
-# print(re.search(r"\d<=0", "Amount: Rs.0"))
-# print(re.search(r"\d<=0", "Amount: Rs.5000"))
+
+# print(re.search(r'\d<0','Amount:Rs.0'))
+# print(re.search(r'\d<0','Amount:Rs.5000'))
+# pos = re.search(r'\d+','Amount:Rs.7000')
+# print(pos.group())
+# if int(pos.group()) >=0:
+#     print("+ positif")
 #
-# amounts = [
-#     "Amount: Rs.5000",
-#     "Amount: Rs.0",
-#     "Amount: Rs.-100",
-#     "Amount: USD300"
-# ]
-# for a in amounts:
-#     match = re.search(r"[-]?\d+",a)
-#     # print(match.group())
-#     if int(match.group()) <= 0:
-#         print(match.group())
 
 
-
-amounts = [
-    "Amount: Rs.5000",
-    "Amount: Rs.0",
-    "Amount: Rs.-100",
-    "Amount: USD300"
-]
-
-for a in amounts:
-    match = re.search(r"[-]?\d+", a)
-    if int(match.group()) <= 0:
-        print(f"INVALIDE : {a}")
-    else:
-        print(f"VALIDE   : {a}")
+# def test():
+#     a = [1, 2, 3]
+#     b = [4, 5, 6]
+#
+#     return a, b
+#
+# a, b = test()
+#
+# print(a)
+# print(b)
