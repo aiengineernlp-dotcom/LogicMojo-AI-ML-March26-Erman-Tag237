@@ -15,7 +15,7 @@ print("\n")
 print(f"    {'1.HANDLE EXCEPTIONS: Safely process each record, Skip bad records but log errors'}")
 print("=" * 140)
 
-def process_record(data:list) -> list:
+def process_record(data:list[str]) -> list[str]:
     good_records = []
     bad_records = []
 
@@ -32,20 +32,37 @@ def process_record(data:list) -> list:
                 continue
             else:
                 good_records.append(record)
-                print(good_records)
-        except:
-            pass
+                #print(good_records)
+        except Exception as e:
+            print("This is the error:", e)
 
     return bad_records, good_records # I return 2listes in a -> tuple
 # result = process_record(data_copy) # I return 2listes in a -> tuple
 # print(result) # # I return 2listes in a -> tuple
-
-bad_records, good_records = process_record(data_copy) # Je decompresse le tuple en deux listes
-print("GOOD R :", good_records)
-print("BAD R :", bad_records)
+# bad_records, good_records = process_record(data_copy) # Je decompresse le tuple en deux listes
+# print("GOOD R :", good_records)
+# print("BAD R :", bad_records)
 #
-# print(f"    {'2. USE ASSERT -> Ensure: User name is not NULL, Amount > 0'}")
-# print("=" * 140)
+print("\n"*1)
+print(f"    {'2. USE ASSERT -> Ensure: User name is not NULL, Amount > 0'}")
+print("=" * 140)
+
+def assert_use(data: list[str]) -> list[str]:
+    null_user= []
+    for record in data:
+        search_null_user = re.search(r"NULL|null", record)
+        positive_amount = re.findall(r"[-]?\d+", record)
+        conv_pos_amount_to_int = int(positive_amount[1])
+        print(conv_pos_amount_to_int)
+        if search_null_user or conv_pos_amount_to_int<=0:
+            null_user.append(record)
+    #raise ValueError ('Username must not be NULL')
+    assert search_null_user is None or conv_pos_amount_to_int<=0,f"NULL value is not allowed {null_user}"
+    return null_user
+result = assert_use(data_copy)
+print(result)
+
+
 #
 #
 # print(f"    {'3. REGEX EXTRACTION -> Extract:name, phone (valid 10 digits only), email (valid format), amount (only numbers)'}")
@@ -82,3 +99,14 @@ print("BAD R :", bad_records)
 #
 # print(a)
 # print(b)
+
+
+
+
+# text = "call me at 971555154764 or erman@gmail.com"
+
+# print(re.findall(r"\d+",text))
+# print(re.search (r"\w+@\w+.\w+",text))
+
+
+
