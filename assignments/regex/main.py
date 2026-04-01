@@ -77,6 +77,7 @@ print(
 print("=" * 140)
 
 
+
 def extraction_data(data: list[str]) -> list[str]:
     name_extracted = []
     phone_extracted = []
