@@ -1,6 +1,5 @@
 import re
 
-from fontTools.misc.cython import returns
 
 data = ["User: Mahipal | Phone: 9876543210 | Email: mahi@gmail.com | Amount: Rs.5000",
         "User: Ravi | Phone: 98765abc10 | Email: ravi#gmail.com | Amount: USD300",
@@ -43,11 +42,11 @@ def process_record(data: list[str]) -> list[str]:
     return bad_records, good_records  # I return 2listes in a -> tuple
 
 
-# result = process_record(data_copy) # I return 2listes in a -> tuple
-# print(result) # # I return 2listes in a -> tuple
-# bad_records, good_records = process_record(data_copy) # Je decompresse le tuple en deux listes
-# print("GOOD R :", good_records)
-# print("BAD R :", bad_records)
+result = process_record(data_copy) # I return 2listes in a -> tuple
+print(result) # # I return 2listes in a -> tuple
+bad_records, good_records = process_record(data_copy) # Je decompresse le tuple en deux listes
+print("GOOD R :", good_records)
+print("BAD R :", bad_records)
 #
 print("\n" * 1)
 print(f"    {'2. USE ASSERT -> Ensure: User name is not NULL, Amount > 0'}")
@@ -102,11 +101,11 @@ def extraction_data(data: list[str]) -> list[str]:
     return name_extracted, phone_extracted, email_extracted, amount_extracted # this a tuple so i will unpress it to list
 
 
-# name_extracted, phone_extracted, email_extracted, amount_extracted = extraction_data(data_copy)
-# print(f"NAME_EXTRACTED: {name_extracted}") # list after i unpress
-# print(f"PHONE_EXTRACTED: {phone_extracted}") # list after i unpress
-# print(f"EMAIL_EXTRACTED: {email_extracted}") # list after i unpress
-# print(f"AMOUNT_EXTRACTED: {amount_extracted}") # list after i unpress
+name_extracted, phone_extracted, email_extracted, amount_extracted = extraction_data(data_copy)
+print(f"NAME_EXTRACTED: {name_extracted}") # list after i unpress
+print(f"PHONE_EXTRACTED: {phone_extracted}") # list after i unpress
+print(f"EMAIL_EXTRACTED: {email_extracted}") # list after i unpress
+print(f"AMOUNT_EXTRACTED: {amount_extracted}") # list after i unpress
 
 print("=" * 140)
 print(f"    {'4. ADVANCED REGEX -> Extract currency: Rs,USD'}")
@@ -137,7 +136,7 @@ def clean_data(data: list[str]) -> list[dict]:
         final_data.append(record)
     return final_data
 
-final_data = clean_data(data_copy)
+final_data = clean_data(data_copy)   # I will see the way to return a dictionnary
 print(final_data)
 print("=" * 140)
 
@@ -178,6 +177,28 @@ print("=" * 140)
 # print(re.findall(r"\d+",text))
 # print(re.search (r"\w+@\w+.\w+",text))
 
+
+
+
+#Building the pipeline
+
+def all_functions(*functions): # the mother function who collect all the function
+
+    def pipeline_function(text:str) -> str:# the engine who run them
+        result = text # ....
+        for func in functions: # i loop in trougth all my functions
+            result = func(result) # ....
+        return result # ...
+    return pipeline_function # return all my functions to the mother function
+
+#construction du pipeline
+my_pipeline_function = all_functions(
+    process_record,
+    assert_use,
+    extraction_data,
+    extract_currency,
+    clean_data
+)
 
 
 
