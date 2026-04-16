@@ -160,12 +160,5 @@ print("\n Identify the Most Sold Product Based on the frequency of orders, deter
 # print(most_solded_items)
 
 
-
-
-
-
-
-
-
 print('=' * 140)
 print('\n Remove Fraud Orders Create a cleaned dataset by removing orders whose status is "Fraud". Use list methods to store the cleaned data in a new list.')
