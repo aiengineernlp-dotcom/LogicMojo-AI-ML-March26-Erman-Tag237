@@ -49,7 +49,6 @@ def extract_features(data: pd.DataFrame) -> np.ndarray:
     data_arr_sepal_width = data["sepal_width"].values.reshape(-1, 1)
     return data_arr, mean_data_arr, median_data_arr, std_data_arr, var_data_arr, data_arr_sepal_width
 
-
 data_arr, mean_data_arr, median_data_arr, std_data_arr, var_data_arr, data_arr_sepal_width = extract_features(data)
 print(f"{"█" * 70} TEST RESULTS {"█" * 55}")
 print(data)
