@@ -33,6 +33,7 @@ def standardization(data:pd.DataFrame)->float:
 
     return norm_mean,norm_std
 
+
 norm_mean,norm_std= standardization(data)
 
 print(f"{'▇' * 70} TEST RESULTS {'▇' * 55}")
