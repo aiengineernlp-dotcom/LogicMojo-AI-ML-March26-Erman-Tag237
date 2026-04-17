@@ -70,7 +70,7 @@ print(f'{'-' * 50}')
 print(f" Variance:\n{var_data_arr}")
 
 print("\n========Curent type======")
-print(type(r))
+# print(type(r))
 print(type(data))
 print(f"{"█" * 70} ANALYSIS {"█" * 60}")
 print("Which feature has highest variability and why it matters in ML")
