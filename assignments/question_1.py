@@ -35,7 +35,7 @@ def extract_features(data: pd.DataFrame) -> np.ndarray:
     # Computations
     numeric_data = data.select_dtypes(include=[
         np.number])  # je recupère uniquement les colonnes numeriques. ici "species" est eliminer directement du calcul
-    # numeric_data_cols = numeric_data.columns.tolist() # On récupère les noms des colonnes pour savoir ce qu'on manipule
+    numeric_data_cols = numeric_data.columns.tolist() # On récupère les noms des colonnes pour savoir ce qu'on manipule
     # mean
     mean_data_arr = np.mean(numeric_data, )
     # Median
