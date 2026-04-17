@@ -6,6 +6,18 @@ data = sns.load_dataset("titanic")
 
 
 def datasetUnderstanding(data: pd.DataFrame) -> pd.DataFrame:
+    #
+    # """
+    #--> to add here
+
+    # :param data:
+    # :return:
+    # """
+    # if:
+    #     try:
+    #     except:
+    #         raise
+    #
     dfr = pd.DataFrame(data)
     # 1- Display head(), tail(),info(), describe()
     dfr_h = dfr.head()
