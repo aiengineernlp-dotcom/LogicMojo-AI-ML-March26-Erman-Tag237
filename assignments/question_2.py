@@ -49,6 +49,7 @@ print(f'{'=' * 50}')
 print(f"{'First 100 samples'}\n{'-' * 50}")
 print(first_hund_samples)
 print(f'{'=' * 50}')
+
 # =========================
 print(f"{'Only last 2 features'}\n{'-' * 50}")
 print(only_last_two_features)
