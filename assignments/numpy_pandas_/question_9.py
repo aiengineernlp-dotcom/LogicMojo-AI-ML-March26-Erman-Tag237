@@ -39,7 +39,7 @@ def filter_ubsetting_data(data: pd.DataFrame) -> pd.DataFrame:
 
 total_billgreat_tip_less, total_bill_column, tip_column = filter_ubsetting_data(data)
 
-print(r)
+
 
 print(f"{"█" * 70} TEST RESULTS {"█" * 55}")
 print(data)
