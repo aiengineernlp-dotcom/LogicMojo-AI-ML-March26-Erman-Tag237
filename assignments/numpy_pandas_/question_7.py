@@ -15,7 +15,8 @@ def manage_feature_engineering(data: pd.DataFrame):
     family_size = df['sibsp'] + df['parch'] + 1
     # is_alone feature
     is_alone = df['alone']
-    is_alone_survival = df[df['alone'] == True]  # On filtre pour n'avoir que les personnes seules
+    is_alone_survival = df[df[
+                               'alone'] == True]  # On filtre pour n'avoir que les personnes seules # je note que meme avec  is_alone_survival = df[df['alone']] ca fonctionne mais c'est grace a survival qui prend 0 pour False et 1 pour True
     # Compute survival_rate by is_alone --> donc on calcule le taux de survie a partir de is_alone
     survival_rate = is_alone_survival['survived'].mean()
     return family_size, is_alone_survival, survival_rate, is_alone
@@ -45,3 +46,5 @@ print(f"{"█" * 70} ANALYSIS {"█" * 60}")
 print("Why engineered features improve ML models")
 print(
     " ==>> engineered features improve ML models beacause it helps to reduice some features and combine them so the Ml model will be more efficient and fast ")
+
+
