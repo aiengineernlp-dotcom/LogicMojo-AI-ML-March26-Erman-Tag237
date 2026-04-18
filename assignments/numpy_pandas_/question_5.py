@@ -24,7 +24,7 @@ def filter_data(data: pd.DataFrame) -> pd.DataFrame:
     if data is not None:
         try:
             df = pd.DataFrame(data)
-        except Execption as e:
+        except [Exception, ValueError] as e:
             raise ValueError(f" Must have a data to continue operarions {e} ")
     by_female_and_first_class = df[(df['sex'] == "female") & (df['class'] == "First")]
     # Survival rate for this group
