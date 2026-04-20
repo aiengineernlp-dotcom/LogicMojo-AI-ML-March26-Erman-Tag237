@@ -5,16 +5,6 @@ import seaborn as sns
 data = sns.load_dataset("iris")
 
 def standardization(data:pd.DataFrame)->float:
-    """
-    this function standartuze the dataset iris
-    Args:
-        - data:  Full dataset iris
-        -
-    Returns:
-        - float : the mean must be type of float since the matrix are float as weel
-        - mean must be 0 or less
-        - std for each feature  must be 1
-    """
     if data is not None:
         try:
             matrix = np.array(data)
