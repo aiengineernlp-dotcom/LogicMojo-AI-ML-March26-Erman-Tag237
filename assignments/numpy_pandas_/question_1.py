@@ -77,5 +77,4 @@ print("Which feature has highest variability and why it matters in ML")
 print(
     " ==>> Base on Standarddeviation and Variance,  sepal_length has the highest variability. It matters in ML because the help us to know if they are extremes values on our data. Also the model can thing that somme values are more importants than others just because of highs numbers ")
 print("Convert any one feature into shape (n,1) and explain why ML models expect this format")
-print(data_arr_sepal_width)
 
