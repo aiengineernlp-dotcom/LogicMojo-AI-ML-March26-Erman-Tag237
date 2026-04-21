@@ -39,7 +39,7 @@ print(orders)
 print("✅ Data load to sql successully")
 
 df_customers  = pd.read_sql('SELECT * FROM customers LIMIT 10',engine)
-print(df_customers.info())
+print(df_customers.describe())
 
 
 
