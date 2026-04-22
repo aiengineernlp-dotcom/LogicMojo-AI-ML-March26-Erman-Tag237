@@ -10,7 +10,7 @@ def push_data_file_to_sql(filepath, table_name)->str:
         try:
             df = pd.read_csv(filepath)
             df.to_sql(table_name, con=engine, if_exists='replace', index=False)
-            what_is_up = (f" ✅ Well Done Table {table_name} created successfully ! ")
+            what_is_up= (f" ✅ Well Done Table {table_name} created successfully ! ")
         except Exception as e:
             raise ValueError(f" Look at: {e}")
     else:
@@ -18,19 +18,22 @@ def push_data_file_to_sql(filepath, table_name)->str:
     return what_is_up
 
 customers = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
+print(customers)
 category_translation = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', 'category_translation')
-location = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', 'location')
-order_item = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', 'order_item')
-orders = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "orders")
-payments = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "payments")
-products = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "products")
-reviews = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "reviews")
-sellers = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "sellers")
+# location = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', 'location')
+# order_item = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', 'order_item')
+# orders = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "orders")
+# payments = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "payments")
+# products = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "products")
+# reviews = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "reviews")
+# sellers = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "sellers")
 
-print("✅ Data load to sql successully")
 
-df_customers = pd.read_sql('SELECT * FROM customers', con=engine)
-print(df_customers.head())
+df_customers = pd.read_sql("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'", con=engine)
+print(df_customers)
+
+
+
 
 # print(category_translation.head())
 # print(location.head())
