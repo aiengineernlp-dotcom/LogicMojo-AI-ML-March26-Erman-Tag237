@@ -18,28 +18,30 @@ def push_data_file_to_sql(filepath, table_name)->str:
     return what_is_up
 
 customers = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
-category_translation = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
-location = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
-order_item = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
-orders = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
-payments = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
-products = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
-reviews = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
-sellers = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
+category_translation = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', 'category_translation')
+location = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', 'location')
+order_item = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', 'order_item')
+orders = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "orders")
+payments = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "payments")
+products = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "products")
+reviews = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "reviews")
+sellers = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "sellers")
 
-
-print(category_translation.head())
-print(customers.head())
-print(location.head())
-print(order_item.head())
-print(orders.head())
-print(payments.head())
-print(products.head())
-print(reviews.head())
-print(sellers.head())
+print("✅ Data load to sql successully")
 
 df_customers = pd.read_sql('SELECT * FROM customers', con=engine)
-print(df_customers.describe())
+print(df_customers.head())
+
+# print(category_translation.head())
+# print(location.head())
+# print(order_item.head())
+# print(orders.head())
+# print(payments.head())
+# print(products.head())
+# print(reviews.head())
+# print(sellers.head())
+
+
 
 
 
