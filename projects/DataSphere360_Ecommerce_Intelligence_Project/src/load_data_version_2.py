@@ -45,4 +45,5 @@ print(df_customers.head())
 
 
 
+
 # I will maybe use this methode because its is more efficient, also my data are comming directly from de databse so my Ram is more faster. how ever let see the the load_data_version_3 (upload all folder and loop in)
