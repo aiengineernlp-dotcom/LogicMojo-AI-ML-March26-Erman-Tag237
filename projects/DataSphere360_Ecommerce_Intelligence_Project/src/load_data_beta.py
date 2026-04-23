@@ -1,3 +1,5 @@
+import re
+
 import pandas as pd
 from sqlalchemy import create_engine
 import time
@@ -141,6 +143,32 @@ with engine_erman_connexion_to__dataspere360.connect() as conn:
     except Exception as e:
         print(fr"❌ Error Bro  look at {e}")
 
+
+def identify_fk_pk(data_from_sql: dict) -> dict:
+    all_data = {}
+    potential = []
+    look_keys_pattern = re.compile(r'.*(id|pk|code|fk|pk).*', re.IGNORECASE)
+    for data_table in data_from_sql:
+        df = data_from_sql[data_table]
+        all_data[data_table] = df
+    # print(all_data.items())
+    for data_table, df in all_data.items():  # I loop in my dictionnary
+        potential_cols = [col for col in df.columns if
+                          look_keys_pattern.match(col)]  # I collect those who are fiiting my Regex pattern
+        # print(potential_cols)
+
+        for col in potential_cols:  # remenber that it contains for all data_table Regex match, So need to create the dictionnary or list to capture them
+
+            is_unique = df[col].nunique() == len(df)
+
+            tipo = "PK (Primaire)" if is_unique else "FK (Etrangère/Doublons)"
+            print(f"Table [{data_table}] -> Colonne détectée : {col} ({tipo})")
+
+    return potential_cols
+
+
+r = identify_fk_pk(fetch_dataSet)
+print(r)
 
 
 
