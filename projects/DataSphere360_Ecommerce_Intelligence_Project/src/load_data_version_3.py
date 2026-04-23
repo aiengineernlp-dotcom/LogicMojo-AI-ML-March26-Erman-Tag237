@@ -6,7 +6,7 @@ def data_loading_with_pandas(folderpath: str) -> dict:
     data_frames = {}
     # 1. Vérifier si le dossier existe
     if not os.path.exists(folderpath):
-        raise FolderNotFoundError(f'Folder {folderpath} doest not exist')
+        raise FileNotFoundError(f'Folder {folderpath} doest not exist')
 
     else:  # 2. Boucler sur tous les fichiers du dossier
         for filename in os.listdir(folderpath):
@@ -17,7 +17,7 @@ def data_loading_with_pandas(folderpath: str) -> dict:
                     0]  # On utilise le nom du fichier sans l'extension comme clé (ex: 'customers')
                 try:
                     df = pd.read_csv(file_path)
-                    data_frame[table_name] = df
+                    data_frames[table_name] = df
                     print(f"✅ {filename} chargé (Table: {table_name}")
                 except Exception as e:
                     print(f"❌ Erreur lors du chargement de {filename}: {e}")

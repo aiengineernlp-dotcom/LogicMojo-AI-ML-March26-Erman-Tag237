@@ -20,6 +20,8 @@ customers = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/cust
 print(customers)
 category_translation = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv','category_translation')
 print(category_translation)
+payments = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "payments")
+print(payments)
 
 # # 1. Empêche le retour à la ligne automatique
 # pd.set_option('display.expand_frame_repr', False)
@@ -31,7 +33,6 @@ pd.set_option('display.max_columns', None)
 # location = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', 'location')
 # order_item = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', 'order_item')
 # orders = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "orders")
-# payments = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "payments")
 # products = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "products")
 # reviews = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "reviews")
 # sellers = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "sellers")
@@ -85,10 +86,10 @@ def inspect_data_structure(data: dict) -> pd.DataFrame:
 my_sql_dataset = fetch_data_from_sql() # merci_ici : la capture
 head, info, describe = inspect_data_structure(my_sql_dataset)
 
-print(f'{describe}\n')
-#
-# # I will maybe use this methode because its is more efficient, also my data are comming directly from de databse so my Ram is more faster. how ever let see the the load_data_version_3 (upload all folder and loop in)
-#
+print(f'{head}\n')
+
+# I will maybe use this methode because its is more efficient, also my data are comming directly from de databse so my Ram is more faster. how ever let see the the load_data_version_3 (upload all folder and loop in)
+
 #
 #
 #
