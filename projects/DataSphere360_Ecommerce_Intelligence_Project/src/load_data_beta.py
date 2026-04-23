@@ -1,9 +1,8 @@
-import re
-
 import pandas as pd
 from sqlalchemy import create_engine
 import time
 import os
+import re
 
 current_time = time.time()
 # # 1. Empêche le retour à la ligne automatique
@@ -51,30 +50,21 @@ def push_data_to_psql(filepath: str, table_name: str) -> str:
                 f" ❌ Sorry Bro something when wrong during the creation of the table {table_name} the error may be : {e} {current_time}")
     return what_is_up
 
-
 # Utilisation
 
-
 customers = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
-category_translation = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv',
-                                         'category_translation')
 location = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', 'location')
 order_item = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', 'order_item')
 orders = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "orders")
 products = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "products")
 reviews = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "reviews")
 sellers = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "sellers")
+category_translation = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv',
+                                         'category_translation')
+payments = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "payments")
 
-print(customers)
-
-
-# category_translation = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv','category_translation')
-# print(category_translation)
-# payments = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "payments")
-# print(payments)
 
 # ------------------------------
-
 
 def fetch_data_from_psql(
         engine_erman_connexion_to___) -> dict:  # I'm using this long name just beacause i want to personalize .
@@ -99,49 +89,51 @@ def fetch_data_from_psql(
 fetch_dataSet = fetch_data_from_psql(engine_erman_connexion_to__dataspere360)
 print(fetch_dataSet['customers'].describe())
 
+print('\n')
+print('\n')
 
-# df_customers = pd.read_sql('SELECT * from customers limit 10',con=engine)
-# print(df_customers.info())
 
-
-#
-def inspect_data_structure_in_360(data: dict) -> pd.DataFrame:
+def inspect_data_structure_in_360(data_from_sql: dict) -> pd.DataFrame:
     ''''
     Use case: This fuction is for inspecting data structure in 360
     it can be use to retrieve a specific data structure but in that case one additional param like 'data_table_name:str'
     need to be add to inspect_data_structure_in_360. OTHERWISE, use the curent fonction is fol all data table at once.
 
     :arg:
-        - data : dict
-        - data_table_name : str
+        - data_from_sql : dict
+        - data_table : str
     :returns :
         - pd.DataFrame
     :errors:
         - ValueError
     '''
-    for csv_file in data:
-        df = data[csv_file]  # i collect the key of my dictiannary who will come from fetch_data_from_psql function
-        print(f"{'█' * 70} ANALYSE TABLE {csv_file} {'█' * 55}")
+    for data_table in data_from_sql:
+        df = data_from_sql[
+            data_table]  # i collect the key of my dictiannary who will come from fetch_data_from_psql function
+        print(f"{'█' * 70} ANALYSE TABLE {data_table} {'█' * 55}")
         print(df.head())
         print(df.describe())
         print(df.info())
-    return df.head(), df.info(),df.describe()   # can use
+    return df.head(), df.info(), df.describe()  # can use
+
 
 my_sql_dataset = fetch_dataSet  # la capture du dictionnaire all_data_fetch_from_sql qui est ejectee dans l'espace se fait via l'appel de sa fonction
 head, info, describe = inspect_data_structure_in_360(my_sql_dataset)
 
-print(f'{head}')
-
-
-#DROP TABLE SECUTITY
+# DROP TABLE SECUTITY
 from sqlalchemy import text
+
 with engine_erman_connexion_to__dataspere360.connect() as conn:
     try:
-        conn.execute(text('DROP TABLE "../python_project_aiml_logicmojo_dataset/customers.csv" ')) # this explain more more the use of:  table_name = os.path.splitext(os.path.basename(filepath))[0]
+        conn.execute(text(
+            'DROP TABLE "../python_project_aiml_logicmojo_dataset/customers.csv" '))  # this explain more more the use of:  table_name = os.path.splitext(os.path.basename(filepath))[0]
         conn.commit()
         print(fr' ✅  Table droped')
     except Exception as e:
         print(fr"❌ Error Bro  look at {e}")
+
+print('\n')
+print('\n')
 
 
 def identify_fk_pk(data_from_sql: dict) -> dict:
@@ -152,6 +144,7 @@ def identify_fk_pk(data_from_sql: dict) -> dict:
         df = data_from_sql[data_table]
         all_data[data_table] = df
     # print(all_data.items())
+
     for data_table, df in all_data.items():  # I loop in my dictionnary
         potential_cols = [col for col in df.columns if
                           look_keys_pattern.match(col)]  # I collect those who are fiiting my Regex pattern
@@ -159,10 +152,11 @@ def identify_fk_pk(data_from_sql: dict) -> dict:
 
         for col in potential_cols:  # remenber that it contains for all data_table Regex match, So need to create the dictionnary or list to capture them
 
-            is_unique = df[col].nunique() == len(df)
+            is_unique = df[col].nunique() == len(
+                df)  # since each element in the col is unique for entrie, it shoulbe egual to len(df). in that case -> I have a PK
 
-            tipo = "PK (Primaire)" if is_unique else "FK (Etrangère/Doublons)"
-            print(f"Table [{data_table}] -> Colonne détectée : {col} ({tipo})")
+            tipo = "PK (Primary Key)" if is_unique else "FK (Foreing Key)"
+            print(f"Table [{data_table}] -> Key DEtected at : {col} ({tipo})\n {'-' * 50} ")
 
     return potential_cols
 
