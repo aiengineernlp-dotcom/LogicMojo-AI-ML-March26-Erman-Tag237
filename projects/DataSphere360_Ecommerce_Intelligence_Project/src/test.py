@@ -53,17 +53,17 @@ def push_data_to_psql(filepath: str, table_name: str) -> str:
 # Utilisation
 
 
-customers = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
-category_translation = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv',
-                                         'category_translation')
-location = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', 'location')
-order_item = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', 'order_item')
-orders = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "orders")
-products = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "products")
-reviews = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "reviews")
-sellers = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "sellers")
+# customers = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
+# category_translation = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv',
+#                                          'category_translation')
+# location = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', 'location')
+# order_item = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', 'order_item')
+# orders = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "orders")
+# products = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "products")
+# reviews = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "reviews")
+# sellers = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "sellers")
 
-print(customers)
+# print(customers)
 
 
 # category_translation = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv','category_translation')
@@ -97,35 +97,74 @@ def fetch_data_from_psql(
 fetch_dataSet = fetch_data_from_psql(engine_erman_connexion_to__dataspere360)
 print(fetch_dataSet['customers'].describe())
 
-
 # df_customers = pd.read_sql('SELECT * from customers limit 10',con=engine)
 # print(df_customers.info())
 
 
 #
-def inspect_data_structure_in_360(data: dict) -> pd.DataFrame:
-    for csv_file in data:
-        df = data[csv_file]  # i collect the key of my dictiannary who will come from fetch_data_from_psql function
-        head = df.head()
-        info = df.info()
-        describe = df.describe()
-    return head, info, describe
+# def inspect_data_structure_in_360(data: dict) -> pd.DataFrame:
+#     ''''
+#     Use case: This fuction is for inspecting data structure in 360
+#     it can be use to retrieve a specific data structure but in that case one additional param like 'data_table_name:str'
+#     need to be add to inspect_data_structure_in_360. OTHERWISE, use the curent fonction is fol all data table at once.
+
+#     :arg:
+#         - data : dict
+#         - data_table_name : str
+#     :returns :
+#         - pd.DataFrame
+#     :errors:
+#         - ValueError
+#     '''
+#     for csv_file in data:
+#         df = data[csv_file]  # i collect the key of my dictiannary who will come from fetch_data_from_psql function
+#         print(f"{'█' * 70} ANALYSE TABLE {csv_file} {'█' * 55}")
+#         print(df.head())
+#         print(df.describe())
+#         print(df.info())
+#     return df.head(), df.info(),df.describe()   # can use
+
+# my_sql_dataset = fetch_dataSet  # la capture du dictionnaire all_data_fetch_from_sql qui est ejectee dans l'espace se fait via l'appel de sa fonction
+# head, info, describe = inspect_data_structure_in_360(my_sql_dataset)
+
+# print(f'{head}')
 
 
-my_sql_dataset = fetch_dataSet  # la capture du dictionnaire all_data_fetch_from_sql qui est ejectee dans l'espace se fait via l'appel de sa fonction
-head, info, describe = inspect_data_structure_in_360(my_sql_dataset)
-
-print(f'{head}\n')
-
-
-#DROP TABLE SECUTITY
+# DROP TABLE SECUTITY
 from sqlalchemy import text
+
 with engine_erman_connexion_to__dataspere360.connect() as conn:
     try:
-        conn.execute(text('DROP TABLE "../python_project_aiml_logicmojo_dataset/customers.csv" ')) # this explain more more the use of:  table_name = os.path.splitext(os.path.basename(filepath))[0]
+        conn.execute(text(
+            'DROP TABLE "../python_project_aiml_logicmojo_dataset/customers.csv" '))  # this explain more more the use of:  table_name = os.path.splitext(os.path.basename(filepath))[0]
         conn.commit()
         print(fr' ✅  Table droped')
     except Exception as e:
         print(fr"❌ Error Bro  look at {e}")
 
 
+def identify_keys(data_from_sql: dict) -> pd.DataFrame:
+    """
+    this fucntion will identify primary primary and forein keys in the data .
+
+    Args:
+        - data: dictionnary
+    Returns:
+        - pd.DataFrame
+
+    Errors:
+        - ValueError
+        -
+    """
+    all_columns = {}
+    for data_table in data_from_sql:
+        df = data_from_sql[data_table]     # Aligne le return exactement ici (zéro espace de décalage par rapport au for)
+        all_columns[data_table] = df.columns
+    return all_columns
+
+
+r = identify_keys(fetch_dataSet)
+
+print(f"|*************************> {type(r)}<*************************|")
+print('\n')
+print(f"{r} ")
