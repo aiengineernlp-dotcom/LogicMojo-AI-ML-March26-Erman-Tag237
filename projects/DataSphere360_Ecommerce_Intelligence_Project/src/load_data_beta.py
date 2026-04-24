@@ -5,15 +5,14 @@ import os
 import re
 
 current_time = time.time()
-# # 1. Empêche le retour à la ligne automatique
+# # 1. stop the automatic back to the ligne when display datasets
 pd.set_option('display.expand_frame_repr', False)
-# 2. Affiche toutes les colonnes (au cas où il y en aurait beaucoup)
+# 2. display all columns
 # pd.set_option('display.max_columns', None)
 
 
 # -0- connection to the data base PostgreSql that i choose to use
-engine_erman_connexion_to__dataspere360 = create_engine(
-    'postgresql://postgres:postgres@localhost:5555/datasphere360_customer_ecommerce')
+engine_erman_connexion_to__dataspere360 = create_engine('postgresql://postgres:postgres@localhost:5555/datasphere360_customer_ecommerce')
 
 
 # -1- I need to send my data to the Database PostgreSql,
