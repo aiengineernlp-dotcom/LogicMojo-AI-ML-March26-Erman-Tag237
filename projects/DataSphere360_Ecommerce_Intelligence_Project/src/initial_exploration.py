@@ -1,7 +1,6 @@
 import pandas as pd
 from sqlalchemy import create_engine
 import time
-import os
 import re
 
 current_time = time.time()
@@ -14,56 +13,6 @@ pd.set_option('display.expand_frame_repr', False)
 # -0- connection to the data base PostgreSql that i choose to use
 engine_erman_connexion_to__dataspere360 = create_engine('postgresql://postgres:postgres@localhost:5555/datasphere360_customer_ecommerce')
 
-
-# -1- I need to send my data to the Database PostgreSql,
-def push_data_to_psql(filepath: str, table_name: str) -> str:
-    """
-    :param filepath:  the path of my csv file
-    :param table_name: the name of my table
-    :return: just a confirmation message to ensure that my files are on the database Psql
-    :errors : Exception, ValueError,FileNotFoundError
-    """
-
-    # this condition is for directly make sure that the file exist otherwise we do not continous
-    if not filepath:
-        raise FileNotFoundError("The file doest not exist")
-        # if the file exist, then i read it it like a pandas because later i will need to use a pandas file to convert into sql
-    else:
-        try:
-            df = pd.read_csv(filepath)
-            table_name = os.path.splitext(os.path.basename(filepath))[0]
-            '''
-            because if i just give 'filepath' to_sql, Postgresql will create a file table name like "../python_project_aiml_logicmojo_dataset/customers.csv', "customers". to avoir it i use os.path.basename
-            it will remove all thing just before my real file name. before basename: ../dossier/data/customers.csv | after basename":customers.csv
-            now the extention ".csv" -> os.path.splitext will split customers.csv in tuple/list -> ('customers', 'csv'). And finaly,this [0] will collect the word ->customers
-
-            '''
-
-            df.to_sql(filepath, con=engine_erman_connexion_to__dataspere360, if_exists='replace', index=False)
-            bar = '▇'  # will come back for this guy later on
-            what_is_up = (f' ✅ All is GOOD Bro ! i make it... the table {table_name} is on sql {current_time}')
-        except Exception as e:
-            what_is_up = (
-                f' ❌ All is BAB Bro ! i did not make it... the table {table_name} is not on sql, {current_time}')
-            raise ValueError(
-                f" ❌ Sorry Bro something when wrong during the creation of the table {table_name} the error may be : {e} {current_time}")
-    return what_is_up
-
-# Utilisation
-
-customers = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
-location = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', 'location')
-order_item = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', 'order_item')
-orders = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "orders")
-products = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "products")
-reviews = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "reviews")
-sellers = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "sellers")
-category_translation = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv',
-                                         'category_translation')
-payments = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "payments")
-
-
-# ------------------------------
 
 def fetch_data_from_psql(
         engine_erman_connexion_to___) -> dict:  # I'm using this long name just beacause i want to personalize .
@@ -89,8 +38,6 @@ fetch_dataSet = fetch_data_from_psql(engine_erman_connexion_to__dataspere360)
 print(fetch_dataSet['customers'].describe())
 
 print('\n')
-print('\n')
-
 
 def inspect_data_structure_in_360(data_from_sql: dict) -> pd.DataFrame:
     ''''
@@ -132,12 +79,12 @@ with engine_erman_connexion_to__dataspere360.connect() as conn:
         print(fr"❌ Error Bro  look at {e}")
 
 print('\n')
-print('\n')
 
 
 def identify_fk_pk(data_from_sql: dict) -> dict:
     all_data = {}
-    potential = []
+    all_key_pot_save = {}
+    unique={}
     look_keys_pattern = re.compile(r'.*(id|pk|code|fk|pk).*', re.IGNORECASE)
     for data_table in data_from_sql:
         df = data_from_sql[data_table]
@@ -145,24 +92,67 @@ def identify_fk_pk(data_from_sql: dict) -> dict:
     # print(all_data.items())
 
     for data_table, df in all_data.items():  # I loop in my dictionnary
-        potential_cols = [col for col in df.columns if
-                          look_keys_pattern.match(col)]  # I collect those who are fiiting my Regex pattern
-        # print(potential_cols)
+        potential_cols = [col for col in df.columns if look_keys_pattern.match(col)]  # I collect those who are fiiting my Regex pattern
+        all_key_pot_save[data_table] =potential_cols
 
         for col in potential_cols:  # remenber that it contains for all data_table Regex match, So need to create the dictionnary or list to capture them
 
-            is_unique = df[col].nunique() == len(
-                df)  # since each element in the col is unique for entrie, it shoulbe egual to len(df). in that case -> I have a PK
+            is_unique = df[col].nunique() == len(df)  # since each element in the col is unique for entrie, it shoulbe egual to len(df). in that case -> I have a PK
 
-            tipo = "PK (Primary Key)" if is_unique else "FK (Foreing Key)"
-            print(f"Table [{data_table}] -> Key DEtected at : {col} ({tipo})\n {'-' * 50} ")
+            key = f"{data_table}.{col}"
+            type_key = "PK (Primary Key)" if is_unique else "FK (Foreing Key)"
+            unique[key] = type_key
+            print(f"Table [{data_table}] -> Key DEtected at : {col} ({type_key})\n {'-' * 50} ")
+            # all_key_pot_save[data_table] = type_key
 
-    return potential_cols
+    return unique
 
 
 r = identify_fk_pk(fetch_dataSet)
 print(r)
 
+
+def understanding_relation_between_tables(data_set_from_sql: dict) -> dict:
+    all_data = {}
+    result = {}
+    unique = {}
+    look_keys_pattern = re.compile(r'.*(id|pk|code|fk|key|cle).*', re.IGNORECASE)
+
+    for data_table in data_set_from_sql:
+        df = data_set_from_sql[data_table]
+        all_data[data_table] = df
+
+        for data_table, df in all_data.items():
+            potential_cols = [col for col in df.columns if look_keys_pattern.match(col)]
+            result[data_table] = potential_cols
+
+            for col in potential_cols:
+                is_unique = df[col].nunique() == len(df)
+                done = "PK" if is_unique else "FK"
+                key = f"{data_table}.{col}"  # this line help to avoid loosing somme key because of collision. , also helo for the notation. if: data_table = "orders"  and col = "customer_id"  i will have -> key = "orders.customer_id"
+                unique[key] = done
+
+    return unique
+
+
+c = understanding_relation_between_tables(
+    fetch_dataSet)  # note que ces donnees de mon dict sont deja de type "pandas" car j'ai utiliser "pandas.read_sql" pour la recuperation lors du fetch.
+
+print(f"❌❌❌TU EST ICI {c}")
+
+
+
+
+for table_colonne_a, type_a in c.items():
+    table_name_a, col_name_a = table_colonne_a.split(".")
+
+    for table_colonne_b, type_b in c.items():
+        table_name_b, col_name_b = table_colonne_b.split(".")
+
+        if table_name_a != table_name_b and col_name_a == col_name_b:
+            relation_type = "1:N" if type_a != type_b else "1:1"
+
+            print(f"[{table_name_a}   <----------{'Connection via'}: {col_name_a}---------->   {table_name_b}]")
 
 
 
