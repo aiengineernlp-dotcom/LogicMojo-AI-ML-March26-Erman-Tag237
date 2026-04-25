@@ -138,7 +138,7 @@ def understanding_relation_between_tables(data_set_from_sql: dict) -> dict:
 c = understanding_relation_between_tables(
     fetch_dataSet)  # note que ces donnees de mon dict sont deja de type "pandas" car j'ai utiliser "pandas.read_sql" pour la recuperation lors du fetch.
 
-print(f"❌❌❌TU EST ICI {c}")
+# print(f"❌❌❌TU EST ICI {c}")
 
 # VERSION - 1
 for table_colonne_a, type_a in c.items():  # I loop trougth my dictionnnairy in other to split the columns in data_table and key_col : TABLE A
@@ -152,19 +152,18 @@ for table_colonne_a, type_a in c.items():  # I loop trougth my dictionnnairy in 
             print(f"[{table_name_a}   <----------{'Connection via'}: {col_name_a}---------->   {table_name_b}]")
 
 # VERSION - 2 -
-
+#
 # for data_table_name_a, type_key_a in c.items(): # I loop trougth the dictionnairy
 #     data_table_a, col_key_a = data_table_name_a.split(".")
-
+#
 #     for data_table_name_b, type_key_b in c.items():
 #         data_table_b, col_key_b = data_table_name_b.split(".")
-
+#
 #         if data_table_a!=data_table_b and col_key_a==col_key_b :
-#             relation_type = "1:N" if type_key_a !=t ype_key_b else "1:1"
-
+#             relation_type = "1:N" if type_key_a != type_key_b else "1:1"
+#
 #             print(f"[{data_table_a}   <----------{'Connection via'}: {col_key_a}:{type_key_b}---------->   {data_table_b}]")
 #             print(relation_type)
-
 
 
 
