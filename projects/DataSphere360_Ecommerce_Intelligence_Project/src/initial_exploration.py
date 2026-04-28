@@ -80,7 +80,7 @@ with engine_erman_connexion_to__dataspere360.connect() as conn:
 print('\n')
 
 
-def identify_fk_pk(data_from_sql: dict) -> dict:
+def f_indentify_p_f_key(data_from_sql: dict) -> dict:
     all_data = {}
     all_key_pot_save = {}
     unique={}
@@ -107,7 +107,7 @@ def identify_fk_pk(data_from_sql: dict) -> dict:
     return unique
 
 
-r = identify_fk_pk(fetch_dataSet)
+r = f_indentify_p_f_key(fetch_dataSet)
 print(r)
 
 

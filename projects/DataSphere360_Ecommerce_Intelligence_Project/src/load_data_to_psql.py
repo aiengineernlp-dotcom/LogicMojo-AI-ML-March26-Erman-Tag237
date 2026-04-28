@@ -52,14 +52,14 @@ def push_data_to_psql(filepath: str, table_name: str) -> str:
 # Utilisation
 
 customers = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
-location = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', 'location')
-order_item = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', 'order_item')
-orders = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "orders")
-products = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "products")
-reviews = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "reviews")
-sellers = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "sellers")
-category_translation = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv',                                      'category_translation')
-payments = push_data_to_psql('../python_project_aiml_logicmojo_dataset/customers.csv', "payments")
+location = push_data_to_psql('../python_project_aiml_logicmojo_dataset/location.csv', 'location')
+order_item = push_data_to_psql('../python_project_aiml_logicmojo_dataset/order_item.csv', 'order_item')
+orders = push_data_to_psql('../python_project_aiml_logicmojo_dataset/orders.csv', "orders")
+products = push_data_to_psql('../python_project_aiml_logicmojo_dataset/products.csv', "products")
+reviews = push_data_to_psql('../python_project_aiml_logicmojo_dataset/reviews.csv', "reviews")
+sellers = push_data_to_psql('../python_project_aiml_logicmojo_dataset/sellers.csv', "sellers")
+category_translation = push_data_to_psql('../python_project_aiml_logicmojo_dataset/category_translation.csv','category_translation')
+payments = push_data_to_psql('../python_project_aiml_logicmojo_dataset/payments.csv', "payments")
 
 print(customers)
 print(location)
