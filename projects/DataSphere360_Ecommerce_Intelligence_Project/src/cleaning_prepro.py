@@ -5,7 +5,7 @@ engine_erman_connexion_to__dataspere360 = create_engine(
     'postgresql://postgres:postgres@localhost:5555/datasphere360_customer_ecommerce')
 
 
-def fecth_data_from_sql(engine_erman_connexion_to__) -> dict:
+def f_fecth_data_from_sql(engine_erman_connexion_to__) -> dict:
     query = "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' "  # my query: I need to know what i want to collect, in this case the table names
     tables = pd.read_sql(query, con=engine_erman_connexion_to__)[
         "table_name"].tolist()  # I put them look like a list of tables
@@ -16,7 +16,7 @@ def fecth_data_from_sql(engine_erman_connexion_to__) -> dict:
     return all_data_fetch_from_sql
 
 
-data_fecht_from_sql = fecth_data_from_sql(engine_erman_connexion_to__dataspere360)
+data_fecht_from_sql = f_fecth_data_from_sql(engine_erman_connexion_to__dataspere360)
 
 
 
@@ -163,8 +163,6 @@ r = validate_data_type_and_range(convertion_to_datetime, 100000, 0, object)
 print(r)
 
 
-
-
 def standardize_col_name(data_clean: dict)->dict:
 
     for table_name, df in data_clean.items():
@@ -172,7 +170,9 @@ def standardize_col_name(data_clean: dict)->dict:
         print(f"Column standartized for the columns:  {table_name}")
 
     return data_clean
-r = standardize_col_name(convertion_to_datetime)
+
+
+data_clean_final = standardize_col_name(convertion_to_datetime)
 
 
 # version -2-
@@ -187,5 +187,5 @@ r = standardize_col_name(convertion_to_datetime)
 #     return data_clean
 #
 #
-# r = standardize_col_name(convertion_to_datetime)
+# data_clean_final = standardize_col_name(convertion_to_datetime)
 # print(r)
