@@ -14,8 +14,7 @@ pd.set_option('display.expand_frame_repr', False)
 engine_erman_connexion_to__dataspere360 = create_engine('postgresql://postgres:postgres@localhost:5555/datasphere360_customer_ecommerce')
 
 
-def fetch_data_from_psql(
-        engine_erman_connexion_to___) -> dict:  # I'm using this long name just beacause i want to personalize .
+def fetch_data_from_psql(engine_erman_connexion_to___) -> dict:  # I'm using this long name just beacause i want to personalize .
     """
     USE CASE: this fuction is for fetching data from the database sql. He can be use with other database.
     Returns :
