@@ -26,7 +26,7 @@ def data_loading_with_pandas(folderpath: str) -> dict:
 
 
 # Utilisation
-path = "../python_project_aiml_logicmojo_dataset/"
+path = "../../python_project_aiml_logicmojo_dataset/"
 all_data = data_loading_with_pandas(path)
 print(all_data['customers'].head())
 

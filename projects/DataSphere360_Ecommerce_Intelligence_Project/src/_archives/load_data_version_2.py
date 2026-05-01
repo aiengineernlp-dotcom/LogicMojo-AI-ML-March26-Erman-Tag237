@@ -17,9 +17,9 @@ def push_data_file_to_sql(filepath, table_name)->str:
         raise FileNotFoundError (f" ❌ Error:  Failed to create the table {table_name} ")
     return what_is_up
 
-customers = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
+customers = push_data_file_to_sql('../../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
 print(customers)
-category_translation = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', 'category_translation')
+category_translation = push_data_file_to_sql('../../python_project_aiml_logicmojo_dataset/customers.csv', 'category_translation')
 # location = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', 'location')
 # order_item = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', 'order_item')
 # orders = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "orders")

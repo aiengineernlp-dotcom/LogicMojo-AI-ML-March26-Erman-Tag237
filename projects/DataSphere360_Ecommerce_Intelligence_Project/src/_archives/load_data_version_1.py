@@ -15,8 +15,8 @@ def data_loading_with_pandas_each_files(filepath: str) -> pd.DataFrame:
     return done
 
 
-result1 = data_loading_with_pandas_each_files('../python_project_aiml_logicmojo_dataset/customers.csv')
-result2 = data_loading_with_pandas_each_files('../python_project_aiml_logicmojo_dataset/location.csv')
+result1 = data_loading_with_pandas_each_files('../../python_project_aiml_logicmojo_dataset/customers.csv')
+result2 = data_loading_with_pandas_each_files('../../python_project_aiml_logicmojo_dataset/location.csv')
 # result4 =
 # result5 =
 # result6 =

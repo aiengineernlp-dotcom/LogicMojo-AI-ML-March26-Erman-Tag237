@@ -16,11 +16,11 @@ def push_data_file_to_sql(filepath, table_name) -> str:
     return what_is_up
 
 
-customers = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
+customers = push_data_file_to_sql('../../python_project_aiml_logicmojo_dataset/customers.csv', "customers")
 print(customers)
-category_translation = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv','category_translation')
+category_translation = push_data_file_to_sql('../../python_project_aiml_logicmojo_dataset/customers.csv', 'category_translation')
 print(category_translation)
-payments = push_data_file_to_sql('../python_project_aiml_logicmojo_dataset/customers.csv', "payments")
+payments = push_data_file_to_sql('../../python_project_aiml_logicmojo_dataset/customers.csv', "payments")
 print(payments)
 
 # # 1. Empêche le retour à la ligne automatique
