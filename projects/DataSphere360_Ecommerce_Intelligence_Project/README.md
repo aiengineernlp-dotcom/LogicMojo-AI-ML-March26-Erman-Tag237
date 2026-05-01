@@ -15,13 +15,13 @@
 
 
 ## 🎯 The Problem
-```
+
 In modern e-commerce ecosystems, data is generated across multiple independent systems such as customer management, order processing, payments, product catalogs, seller networks, and customer feedback platforms. These datasets are typically fragmented and stored in separate tables, making it difficult to extract unified insights.
-```
+
 ## 💡 The Solution
-```
+
 End-to-End E-commerce Intelligence System: Building a Customer 360 Analytics Framework
-```
+
 
 
 
