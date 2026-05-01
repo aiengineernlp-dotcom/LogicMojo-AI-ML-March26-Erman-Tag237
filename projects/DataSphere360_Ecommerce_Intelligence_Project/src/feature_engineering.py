@@ -69,5 +69,6 @@ def create_other_features(df: pd.DataFrame) -> pd.DataFrame:
 r_create_other_features = create_other_features(r_data_integration)
 
 # print(r_create_other_features)
+r_create_other_features.to_csv("master_df.csv", index=False)
 
 
