@@ -30,7 +30,7 @@ def load_all_csv_from_folder(folder_path: str) -> dict:
 
 
 # Utilisation
-path = '../python_project_aiml_logicmojo_dataset/'
+path = '../../python_project_aiml_logicmojo_dataset/'
 all_data = load_all_csv_from_folder(path)
 
 # Maintenant, tu peux accéder à tes données facilement :
