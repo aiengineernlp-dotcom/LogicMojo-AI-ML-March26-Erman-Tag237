@@ -36,16 +36,18 @@ def create_other_features(df: pd.DataFrame) -> pd.DataFrame:
 
     # Delivery time (order purchase to delivery date)
     # Logic : Delivery time = order_delivered_customer_date - order_purchase_timestamp
-    df_final['order_purchase_timestamp'] = pd.to_datetime(df_final['order_purchase_timestamp'])  # i convert to datetime
-    df_final['order_delivered_customer_date'] = pd.to_datetime(
-        df_final['order_delivered_customer_date'])  # i convert to datetime
+    df_final['order_purchase_timestamp'] = pd.to_datetime(df_final['order_purchase_timestamp'],
+                                                          errors='coerce')  # i convert to datetime
+    df_final['order_delivered_customer_date'] = pd.to_datetime(df_final['order_delivered_customer_date'],
+                                                               errors='coerce')  # i convert to datetime
+
     df_final['Delivery_time'] = (
                 df_final['order_delivered_customer_date'] - df_final['order_purchase_timestamp']).dt.days
 
     # Number of items per order
     # logic: need to calculate the number of items, per order. since item are represented by id samw as oder., i will groupe oders  by items
     df_final['number_of_items_per_order'] = df_final.groupby('order_id')['product_id'].transform(
-        'nunique')  # "nunique" to have the number of items per order_id
+        'count')  # "nunique" to have the number of items per order_id
 
     # Customer purchase frequency
     # logic: its the number of time that an even happens. in this case its how many time the custumer purchase
@@ -54,18 +56,18 @@ def create_other_features(df: pd.DataFrame) -> pd.DataFrame:
 
     # Customer lifetime value (basic approximation)
     # logic:
-    df_final['Customer lifetime value'] = df_final.groupby('customer_unique_id')['payment_value'].transform('sum')
+    df_final['Customer_lifetime_value'] = df_final.groupby('customer_unique_id')['payment_value'].transform('sum')
 
     # Average order value per customer
     # logic: the average of oder per customer
-    df_final['average_order_value_per_customer'] = df_final['total_order_value'] / df_final['Customer lifetime value']
+    df_final['average_order_value_per_customer'] = df_final['Customer_lifetime_value'] / df_final[
+        'customer_purchase_frequency']
 
     return df_final
 
 
 r_create_other_features = create_other_features(r_data_integration)
 
-print(r_create_other_features)
-
+# print(r_create_other_features)
 
 
