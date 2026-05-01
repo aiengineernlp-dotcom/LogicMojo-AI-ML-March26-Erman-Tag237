@@ -8,9 +8,7 @@
 [![Status](https://img.shields.io/badge/Status-In%20Development-yellow)]()
 [![Python](https://img.shields.io/badge/Python-3.11+-blue)]()
 [![License](https://img.shields.io/badge/License-MIT-green)]()
-[![Builder](https://img.shields.io/badge/By-Tensoratech-orange)]()
 
-*Un produit [Tensoratech™](https://linkedin.com/company/tensoratech)*
 
 </div>
 
@@ -28,15 +26,6 @@ End-to-End E-commerce Intelligence System: Building a Customer 360 Analytics Fra
 
 
 
-
----
-
-## 🏗Architecture  
-
-```
-comming soon 
-```
-
 ---
 
 ## 🛠️ Stack Technique
@@ -47,13 +36,6 @@ comming soon
 | Langage | Python 3.11+  |
 | Data    | NumPy, Pandas |
 | SGBDR   | PostgreSQL    |
-
-
----
-
-## 📍 Market
-
-**UAE / MENA**
 
 
 ---
@@ -71,26 +53,10 @@ comming soon
 
 ## 📈 Building in Public
 
-
-Je construis DataSphere360 C.E.I.S en public.
-Chaque semaine une mise à jour
-sur LinkedIn et GitHub, bientôt sur X aussi.
-
-**Suivez la progression :**
-→ [Tensoratech LinkedIn](https://linkedin.com/company/tensoratech)
-→ [GitHub](https://github.com/aiengineernlp-dotcom/)
-
----
-
-## ⚠️ Disclaimer
-comming soon 
-
-
+DataSphere360 C.E.I.S
 
 ---
 
 ## 👨‍💻 Auteur
 
-**Erman Willian Tagaintchuem** — Founder @ Tensoratech™
-
-*Building AI solutions for UAE/MENA*
+**Erman Willian Tagaintchuem** 
