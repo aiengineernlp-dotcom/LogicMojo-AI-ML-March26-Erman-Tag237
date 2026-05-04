@@ -37,7 +37,7 @@ products = push_data_to_psql('../datasets/products.csv', 'products')
 reviews = push_data_to_psql('../datasets/reviews.csv', 'reviews')
 sellers = push_data_to_psql('../datasets/sellers.csv', 'sellers')
 
-
+print(f"{'▇' * 5} LOAD DATA TO POSGRESQL {'▇' * 100}")
 print(customer)
 print(location)
 print(order_items)
