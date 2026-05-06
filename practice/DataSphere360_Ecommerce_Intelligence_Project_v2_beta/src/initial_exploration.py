@@ -8,6 +8,7 @@ engine_erman_ds_version_2 = create_engine(
 
 
 def fetch_data_from_sql(engine_erman_connexion_to___) -> dict:
+    print(f"{'▇' * 30} AFFICHAGES DE LA STRUCTURE DES DONNEES{'▇' * 70}")
     """
     Use Case :
 
@@ -27,14 +28,11 @@ def fetch_data_from_sql(engine_erman_connexion_to___) -> dict:
         all_table_from_sql[table] = pd.read_sql(sql_query, con=engine_erman_connexion_to___)
 
     return all_table_from_sql
-
-
 r_fetch_data_from_sql = fetch_data_from_sql(engine_erman_ds_version_2)
 
 
-
 def inspect_structure_data(raw_data_from_sql)->dict:
-    print(f" AFFICHAGES DE LA STRUCTURE DES DONNEES ")
+    print(f"{'▇' * 30} AFFICHAGES DE LA STRUCTURE DES DONNEES{'▇' * 70}")
     dict_all_data = {}
     """
     Use Case :
@@ -53,6 +51,8 @@ def inspect_structure_data(raw_data_from_sql)->dict:
     return dict_all_data
 
 r_inspect_structure_data = inspect_structure_data(r_fetch_data_from_sql)
+print(f"{'▇' * 30} AFFICHAGES DE LA STRUCTURE DES DONNEES{'▇' * 70}")
+
 print(r_inspect_structure_data)
 
 
