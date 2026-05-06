@@ -31,3 +31,25 @@ def fetch_data_from_sql(engine_erman_connexion_to___) -> dict:
 data_from_sql = fetch_data_from_sql(engine_erman_ds_version_2)
 
 
+
+def inspect_structure_data(raw_data_from_sql)->dict:
+    print(f" AFFICHAGES DE LA STRUCTURE DES DONNEES ")
+    dict_all_data = {}
+    """
+    Use Case :
+    :param raw_data_from_sql: 
+    :return: 
+    """
+
+    for table_name, df in raw_data_from_sql.items():
+
+        dict_all_data [table_name] = {
+            "HEAD":df.head(),
+            "INFO":df.info(),
+            "DESCRIBE":df.describe(),
+        }
+
+    return dict_all_data
+
+r = inspect_structure_data(data_from_sql)
+print(r)
