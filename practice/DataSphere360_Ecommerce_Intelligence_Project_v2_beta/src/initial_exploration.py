@@ -51,5 +51,5 @@ def inspect_structure_data(raw_data_from_sql)->dict:
 
     return dict_all_data
 
-r = inspect_structure_data(data_from_sql)
-print(r)
+r_inspect_structure_data = inspect_structure_data(data_from_sql)
+print(r_inspect_structure_data)
