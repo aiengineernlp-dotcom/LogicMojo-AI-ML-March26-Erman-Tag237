@@ -90,7 +90,7 @@ def identify_p_f_keys(raw_data_from_sql: dict) -> dict:
     return unique_keys
 
 
-r_identify_p_f_keys = identify_p_f_keys(data_from_sql)
+r_identify_p_f_keys = identify_p_f_keys(r_fetch_data_from_sql)
 # Note : avec ce code je me dis que que je dois optimiser ma dectetion des cles car je vois dans le resultats pk ou je m'attendais a voir Fk. Est les donnees ou alors mon code? entre temps mon code est bon selon moi
 print(f"{'▇' * 30} identify_p_f_keys {'▇' * 70}")
 print(r_identify_p_f_keys)
