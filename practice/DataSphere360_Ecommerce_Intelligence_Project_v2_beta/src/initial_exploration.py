@@ -28,7 +28,7 @@ def fetch_data_from_sql(engine_erman_connexion_to___) -> dict:
     return all_table_from_sql
 
 
-data_from_sql = fetch_data_from_sql(engine_erman_ds_version_2)
+r_fetch_data_from_sql = fetch_data_from_sql(engine_erman_ds_version_2)
 
 
 
@@ -51,5 +51,5 @@ def inspect_structure_data(raw_data_from_sql)->dict:
 
     return dict_all_data
 
-r_inspect_structure_data = inspect_structure_data(data_from_sql)
+r_inspect_structure_data = inspect_structure_data(r_fetch_data_from_sql)
 print(r_inspect_structure_data)
