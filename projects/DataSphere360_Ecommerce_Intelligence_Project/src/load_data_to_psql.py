@@ -30,7 +30,7 @@ def push_data_to_psql(filepath: str, table_name: str) -> str:
         # if the file exist, then i read it it like a pandas because later i will need to use a pandas file to convert into sql
     else:
         try:
-            df = pd.read_csv(filepath)
+            df = pd.read_csv(filepath) #
             table_name = os.path.splitext(os.path.basename(filepath))[0]
             '''
             because if i just give 'filepath' to_sql, Postgresql will create a file table name like "../python_project_aiml_logicmojo_dataset/customers.csv', "customers". to avoir it i use os.path.basename
@@ -39,7 +39,7 @@ def push_data_to_psql(filepath: str, table_name: str) -> str:
 
             '''
 
-            df.to_sql(filepath, con=engine_erman_connexion_to__dataspere360, if_exists='replace', index=False)
+            df.to_sql(table_name, con=engine_erman_connexion_to__dataspere360, if_exists='replace', index=False)
             bar = '▇'  # will come back for this guy later on
             what_is_up = (f' ✅ All is GOOD Bro ! i make it... the table {table_name} is on sql {current_time}')
         except Exception as e:
