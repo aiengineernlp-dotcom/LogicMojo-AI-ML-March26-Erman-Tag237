@@ -82,6 +82,7 @@ def identify_p_f_keys(raw_data_from_sql: dict) -> dict:
             is_nunique = df[col].nunique() == len(df)
 
             key = (f"{table_name}.{col}")
+
             type_key = "PK" if is_nunique else "FK"
 
             unique_keys[key] = type_key
@@ -94,3 +95,40 @@ r_identify_p_f_keys = identify_p_f_keys(r_fetch_data_from_sql)
 # Note : avec ce code je me dis que que je dois optimiser ma dectetion des cles car je vois dans le resultats pk ou je m'attendais a voir Fk. Est les donnees ou alors mon code? entre temps mon code est bon selon moi
 print(f"{'▇' * 30} identify_p_f_keys {'▇' * 70}")
 print(r_identify_p_f_keys)
+
+
+def understand_relationship_betwntable(data_from_sql: dict) -> str:
+    print(f"{'▇' * 30} understand_relationship_betwntable {'▇' * 70}")
+
+    """
+    Use Case:
+    Params:
+    argums:
+
+    """
+    # super_powers_containers
+    dict_potentiels_cols = {}
+    list_is_unique = []
+    all_keys = {}
+    relationship_betwntable = []
+    # pattern_iden = re.compile(r'.*(|id|_id|code|pk|fk)',re.IGNORECASE)
+    pattern_iden = re.compile(r'.*(id|_id|code|pk|fk).*', re.IGNORECASE)
+
+    for table_name, df in data_from_sql.items():
+        potentiels_cols = [col for col in df.columns if pattern_iden.match(col)]
+        dict_potentiels_cols[table_name] = potentiels_cols
+
+        for c in potentiels_cols:
+            is_unique = df[c].nunique() == len(df)
+
+            keys = f"{table_name}.{c}"  # creation d'une variable pour l'affichage
+
+            type_key = "PK" "" if is_unique else "FK"  " in this CASE"  # simple declaration conditionnelle
+
+            relationship_betwntable = f"{table_name} is {type_key} from the relation between {keys}\n"
+            print(relationship_betwntable)
+
+    return relationship_betwntable
+
+
+r_understand_relationship_betwntable = understand_relationship_betwntable(r_fetch_data_from_sql)

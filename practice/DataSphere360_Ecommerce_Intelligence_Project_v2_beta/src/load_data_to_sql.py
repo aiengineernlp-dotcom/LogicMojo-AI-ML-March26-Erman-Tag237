@@ -27,7 +27,6 @@ def push_data_to_psql(file_path:str, table_name:str)->str:
 
     return what_is_up
 
-
 customer = push_data_to_psql('../datasets/customers.csv', 'customers')
 location = push_data_to_psql('../datasets/location.csv', 'location')
 order_items = push_data_to_psql('../datasets/order_item.csv', 'order_items')
