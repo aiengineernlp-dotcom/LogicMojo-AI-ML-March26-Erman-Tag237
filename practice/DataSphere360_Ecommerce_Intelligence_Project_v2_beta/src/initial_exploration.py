@@ -110,9 +110,10 @@ def understand_relationship_betwntable(data_from_sql: dict) -> str:
     dict_potentiels_cols = {}
     list_is_unique = []
     all_keys = {}
-    relationship_betwntable = []
+    list_relationship_betwntable = []
     # pattern_iden = re.compile(r'.*(|id|_id|code|pk|fk)',re.IGNORECASE)
-    pattern_iden = re.compile(r'.*(id|_id|code|pk|fk).*', re.IGNORECASE)
+    # pattern_iden = re.compile(r'.*(id|_id|code|pk|fk).*', re.IGNORECASE)
+    pattern_iden = re.compile(r'.*(_id|_code|_pk|_fk)$|^id$|zip_code|^code$', re.IGNORECASE)
 
     for table_name, df in data_from_sql.items():
         potentiels_cols = [col for col in df.columns if pattern_iden.match(col)]
@@ -123,12 +124,16 @@ def understand_relationship_betwntable(data_from_sql: dict) -> str:
 
             keys = f"{table_name}.{c}"  # creation d'une variable pour l'affichage
 
-            type_key = "PK" "" if is_unique else "FK"  " in this CASE"  # simple declaration conditionnelle
+            type_key = 'PK' if is_unique else 'FK'  # simple declaration conditionnelle
 
-            relationship_betwntable = f"{table_name} is {type_key} from the relation between {keys}\n"
+            relationship_betwntable = f"{keys} is {type_key} in table {table_name} \n"
+            list_relationship_betwntable.append(relationship_betwntable)
+
             print(relationship_betwntable)
 
-    return relationship_betwntable
+    return list_relationship_betwntable
 
 
 r_understand_relationship_betwntable = understand_relationship_betwntable(r_fetch_data_from_sql)
+
+# print(r_understand_relationship_betwntable)
