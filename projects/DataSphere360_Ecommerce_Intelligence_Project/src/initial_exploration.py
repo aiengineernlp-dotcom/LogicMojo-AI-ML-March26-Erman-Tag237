@@ -83,7 +83,9 @@ def f_indentify_p_f_key(data_from_sql: dict) -> dict:
     all_data = {}
     all_key_pot_save = {}
     unique={}
-    look_keys_pattern = re.compile(r'.*(id|pk|code|fk|pk).*', re.IGNORECASE)
+    # look_keys_pattern = re.compile(r'.*(id|pk|code|fk|pk).*', re.IGNORECASE)
+    look_keys_pattern= re.compile(r'.*(id|_id|code|pk|fk|zip_code).*', re.IGNORECASE)
+
     for data_table in data_from_sql:
         df = data_from_sql[data_table]
         all_data[data_table] = df
@@ -165,3 +167,5 @@ print(r)
 #
 #
 #
+
+
