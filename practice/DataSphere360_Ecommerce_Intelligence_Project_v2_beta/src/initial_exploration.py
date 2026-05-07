@@ -120,7 +120,7 @@ def understand_relationship_betwntable(data_from_sql: dict) -> str:
         dict_potentiels_cols[table_name] = potentiels_cols
 
         for c in potentiels_cols:
-            is_unique = df[c].nunique() == len(df)
+            is_unique = df[c].nunique() == len(df)  # l'unicité seule ne suffit pas
 
             keys = f"{table_name}.{c}"  # creation d'une variable pour l'affichage
 
