@@ -38,4 +38,48 @@ def fecht_data_from_sql(connexion_to____) -> dict:
 
 
 r_fecht_data_from_sql = fecht_data_from_sql(engine_erman_ds_version_2)
-print(r_fecht_data_from_sql)
+# print(r_fecht_data_from_sql)
+
+
+pd.set_option('display.expand_frame_repr', False)
+
+
+def handle_missing_values(data_from_sql: dict) -> dict:
+    treshold = 0.3
+    for table_name, df in data_from_sql.items():
+        for col_name in df.columns:
+            col_value = df[col_name]
+
+            # Transformations
+            is_nulls = col_value.isnull().sum()
+
+            # more than 30% missing values
+
+            more_than_30 = is_nulls > (treshold * len(df))
+            if more_than_30:
+                print(
+                    f" ❌ ❌{col_name} has  ->  {is_nulls}  missing values and it's more than 30% from the df. need to be drop off.")
+                # df[col_name]  = df[col_name].drop(col_name,axis=1)
+                # print(f"{col_name} with   ->  {is_nulls}  missing values has been drop off.")
+
+            if is_nulls > 0:
+                if pd.api.types.is_numeric_dtype(col_value):
+                    # -2- valueur numeriques null doivent etre remplcer par la mediane
+                    col_value_to_median = col_value.median()
+                    df[col_name] = col_value.fillna(col_value_to_median)
+                    print(f"{col_name} has  ->  {is_nulls}  missing values  has been transftom to median and added")
+
+
+                elif pd.api.types.is_categorical_dtype(col_value):
+                    # -3- valueur categoriel null doivent etre remplcer par le mode
+                    col_value_to_mode = col_value.mode()
+                    df[col_name] = col_value.fillna(col_value_to_mode)
+                    print(f"{col_name} has  ->  {is_nulls}  missing values  has been transftom to mode and added")
+            else:
+                print(f"🟢 {col_name} : all is fine")  # i need some others data to validate this output
+
+    return
+
+
+r_handle_missing_values = handle_missing_values(r_fecht_data_from_sql)
+print(r_handle_missing_values)
