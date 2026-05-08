@@ -133,7 +133,6 @@ def understand_relationship_betwntable(data_from_sql: dict) -> str:
 
     return list_relationship_betwntable
 
-
 r_understand_relationship_betwntable = understand_relationship_betwntable(r_fetch_data_from_sql)
 
 # print(r_understand_relationship_betwntable)
