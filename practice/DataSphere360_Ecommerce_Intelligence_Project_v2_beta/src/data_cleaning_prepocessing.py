@@ -59,19 +59,22 @@ def handle_missing_values(data_from_sql: dict) -> dict:
             if more_than_30:
                 print(f" ❌ ❌{col_name} has  ->  {is_nulls}  missing values and it's more than 30% from the df. need to be drop off.")
                 list_more_than_30.append(col_name)
+
+                ###❌ ❌❌ ❌❌ ❌❌ ❌❌ ❌ drop the values...
+
             else:
                 if is_nulls > 0:
                     if pd.api.types.is_numeric_dtype(col_value):
                         # -2- valueur numeriques null doivent etre remplcer par la mediane
                         col_value_to_median = col_value.median()
                         df[col_name] = col_value.fillna(col_value_to_median)
-                        print(f"{col_name} has  ->  {is_nulls}  missing values  has been transform to median and added to df.")
+                        print(f"{col_name} has  ->  {is_nulls}  missing numerical values  has been transform to median and added to df.")
 
                     elif pd.api.types.is_categorical_dtype(col_value):
                         # -3- valueur categoriel null doivent etre remplcer par le mode
                         col_value_to_mode = col_value.mode()
                         df[col_name] = col_value.fillna(col_value_to_mode)
-                        print(f"{col_name} has  ->  {is_nulls}  missing values  has been transfomr to mode and added to df.")
+                        print(f"{col_name} has  ->  {is_nulls}  missing categorial values  has been transfomr to mode and added to df.")
                     # else:
                     #     print(f"{col_name} does not have enough values to transform to median and added to df")
                 else:
