@@ -59,8 +59,7 @@ def handle_missing_values(data_from_sql: dict) -> dict:
                     # Mode for categorial variables
                     elif pd.api.types.is_object_dtype(col_value) or pd.api.types.is_categorical_dtype(col_value):
                         # compute the mode
-                        mode_col_value = col_value.mode()[
-                            0]  # because .mode() always return a list. and i can not put a list in a dataframe
+                        mode_col_value = col_value.mode()[0] #  [0] because .mode() always return a list. and i can not put a list in a dataframe (exel file) so i just take the first value
                         # Replace by the mode (la valeur la plus frequente)
                         df[col_name] = col_value.fillna(mode_col_value)
                         print(f"categorial:{col_name} - mode is: {mode_col_value}\n")
