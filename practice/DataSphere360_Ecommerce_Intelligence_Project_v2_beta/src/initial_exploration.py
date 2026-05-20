@@ -1,138 +1,82 @@
-import pandas as pd
-from sqlalchemy import create_engine
+from fetch_data_from_sql import r_c_fect_data_from_sql
+# initial exploration 
+import io
+def inspect_data_structure(raw_data_from_sql:dict)->dict:
+    
+    """
+
+    :param raw_data_from_sql:
+    :return:
+    """
+
+    structure_table_name = {}
+    for table_name, df in raw_data_from_sql.items():
+        if not table_name:
+            raise ValueError ("Table doest not exsit ")
+        else:
+            try:
+                #Capture de df.info() car son affichage est tres sauvage ici
+                buffer = io.StringIO()
+                df.info(buf = buffer ) #redirrige l'affichage vers un buffer invisible
+                info_str = buffer.getvalue() # Contient le texte de info
+                
+                
+                describe = df.describe()
+                head = df.head()
+                structure_table_name[table_name] = [info_str,head, describe,]
+            except Exception as e:
+                print(f"🚨The error is {e}")
+                
+    return structure_table_name
+
+r_c_inspect_data_structure = inspect_data_structure(r_c_fect_data_from_sql)    
+
+for table, element in r_c_inspect_data_structure.items():
+    info_str,head, describe = element # logiquement les elements du dictionnaire sont [info_str,head, describe]
+    print(f"DETAILS about the table : {table.upper()}\n ")
+    print(info_str)
+    print(head)
+    print(describe)
+
+
+
 import re
-pd.set_option('display.expand_frame_repr',False)
-# connexion to the database
-engine_erman_ds_version_2 = create_engine(
-    'postgresql+psycopg2://postgres:postgres@localhost:5555/datasphere360_customer_ecommerce_v2')
-
-
-def fetch_data_from_sql(engine_erman_connexion_to___) -> dict:
-    print(f"{'▇' * 30} fetch_data_from_sql{'▇' * 70}")
-    """
-    Use Case :
-
-    param:
-        -
-    Args:
-        -
+def identify_primary_foreing_key(data_fetch_from_psql: dict) -> dict | str:
     """
 
-    query = "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'"
-    tables = pd.read_sql(query, con=engine_erman_connexion_to___)['table_name'].tolist()
-    all_table_from_sql = {}
-
-    for table in tables:
-        print(f"Recuperation of the table {table} in ......")
-        sql_query = f'SELECT * FROM "{table}"'
-        all_table_from_sql[table] = pd.read_sql(sql_query, con=engine_erman_connexion_to___)
-
-    return all_table_from_sql
-r_fetch_data_from_sql = fetch_data_from_sql(engine_erman_ds_version_2)
-
-
-def inspect_structure_data(raw_data_from_sql)->dict:
-    print(f"{'▇' * 30} inspect_structure_data{'▇' * 70}")
-    dict_all_data = {}
+    :param data_fetch_from_psql:
+    :return:
     """
-    Use Case :
-    :param raw_data_from_sql: 
-    :return: 
-    """
+    print(f"{'▇' * 30} identify_primary_foreing_key {'▇' * 70}")
+    # patter_for_all_cols = re.compile(r'.*(id|_id|code|pk|fk|zip_code).*', re.IGNORECASE)
+    # patter_for_all_cols = re.compile(r'.*(|id|_id|code|pk|fk)',re.IGNORECASE)
+    # patter_for_all_cols = re.compile(r'.*(id|_id|code|pk|fk).*', re.IGNORECASE)
+    patter_for_all_cols = re.compile(r'.*(_id|_code|_pk|_fk)$|^id$|zip_code|^code$', re.IGNORECASE)
 
-    for table_name, df in raw_data_from_sql.items():
+    all_potentials_cols = {}
+    unique_key = {}
 
-        dict_all_data [table_name] = {
-            "HEAD":df.head(),
-            "INFO":df.info(),
-            "DESCRIBE":df.describe(),
-        }
+    for table_name, df in data_fetch_from_psql.items():
+        potentials_cols = [cols for cols in df.columns if patter_for_all_cols.match(cols)]
+        all_potentials_cols[table_name] = potentials_cols
 
-    return dict_all_data
+        for col in potentials_cols:
+            is_unique = df[col].nunique() == len(
+                df)  # chaque colonne est unique donc la somme des lignes est == la somme des colonnes
+            key = f"{table_name}.{col}"
 
-r_inspect_structure_data = inspect_structure_data(r_fetch_data_from_sql)
-print(f"{'▇' * 30} inspect_structure_data{'▇' * 70}")
+            type_key = "PK" if is_unique else "FK"
+            unique_key[key] = type_key
+            print(f" {col}  is {type_key} via {key} in {table_name.upper()} Table\n")
 
-print(r_inspect_structure_data)
-
-
-
-def identify_p_f_keys(raw_data_from_sql: dict) -> dict:
-    print(f"{'▇' * 30} identify_p_f_keys {'▇' * 70}")
-
-    """
-    Use case : 
-    params: 
-    argusments:
+    return unique_key
 
 
-    """
-
-    pattern_for_keys = re.compile(r'.*(id|_id|code|pk|fk).*', re.IGNORECASE)
-    all_patterns_keys = {}
-    unique_keys = {}
-    for table_name, df in raw_data_from_sql.items():
-        # j'utilise la regex pour voir si mon pattern match
-        potential_cols = [col for col in df.columns if pattern_for_keys.match(col)]
-        #
-        all_patterns_keys[table_name] = potential_cols
-
-        for col in potential_cols:
-            # Avec .nunique(), le nombre de fois que un element entrer est present sera sommer et la somme devrait etre egale a len(df). ou alors a 1 si on fait le ratio (df[col].nunique()/len(df))
-            is_nunique = df[col].nunique() == len(df)
-
-            key = (f"{table_name}.{col}")
-
-            type_key = "PK" if is_nunique else "FK"
-
-            unique_keys[key] = type_key
-            print(f"Table: {table_name} -> cle detected: {key}  -> type: {type_key} ")
-
-    return unique_keys
+r_c_identify_primary_foreing_key = identify_primary_foreing_key(r_c_fect_data_from_sql)
+print(r_c_identify_primary_foreing_key)
 
 
-r_identify_p_f_keys = identify_p_f_keys(r_fetch_data_from_sql)
-# Note : avec ce code je me dis que que je dois optimiser ma dectetion des cles car je vois dans le resultats pk ou je m'attendais a voir Fk. Est les donnees ou alors mon code? entre temps mon code est bon selon moi
-print(f"{'▇' * 30} identify_p_f_keys {'▇' * 70}")
-print(r_identify_p_f_keys)
-
-
-def understand_relationship_betwntable(data_from_sql: dict) -> str:
-    print(f"{'▇' * 30} understand_relationship_betwntable {'▇' * 70}")
-
-    """
-    Use Case:
-    Params:
-    argums:
-
-    """
-    # super_powers_containers
-    dict_potentiels_cols = {}
-    list_is_unique = []
-    all_keys = {}
-    list_relationship_betwntable = []
-    # pattern_iden = re.compile(r'.*(|id|_id|code|pk|fk)',re.IGNORECASE)
-    # pattern_iden = re.compile(r'.*(id|_id|code|pk|fk).*', re.IGNORECASE)
-    pattern_iden = re.compile(r'.*(_id|_code|_pk|_fk)$|^id$|zip_code|^code$', re.IGNORECASE)
-
-    for table_name, df in data_from_sql.items():
-        potentiels_cols = [col for col in df.columns if pattern_iden.match(col)]
-        dict_potentiels_cols[table_name] = potentiels_cols
-
-        for c in potentiels_cols:
-            is_unique = df[c].nunique() == len(df)  # l'unicité seule ne suffit pas
-
-            keys = f"{table_name}.{c}"  # creation d'une variable pour l'affichage
-
-            type_key = 'PK' if is_unique else 'FK'  # simple declaration conditionnelle
-
-            relationship_betwntable = f"{keys} is {type_key} in table {table_name} \n"
-            list_relationship_betwntable.append(relationship_betwntable)
-
-            print(relationship_betwntable)
-
-    return list_relationship_betwntable
-
-r_understand_relationship_betwntable = understand_relationship_betwntable(r_fetch_data_from_sql)
-
-# print(r_understand_relationship_betwntable)
+     
+    
+    
+    

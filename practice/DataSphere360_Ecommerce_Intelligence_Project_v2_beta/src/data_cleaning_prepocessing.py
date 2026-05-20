@@ -72,7 +72,7 @@ def handle_missing_values(data_from_sql: dict) -> dict:
 
                     elif pd.api.types.is_categorical_dtype(col_value):
                         # -3- valueur categoriel null doivent etre remplcer par le mode
-                        col_value_to_mode = col_value.mode()
+                        col_value_to_mode = col_value.mode()[0] # Le Mode : df.mode() retourne une Série, pas une valeur unique. Il faut utiliser .mode()[0] pour obtenir la valeur la plus fréquente.
                         df[col_name] = col_value.fillna(col_value_to_mode)
                         print(f"{col_name} has  ->  {is_nulls}  missing categorial values  has been transfomr to mode and added to df.")
                     # else:
