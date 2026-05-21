@@ -1,4 +1,6 @@
+
 from fetch_data_from_sql import r_c_fect_data_from_sql
+
 # initial exploration 
 import io
 def inspect_data_structure(raw_data_from_sql:dict)->dict:
