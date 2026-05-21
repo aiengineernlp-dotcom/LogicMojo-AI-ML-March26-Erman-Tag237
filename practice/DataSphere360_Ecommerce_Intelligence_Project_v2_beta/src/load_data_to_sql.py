@@ -6,7 +6,12 @@ current_time = datetime.datetime.now()
 pd.set_option('display.expand_frame_repr',False)
 
 # connexion to the database
-engine_erman_ds_version_2 = create_engine('postgresql+psycopg2://postgres:postgres@localhost:5551/datasphere360_customer_ecommerce_v2')
+engine_erman_ds_version_2 = create_engine('postgresql+psycopg2://postgres:postgres@localhost:5555/datasphere360_customer_ecommerce_v2')
+
+if engine_erman_ds_version_2:
+    print('Successfully connected to PostgreSQL database')
+else:
+    print('Failed to connect to PostgreSQL database')
 
 def push_data_to_psql(file_path:str, table_name:str)->str:
     """
