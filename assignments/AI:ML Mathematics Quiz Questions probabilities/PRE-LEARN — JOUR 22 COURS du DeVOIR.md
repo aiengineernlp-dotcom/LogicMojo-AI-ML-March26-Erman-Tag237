@@ -160,6 +160,29 @@ Pour f(x, y) = x² + y² :
 
 **Géométriquement**, le gradient pointe toujours dans la direction de **la montée la plus rapide**. Le Gradient Descent fait l'opposé → il descend.
 
+
+Pour la question 9, la réponse exacte est la matrice hessienne (ou simplement le Hessien, Hessian matrix en anglais).
+Voici une explication simple pour comprendre ce concept sans s'y perdre :
+## Qu'est-ce que c'est ?
+Dans les fonctions à plusieurs variables (multivariables), pour mesurer comment la fonction change, on utilise des dérivées :
+
+* 1er ordre (Gradient) : Le vecteur qui contient toutes les premières dérivées partielles. Il indique la pente (la direction pour monter ou descendre).
+* 2e ordre (Hessien) : La matrice qui contient toutes les secondes dérivées partielles. Elle indique la courbure de la fonction (est-ce que la pente s'accélère, ralentit, forme une cuvette ou une montagne ?).
+
+## Pourquoi Newton en a besoin ?
+Contrairement à la descente de gradient classique (1er ordre) qui avance à l'aveugle avec des pas fixes, la méthode de Newton (2e ordre) regarde la courbure grâce à la matrice hessienne.
+Cela lui permet de prendre des raccourcis ultra-rapides et intelligents directement vers le point le plus bas (le minimum).
+## Résumé pour votre examen :
+
+* Question : Matrix of second-order partial derivatives?
+* Réponse : Hessian matrix (Matrice hessienne).
+
+Avez-vous besoin de voir à quoi ressemble la forme mathématique de cette matrice, ou préférez-vous passer à la question suivante ?
+
+
+
+
+
 ---
 
 ## 📌 Le Vanishing Gradient Problem
@@ -231,6 +254,50 @@ Quand deux vecteurs sont **orthogonaux** (angle de 90°) :
 
 Pourquoi ? Parce que cos(90°) = 0, et le produit scalaire = ‖v‖·‖w‖·cos(θ)
 
+On utilise le cosinus ($\cos$) dans le produit scalaire parce que cette opération géométrique mesure la projection d'un vecteur sur un autre [1].
+Le produit scalaire répond à la question : "Quelle quantité de la force du vecteur $\vec{v}$ agit dans la même direction que le vecteur $\vec{w}$ ?" [1]
+Voici la démonstration géométrique simple qui explique pourquoi le cosinus est indispensable.
+------------------------------
+## 1. La géométrie de l'ombre (La Projection)
+Imaginons deux vecteurs $\vec{v}$ et $\vec{w}$ qui partent du même point, avec un angle $\theta$ entre eux.
+Si vous placez une lumière verticalement au-dessus du vecteur $\vec{v}$, ce vecteur va projeter une "ombre" sur la droite portée par le vecteur $\vec{w}$.
+
+        v  (Vecteur 1)
+       /|
+      / |  
+     /  |  <-- Ligne perpendiculaire (hauteur)
+    /   |
+   /θ___|___________ w (Vecteur 2)
+   [----]
+    Ombre = ||v|| * cos(θ)
+
+En trigonométrie de collège, dans un triangle rectangle :
+$$\cos(\theta) = \frac{\text{Côté adjacent}}{\text{Hypoténuse}} = \frac{\text{Longueur de l'ombre}}{\Vert{}\vec{v}\Vert{}}$$ 
+Donc, la longueur de l'ombre (la projection de $\vec{v}$ sur l'axe de $\vec{w}$) est égale à :
+$$\text{Ombre} = \Vert{}\vec{v}\Vert{} \times \cos(\theta)$$ 
+## 2. Pourquoi le produit scalaire multiplie ces longueurs ?
+Le produit scalaire est défini comme la multiplication de la longueur du vecteur récepteur ($\Vert{}\vec{w}\Vert{}$) par la quantité de l'autre vecteur qui va dans son sens (l'Ombre) :
+$$\text{Produit Scalaire} = \Vert{}\vec{w}\Vert{} \times \text{Ombre}$$ 
+$$\text{Produit Scalaire} = \Vert{}\vec{w}\Vert{} \times \big(\Vert{}\vec{v}\Vert{} \times \cos(\theta)\big) = \Vert{}\vec{v}\Vert{} \cdot \Vert{}\vec{w}\Vert{} \cdot \cos(\theta)$$ 
+## 3. Le cas des vecteurs orthogonaux (Angle de 90°)
+
+* Si l'angle $\theta = 90^\circ$, le vecteur $\vec{v}$ est parfaitement vertical par rapport à $\vec{w}$.
+* Si vous éclairez par-dessus, son ombre sur $\vec{w}$ se réduit à un seul point (une longueur de zéro).
+* Mathématiquement, $\cos(90^\circ) = 0$, donc l'ombre vaut 0.
+* Puisque l'un des vecteurs n'apporte absolument aucune contribution dans la direction de l'autre, leur produit scalaire est nul ($0$).
+
+## 4. Le lien avec vos caractéristiques (Features) en Machine Learning
+C'est exactement pour cela que le PCA (Analyse en Composantes Principales) cherche des axes orthogonaux (vecteurs propres) !
+Si deux caractéristiques $x_1$ et $x_2$ sont orthogonales, leur produit scalaire est de 0. Cela signifie géométriquement qu'elles n'ont aucune ombre l'une sur l'autre, aucune influence commune. Elles contiennent des informations 100 % indépendantes. C'est la condition parfaite dont rêve le classificateur Naive Bayes !
+Si vous le souhaitez, nous pouvons faire un calcul matriciel rapide pour vérifier que si on applique la formule algébrique $(x_1x_2 + y_1y_2)$ sur deux vecteurs perpendiculaires, on retombe bien numériquement sur zéro. Cela vous intéresse-t-il ?
+
+
+
+
+
+
+
+
 ---
 
 ## 📌 Les Matrices
@@ -268,6 +335,8 @@ A · v = λ · v
 - **λ** = eigenvalue → il est juste **étiré ou compressé**
 
 > Imagine que tu étires une feuille de caoutchouc. La plupart des points bougent dans tous les sens. Mais certaines directions restent fixes — ce sont les **eigenvectors**.
+
+>  voir aussi dans  PRE-LEARN — JOUR 21
 
 ---
 
