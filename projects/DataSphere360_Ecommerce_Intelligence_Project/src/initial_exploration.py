@@ -14,7 +14,7 @@ pd.set_option('display.expand_frame_repr', False)
 engine_erman_connexion_to__dataspere360 = create_engine('postgresql://postgres:postgres@localhost:5555/datasphere360_customer_ecommerce')
 
 
-def fetch_data_from_psql(engine_erman_connexion_to___) -> dict:  # I'm using this long name just beacause i want to personalize .
+def fetch_data_from_psql(engine_erman_connexion_to___:str) -> dict:  # I'm using this long name just beacause i want to personalize .
     """
     USE CASE: this fuction is for fetching data from the database sql. He can be use with other database.
     Returns :
@@ -52,8 +52,7 @@ def inspect_data_structure_in_360(data_from_sql: dict) -> pd.DataFrame:
         - ValueError
     '''
     for data_table in data_from_sql:
-        df = data_from_sql[
-            data_table]  # i collect the key of my dictiannary who will come from fetch_data_from_psql function
+        df = data_from_sql[data_table]  # i collect the key of my dictiannary who will come from fetch_data_from_psql function
         print(f"{'█' * 70} ANALYSE TABLE {data_table} {'█' * 55}")
         print(df.head())
         print(df.describe())
