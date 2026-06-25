@@ -1,6 +1,3 @@
-# ════════════════════════════════════════════════════
-# STEP 2 — LOAD & FIRST LOOK
-# ════════════════════════════════════════════════════
 from config.settings import *
 from data.loader import r_c_fech_data_from_psql
 
