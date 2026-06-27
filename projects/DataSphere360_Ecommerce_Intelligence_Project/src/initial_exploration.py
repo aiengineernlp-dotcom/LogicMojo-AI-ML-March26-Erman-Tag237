@@ -11,7 +11,7 @@ pd.set_option('display.expand_frame_repr', False)
 
 
 # -0- connection to the data base PostgreSql that i choose to use
-engine_erman_connexion_to__dataspere360 = create_engine('postgresql://postgres:postgres@localhost:5555/datasphere360_customer_ecommerce')
+engine = create_engine('postgresql://postgres:postgres@localhost:5551/datasphere360_customer_ecommerce')
 
 
 def fetch_data_from_psql(engine_erman_connexion_to___:str) -> dict:  # I'm using this long name just beacause i want to personalize .
@@ -32,7 +32,7 @@ def fetch_data_from_psql(engine_erman_connexion_to___:str) -> dict:  # I'm using
     return all_data_fetch_from_sql
 
 
-fetch_dataSet = fetch_data_from_psql(engine_erman_connexion_to__dataspere360)
+fetch_dataSet = fetch_data_from_psql(engine)
 print(fetch_dataSet['customers'].describe())
 
 print('\n')
@@ -62,20 +62,23 @@ def inspect_data_structure_in_360(data_from_sql: dict) -> pd.DataFrame:
 
 my_sql_dataset = fetch_dataSet  # la capture du dictionnaire all_data_fetch_from_sql qui est ejectee dans l'espace se fait via l'appel de sa fonction
 head, info, describe = inspect_data_structure_in_360(my_sql_dataset)
+print(f"🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨 {describe}")
+
+
 
 # DROP TABLE SECUTITY
-from sqlalchemy import text
-
-with engine_erman_connexion_to__dataspere360.connect() as conn:
-    try:
-        conn.execute(text(
-            'DROP TABLE "../python_project_aiml_logicmojo_dataset/customers.csv" '))  # this explain more more the use of:  table_name = os.path.splitext(os.path.basename(filepath))[0]
-        conn.commit()
-        print(fr' ✅  Table droped')
-    except Exception as e:
-        print(fr"❌ Error Bro  look at {e}")
-
-print('\n')
+# from sqlalchemy import text
+#
+# with engine.connect() as conn:
+#     try:
+#         conn.execute(text(
+#             'DROP TABLE "../python_project_aiml_logicmojo_dataset/customers.csv" '))  # this explain more more the use of:  table_name = os.path.splitext(os.path.basename(filepath))[0]
+#         conn.commit()
+#         print(fr' ✅  Table droped')
+#     except Exception as e:
+#         print(fr"❌ Error Bro  look at {e}")
+#
+# print('\n')
 
 
 def f_indentify_p_f_key(data_from_sql: dict) -> dict:
@@ -87,28 +90,30 @@ def f_indentify_p_f_key(data_from_sql: dict) -> dict:
 
     for data_table in data_from_sql:
         df = data_from_sql[data_table]
-        all_data[data_table] = df
-    print("🚨🚨🚨",all_data.items())
+        all_data[data_table] = df  # on veut mettre toutes les donnees dans un dictionnaire pour faciliter la manipulation
+    # print("🚨🚨🚨",all_data.items())
 
-    for data_table, df in all_data.items():  # I loop in my dictionnary
+    for data_table, df in all_data.items():  # I loop in my dictionnary   🚨🚨 JE NOTE QUE JE POUVAIS NE PAS FAIRE CETTE BOUCLE CI HAUT. JE POUVAIS DIRECTEMENT FAIRE FOR DATA_TABLE, DF IN data_from_sql.items() et je continue.  Car les donnees que j'ai fetch sont dans un dictionnaire deja. pourquoi alors casser en faisant df = data_from_sql[data_table], avant de remettre encore dans un dictionnaire?
+        # premiere etape de la verification en utilisant Regex
         potential_cols = [col for col in df.columns if look_keys_pattern.match(col)]  # I collect those who are fiiting my Regex pattern
         all_key_pot_save[data_table] =potential_cols
 
         for col in potential_cols:  # remenber that it contains for all data_table Regex match, So need to create the dictionnary or list to capture them
 
-            is_unique = df[col].nuniqTue() == len(df)  # since each element in the col is unique for entrie, it shoulbe egual to len(df). in that case -> I have a PK
+            # deuxieme etape de la verification en utilisant nunique()
+            is_unique = df[col].nunique() == len(df)  # since each element in the col is unique for each entrie, it should be egual to len(df). in that case -> I have a PK
 
             key = f"{data_table}.{col}"
             type_key = "PK (Primary Key)" if is_unique else "FK (Foreing Key)"
             unique[key] = type_key
             print(f"Table [{data_table}] -> Key DEtected at : {col} ({type_key})\n {'-' * 50} ")
-            # all_key_pot_save[data_table] = type_key
+            all_key_pot_save[data_table] = type_key
 
     return unique
 
 
 r = f_indentify_p_f_key(fetch_dataSet)
-print(r)
+
 
 
 # def understanding_relation_between_tables(data_set_from_sql: dict) -> dict:
