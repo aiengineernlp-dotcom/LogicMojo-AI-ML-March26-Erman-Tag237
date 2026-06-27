@@ -1,3 +1,5 @@
+from langchain.retrievers.ensemble import unique_by_key
+
 from config.settings import *
 from data.loader import r_c_fech_data_from_psql
 
@@ -77,15 +79,33 @@ def data_overview(my_df_init: pd.DataFrame) -> dict:
 
 
 r_c_data_overview = data_overview(r_c_fech_data_from_psql)
-print((r_c_data_overview))
+# print((r_c_data_overview))
 
 
-def inspect_data_structure_in_360():
-    pass
+def f_identify_fk_pk(data_fetch_from_sql:dict)->dict:
+    all_data = {}
+    all_key_pot_save = {}
+    unique_key ={}
+    # look_keys_pattern = re.compile(r'.*(id|pk|code|fk|pk).*', re.IGNORECASE)
+    look_keys_pattern= re.compile(r'.*(id|_id|code|pk|fk|zip_code).*', re.IGNORECASE)
+    for data_table in data_fetch_from_sql:
+        df = data_fetch_from_sql[data_table] # on recupere un seul dataframe
+        all_data[data_table] = df
 
+    for data_table, df in all_data.items():
+        potential_cols = [col for col in df.columns if  look_keys_pattern.match(col)]
+        all_key_pot_save[data_table] = potential_cols
 
-def f_identify_fk_pk():
-    pass
+        for col in potential_cols:
+            is_unique = df[col].nunique() == len(df)
+            key = f"{data_table}.{col}"
+            type_key = "PK (Primary Key)" if is_unique else "FK (Foreing Key)"
+            unique_key[key] = type_key
+            print(f"Table [{data_table}] -> Key DEtected : {col} --- Type: ({type_key})\n {'-' * 50} ")
+    return unique_key
+
+r_c_f_identify_fk_pk = f_identify_fk_pk(r_c_fech_data_from_psql)
+print((r_c_f_identify_fk_pk))
 
 def understanding_relation_between_tables():
     pass
