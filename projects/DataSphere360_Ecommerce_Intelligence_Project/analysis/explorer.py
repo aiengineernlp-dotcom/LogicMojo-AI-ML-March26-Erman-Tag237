@@ -1,4 +1,3 @@
-from langchain.retrievers.ensemble import unique_by_key
 
 from config.settings import *
 from data.loader import r_c_fech_data_from_psql
@@ -56,7 +55,7 @@ def data_overview(my_df_init: pd.DataFrame) -> dict:
                         for col in date_cols:
                             try:
                                 temp_series = pd.to_datetime(df[col])
-                                print(f"  • {col} : {temp_series.min().date()} -> {temp_series.max().date()}")
+                                print(f"  •{col} : {temp_series.min().date()} -> {temp_series.max().date()}")
                             except Exception as e:
                                 pass
                         print()
@@ -79,7 +78,7 @@ def data_overview(my_df_init: pd.DataFrame) -> dict:
 
 
 r_c_data_overview = data_overview(r_c_fech_data_from_psql)
-# print((r_c_data_overview))
+print((r_c_data_overview))
 
 
 def f_identify_fk_pk(data_fetch_from_sql:dict)->dict:
@@ -105,7 +104,71 @@ def f_identify_fk_pk(data_fetch_from_sql:dict)->dict:
     return unique_key
 
 r_c_f_identify_fk_pk = f_identify_fk_pk(r_c_fech_data_from_psql)
-print((r_c_f_identify_fk_pk))
 
-def understanding_relation_between_tables():
-    pass
+
+def understanding_relation_between_tables(data_fetch_from_sql: dict) -> dict | str:
+    # look_keys_pattern = re.compile(r'.*(id|pk|code|fk|pk).*', re.IGNORECASE)
+    look_keys_pattern = re.compile(r'.*(id|_id|code|pk|fk|zip_code).*', re.IGNORECASE)
+    relation_dict = {}
+    if not data_fetch_from_sql:
+        raise ValueError("❌ Donnees pas trouvees")
+    else:
+        try:
+            for data_table, df in data_fetch_from_sql.items():
+                potential_cols = [col for col in df.columns if look_keys_pattern.match(col)]
+
+                for col in potential_cols:
+                    is_unique = df[col].nunique() == len(df)
+                    key = f"{data_table}.{col}"
+                    type_key = "PK (Primary Key)" if is_unique else "FK (Foreing Key)"
+                    relation_dict[key] = type_key
+
+        except Exception as e:
+            print("❌ Erreur est exactement: -> ", e)
+
+    return relation_dict
+
+
+r_c_understanding_relation_between_tables = understanding_relation_between_tables(r_c_fech_data_from_psql)
+print(r_c_understanding_relation_between_tables)
+
+
+# ❌ je ne vois pas l'erreur ici mais il en a. Je dois corriger et valider ce code et non celui du bas (pense a le deposer dans le groupe)
+# for key_a, val_a in r_c_understanding_relation_between_tables.items():
+#     table_name_a, col_name_a = key_a.split(".")
+
+#     for key_b, val_b in r_c_understanding_relation_between_tables.items():
+#         table_name_b, col_name_b = key_b.split(".")
+
+#         if table_name_a != table_name_b and col_name_a == col_name_b:  # donc ici on a deux table differentes  et on compare les noms(key) et (val)
+#             relation_type = "1:N" if val_a != val_b else "1:1"
+#     print(f"[{table_name_a} <----------{'Connected via'} {col_name_a} to {table_name_b}]")
+#     print(f" The relation is:  {relation_type}")
+
+
+for table_colonne_a, type_a in r_c_understanding_relation_between_tables.items():
+    table_name_a, col_name_a = table_colonne_a.split(".")
+
+    for table_colonne_b, type_b in r_c_understanding_relation_between_tables.items():
+        table_name_b, col_name_b = table_colonne_b.split(".")
+
+        if table_name_a != table_name_b and col_name_a == col_name_b:
+            print(f"[{table_name_a}   <----------{'Connection via'}: {col_name_a}---------->   {table_name_b}]")
+
+
+# NOTE CL0DE T"AS DONNER UN TRUC POUR REFLECHIR SUR LA CFONCTION
+###❌✅
+
+
+#
+# def convert_to_pd_DataFrame(data_fetch_from_sql: dict) -> dict:
+#     all_data = {}
+#
+#     for table_name, df in data_fetch_from_sql.items():
+#         df = df.copy()
+#         all_data [table_name] = df
+#     return all_data
+#
+# r_c_convert_to_pd_DataFrame = convert_to_pd_DataFrame(r_c_fech_data_from_psql)
+#
+# print((r_c_convert_to_pd_DataFrame))

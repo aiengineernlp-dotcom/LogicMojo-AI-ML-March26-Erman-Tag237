@@ -14,7 +14,6 @@ pd.set_option('display.expand_frame_repr', False)
 engine_erman_connexion_to__dataspere360 = create_engine(
     'postgresql://postgres:postgres@localhost:5555/datasphere360_customer_ecommerce')
 
-
 # -1- I need to send my data to the Database PostgreSql,
 def push_data_to_psql(filepath: str, table_name: str) -> str:
     """
@@ -143,28 +142,3 @@ with engine_erman_connexion_to__dataspere360.connect() as conn:
         print(fr"❌ Error Bro  look at {e}")
 
 
-def identify_keys(data_from_sql: dict) -> pd.DataFrame:
-    """
-    this fucntion will identify primary primary and forein keys in the data .
-
-    Args:
-        - data: dictionnary
-    Returns:
-        - pd.DataFrame
-
-    Errors:
-        - ValueError
-        -
-    """
-    all_columns = {}
-    for data_table in data_from_sql:
-        df = data_from_sql[data_table]     # Aligne le return exactement ici (zéro espace de décalage par rapport au for)
-        all_columns[data_table] = df.columns
-    return all_columns
-
-
-r = identify_keys(fetch_dataSet)
-
-print(f"|*************************> {type(r)}<*************************|")
-print('\n')
-print(f"{r} ")

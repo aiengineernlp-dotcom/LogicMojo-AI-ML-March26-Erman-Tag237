@@ -116,60 +116,52 @@ r = f_indentify_p_f_key(fetch_dataSet)
 
 
 
-# def understanding_relation_between_tables(data_set_from_sql: dict) -> dict:
-#     all_data = {}
-#     result = {}
-#     unique = {}
-#     look_keys_pattern = re.compile(r'.*(id|pk|code|fk|key|cle).*', re.IGNORECASE)
-#
-#     for data_table in data_set_from_sql:
-#         df = data_set_from_sql[data_table]
-#         all_data[data_table] = df
-#
-#         for data_table, df in all_data.items():
-#             potential_cols = [col for col in df.columns if look_keys_pattern.match(col)]
-#             result[data_table] = potential_cols
-#
-#             for col in potential_cols:
-#                 is_unique = df[col].nunique() == len(df)
-#                 done = "PK" if is_unique else "FK"
-#                 key = f"{data_table}.{col}"  # this line help to avoid loosing somme key because of collision. , also helo for the notation. if: data_table = "orders"  and col = "customer_id"  i will have -> key = "orders.customer_id"
-#                 unique[key] = done
-#
-#     return unique
-#
-#
-# c = understanding_relation_between_tables(
-#     fetch_dataSet)  # note que ces donnees de mon dict sont deja de type "pandas" car j'ai utiliser "pandas.read_sql" pour la recuperation lors du fetch.
-#
-# # print(f"❌❌❌TU EST ICI {c}")
-#
-# # VERSION - 1
-# for table_colonne_a, type_a in c.items():  # I loop trougth my dictionnnairy in other to split the columns in data_table and key_col : TABLE A
-#     table_name_a, col_name_a = table_colonne_a.split(".")
-#
-#     for table_colonne_b, type_b in c.items():  # I loop trougth my dictionnnairy in other to split the columns in data_table and key_col : TABLE B
-#         table_name_b, col_name_b = table_colonne_b.split(".")
-#
-#         if table_name_a != table_name_b and col_name_a == col_name_b:  # I compare not if my table is egual to other table, but if key_col are similar ot not. if there are similar, The relation between table is 1:1 else 1:N
-#             relation_type = "1:N" if type_a != type_b else "1:1"
-#             print(f"[{table_name_a}   <----------{'Connection via'}: {col_name_a}---------->   {table_name_b}]")
-#
-# # VERSION - 2 -
-# #
-# # for data_table_name_a, type_key_a in c.items(): # I loop trougth the dictionnairy
-# #     data_table_a, col_key_a = data_table_name_a.split(".")
-# #
-# #     for data_table_name_b, type_key_b in c.items():
-# #         data_table_b, col_key_b = data_table_name_b.split(".")
-# #
-# #         if data_table_a!=data_table_b and col_key_a==col_key_b :
-# #             relation_type = "1:N" if type_key_a != type_key_b else "1:1"
-# #
-# #             print(f"[{data_table_a}   <----------{'Connection via'}: {col_key_a}:{type_key_b}---------->   {data_table_b}]")
-# #             print(relation_type)
-#
-#
-#
+def understanding_relation_between_tables(data_set_from_sql: dict) -> dict:
+    all_data = {}
+    result = {}
+    unique = {}
+    look_keys_pattern = re.compile(r'.*(id|pk|code|fk|key|cle).*', re.IGNORECASE)
+
+    for data_table in data_set_from_sql:
+        df = data_set_from_sql[data_table]
+        all_data[data_table] = df
+
+        for data_table, df in all_data.items():
+            potential_cols = [col for col in df.columns if look_keys_pattern.match(col)]
+            result[data_table] = potential_cols
+
+            for col in potential_cols:
+                is_unique = df[col].nunique() == len(df)
+                type_key = "PK" if is_unique else "FK"
+                key = f"{data_table}.{col}"  # this line help to avoid loosing somme key because of collision. , also helo for the notation. if: data_table = "orders"  and col = "customer_id"  i will have -> key = "orders.customer_id"
+                unique[key] = type_key
+
+    return unique
 
 
+c = understanding_relation_between_tables(fetch_dataSet)  # note que ces donnees de mon dict sont deja de type "pandas" car j'ai utiliser "pandas.read_sql" pour la recuperation lors du fetch.
+
+# print(f"❌❌❌TU EST ICI {c}")
+
+# VERSION - 1
+for table_colonne_a, type_a in c.items():  # I loop trougth my dictionnnairy in other to split the columns in data_table and key_col : TABLE A
+    table_name_a, col_name_a = table_colonne_a.split(".")
+
+    for table_colonne_b, type_b in c.items():  # I loop trougth my dictionnnairy in other to split the columns in data_table and key_col : TABLE B
+        table_name_b, col_name_b = table_colonne_b.split(".")
+
+        if table_name_a != table_name_b and col_name_a == col_name_b:  # I compare not if my table is egual to other table, but if key_col are similar or not. if there are similar, The relation between table is 1:1 else 1:N
+            relation_type = "1:N" if type_a != type_b else "1:1"
+            print(f"[{table_name_a}   <----------{'Connection via'}: {col_name_a}---------->   {table_name_b}]")
+
+
+# for key_a, val_a in r_c_understanding_relation_between_tables.items():
+#     table_name_a, col_name_a = key_a.split(".")
+#
+#     for key_b, val_b in r_c_understanding_relation_between_tables.items():
+#         table_name_b, col_name_b = key_b.split(".")
+#
+#         if table_name_a != table_name_b and col_name_a == col_name_b:  # donc ici on a deux table differentes  et on compare les noms(key) et (val)
+#             relation_type = "1:N" if val_a != val_b else "1:1"
+#     print(f"[{table_name_a} <----------{'Connected via'} {col_name_a} to {table_name_b}]")
+#     print(f" The relation is:  {relation_type}")
