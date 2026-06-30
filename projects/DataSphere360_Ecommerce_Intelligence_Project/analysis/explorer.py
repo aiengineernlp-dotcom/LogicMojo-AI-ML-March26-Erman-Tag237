@@ -160,15 +160,3 @@ for table_colonne_a, type_a in r_c_understanding_relation_between_tables.items()
 ###❌✅
 
 
-#
-# def convert_to_pd_DataFrame(data_fetch_from_sql: dict) -> dict:
-#     all_data = {}
-#
-#     for table_name, df in data_fetch_from_sql.items():
-#         df = df.copy()
-#         all_data [table_name] = df
-#     return all_data
-#
-# r_c_convert_to_pd_DataFrame = convert_to_pd_DataFrame(r_c_fech_data_from_psql)
-#
-# print((r_c_convert_to_pd_DataFrame))

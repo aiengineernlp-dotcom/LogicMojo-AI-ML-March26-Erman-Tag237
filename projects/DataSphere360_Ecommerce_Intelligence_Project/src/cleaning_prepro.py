@@ -64,10 +64,11 @@ def handle_missing_values(data_from_sql: dict) -> dict:
                         df[col_name] = col_value.fillna(mode_col_value)
                         print(f"categorial:{col_name} - mode is: {mode_col_value}\n")
                 else:
-                    print(f"🟢 {col_name} : all is fine")  # i need some others data to validate this output
+                    # print(f"🟢 {col_name} : all is fine")  # i need some others data to validate this output
+                    print()
+
 
     return data_from_sql  # dictionnairy of dataframe clean
-
 
 imputation = handle_missing_values(data_fecht_from_sql)
 

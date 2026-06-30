@@ -24,9 +24,10 @@ from config.settings import *
 
 def cleaning(raw_data_from_:dict):
     print(f"\n🧹 CLEANING")
-    all_data= {}
+
     colonnes_numeriques = []
     colonnes_texte = []
+    cleaned_data={}
     for table_name, df in raw_data_from_.items():
         if df.empty:
             print("ok")
@@ -35,9 +36,6 @@ def cleaning(raw_data_from_:dict):
             print("ok_1")
             try:
                 raw_data_from_clean = df.copy()
-                all_data[table_name] = raw_data_from_clean
-                print(all_data)
-
                 for col in raw_data_from_clean.columns:
                     print("ok_4")
                     # colonnes numériques
@@ -56,33 +54,77 @@ def cleaning(raw_data_from_:dict):
                         print(colonnes_texte)
                     # more than 30% missing values  a coder
                     # if raw_data_from_clean[col].isnull():
+                cleaned_data[table_name] = raw_data_from_clean
             except Exception as e:
                 print(f"Erman The error is {e}")
 
-        return all_data
+        return cleaned_data
 
 
 r_c_cleaning = cleaning(r_c_fech_data_from_psql)
-missing_before = sum(df.isnull().sum().sum() for df in r_c_fech_data_from_psql.values())
-# missing_after = sum(df.isnull().sum().sum() for df in r_c_cleaning())
+missing_before = sum(df.isnull().sum().sum() for df in r_c_fech_data_from_psql.values()) # cette ecriture car r_c_fech_data_from_psql est un dictionnaire
+missing_after = sum(df.isnull().sum().sum() for df in r_c_cleaning.values()) # cette ecriture car r_c_cleaning est un dictionnaire
 
 print(f"\nMissing Before: {missing_before}")
-# print(f"\n✅ Missing After: {r_c_cleaning.isnull().sum().sum()}")
+print(f"\n✅Missing Before: {missing_after}")
+# print(f"\n✅ Missing After: {r_c_cleaning.isnull().sum().sum()}") # cas si r_c_cleaning est un dataFrame
 
 """
 README:
-j'ai fait une petite gymastie ici: dans cette fonction tout par du fait que j'ai un dictionnaire qui vient du fichier
-precedent (loader), et je sais que, je peux avoir le dataframe de ce dictionnaire, appliquer mes operation pandas dessus
-
+note que selon que ce soit un dataframe ou un dictionnaire la difference est tres minime. mais fait attention au faux positifs silencieux
 """
 
 
+def handle_missing_values(raw_data_from_:dict)->dict:
+    all_is_missing={}
+    treshold = 0.3
+    missing_values_great_30={}
 
+    for table_name, df in raw_data_from_.items():
+        if df.empty:
+            raise ValueError("Donnees introuvables")
+        else:
+            try:
+                df_clone = df.copy()
+                for col_name in df_clone.columns:
+                    col_value = df[col_name]
+                    # -1- Missing Values
+                    is_missing = col_value.isnull().sum()
+                    if is_missing > 0:
+                        all_is_missing[table_name] = is_missing
+                    # -2- more than 30% missing values
+                    more_than_30 = is_missing > (treshold * len(df_clone))
+                    if more_than_30:
+                        missing_values_great_30[col_name] = is_missing
+                    else:
+                        if is_missing > 0:
+                            # -3- base on type of variable, I will transform missing values to :
+                            # - 3.1 - Median for numerical  variables,
+                            if pd.api.types.is_numeric_dtype(col_value):
+                                # compute the median
+                                median_col_value = col_value.median()
+                                # Replace by the median
+                                df_clone[col_name] = col_value.fillna(median_col_value)
+                                print(f"Numerical:{col_name} - Median is : {median_col_value}")
 
+                            #- 3.2 Mode for categorial variables
+                            elif pd.api.types.is_object_dtype(col_value) or pd.api.types.is_categorical_dtype(col_value):
+                                # compute the mode
+                                mode_col_value = col_value.mode()[0] #  [0] because .mode() always return a list. and i can not put a list in a dataframe (exel file) so i just take the first value
+                                # Replace by the mode (la valeur la plus frequente)
+                                df_clone[col_name] = col_value.fillna(mode_col_value)
+                                print(f"categorial:{col_name} - mode is: {mode_col_value}\n")
+                        else:
+                            # print(f"🟢 {col_name} : all is fine")
+                            print()
+            except Exception as e:
+                print("STOP l'erreur est : ->", e)
 
-def handle_missing_values():
-    pass
+    return  raw_data_from_
 
+# r_c_handle_missing_values = handle_missing_values(r_c_fech_data_from_psql) # no problem here.
+imputation = handle_missing_values(r_c_fech_data_from_psql)
+print(imputation)
 
 def remove_duplicated_record():
     pass
