@@ -126,8 +126,34 @@ def handle_missing_values(raw_data_from_:dict)->dict:
 imputation = handle_missing_values(r_c_fech_data_from_psql)
 print(imputation)
 
-def remove_duplicated_record():
-    pass
+
+def remove_duplicated_record(raw_data_from_: dict):
+    duplicated_records = {}
+
+    for table_name, df in raw_data_from_.items():
+        if df.empty:
+            raise ValueError("Donnnees non trouvees")
+        else:
+            try:
+                df_clone = df.copy()
+                for col_name in df_clone.columns:  # id , name , sexe , city
+                    # 🚩col_value = df[col_name]
+                    # 🚩if col_value.duplicated().any(): # BAS: col_value est une Series (une colonne) or on veux une ligne qui correspond a un record.  Donc col_value.duplicated() vérifie si des valeurs de cette colonne sont répétées. C'est pas ce que on veux. On veut savoir et voir les LIGNES (record) Dupliquees
+                    pass
+                duplicates = df_clone[df_clone.duplicated()]
+
+                if not duplicates.empty:
+                    duplicated_records[table_name] = duplicates
+            except Exception as e:
+                print("The error is ", e)
+
+    return duplicated_records
+
+
+r_c_remove_duplicated_record = remove_duplicated_record(r_c_fech_data_from_psql)
+print(r_c_remove_duplicated_record)
+
+
 
 def convert_date_col_to_date_time_format():
     pass
