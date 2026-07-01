@@ -82,7 +82,7 @@ def remove_duplicated_record(data_clean_from_sql: dict) -> dict:
     duplicated_records = []
 
     for table_name, df_clean in data_clean_from_sql.items():
-        if df_clean.duplicated().any():
+        if df_clean.duplicated().any(): # si un dataframe est dupliquer
             duplicated_records.append(df_clean[df_clean.duplicated()])
 
         df_clean.drop_duplicates(inplace=True)
