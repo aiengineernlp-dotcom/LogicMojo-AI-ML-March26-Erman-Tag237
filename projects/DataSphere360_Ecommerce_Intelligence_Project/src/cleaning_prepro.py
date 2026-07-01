@@ -108,7 +108,7 @@ def convert_date_col_to_date_time_format(data_sql_clean: dict) -> dict:
 
             if 'date' in col_name.lower():
                 liste.append(col_name)
-                df[col_name] = pd.to_datetime(df[col_name])  # ignore: if can't be conerv=ted it will leave it as its is
+                df[col_name] = pd.to_datetime(df[col_name])
                 print(f"✅ Convertion of {col_name} Done with the  else block")
     return data_sql_clean # data_sql_clean.keys() can be use to see the keys but not recommended
 
@@ -119,7 +119,7 @@ print(convertion_to_datetime)
 def validate_data_type_and_range(data_clean: dict, max_value: int, min_val: int, expected_type) -> dict:
     """
     Use case :
-        - Type validation (Verification) : Base on logic of how the type should be, we need to know if the the type expected is actually what we have. Exemple: df['age'] should ne type int64, not something else,
+        - Type validation (Verification) : Base on logic of how the type should be, we need to know if  the type expected is actually what we have. Exemple: df['age'] should ne type int64, not something else,
         - Range validation (Verification) : Base on logic of how the range should be, we need to know if we are in the normal range. Exemple df['age'] should not be up to 130.
         -
 
@@ -135,12 +135,11 @@ def validate_data_type_and_range(data_clean: dict, max_value: int, min_val: int,
     for data_table, df in data_clean.items():
         for col_name in df.columns:
             results = {"Columns": col_name, "errors": []}
-            col_value = df[col_name]
+            # col_value = df[col_name]
 
             # validation of type (Verification if the type that my col_name is same as expected)
             if not pd.api.types.is_dtype_equal(df[col_name].dtype, expected_type):  # if type are not egual
-                results['errors'].append(
-                    f"Type Error bro: Expected type is {expected_type} But receive is {df[col_name].dtype}")
+                results['errors'].append(f"Type Error bro: Expected type is {expected_type} But receive is {df[col_name].dtype}")
 
             # validation of type (Verification if the range that my col_name has is  "normal or logic ")
             if pd.api.types.is_numeric_dtype(df[col_name]):

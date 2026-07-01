@@ -154,16 +154,66 @@ r_c_remove_duplicated_record = remove_duplicated_record(r_c_fech_data_from_psql)
 print(r_c_remove_duplicated_record)
 
 
+def convert_date_col_to_date_time_format(raw_data_from_: dict):
+    converted_columns = []
+    converted_tables = {}
 
-def convert_date_col_to_date_time_format():
-    pass
+    for table_name, df in raw_data_from_.items():
+        if df.empty:
+            raise ValueError("Donnees nont trouvees")
+        else:
+            try:
+                df_clone = df.copy()
+                for col_name in df_clone.columns:
+                    if pd.api.types.is_datetime64_any_dtype(df_clone[col_name]) or pd.api.types.is_datetime64_dtype(
+                            df_clone[col_name]):
+                        print(f" {col_name} already converted ")
+                        continue
+                    if 'date' in col_name.lower() or 'datetime' in col_name.lower():
+                        df_clone[col_name] = pd.to_datetime(df_clone[col_name],
+                                                            errors="coerce")  # errors="coerce" pour dire que si une valeur ne peut pas etre convertie ne plante pas
+                        converted_columns.append(col_name)  # liste des colonnes converties
+                converted_tables[
+                    table_name] = df_clone  # Veut dire Dans le casier "customers", je mets le DataFrame df_clone; ici df_clone n’est PLUS une copie, c’est juste une valeur stockée dans un dictionnaire
+                '''
+                df_clone est un DataFrame
+                converted_tables["customers"] = df_clone est juste le stockage de ce DataFrame dans un dictionnaire
+                '''
+
+            except Exception as e:
+                print(f"🛑 L'erreur  est ici :  {e} 👈 ")
+
+    return converted_tables, converted_columns
+
+
+r_c_convert_date_col_to_date_time_format = convert_date_col_to_date_time_format(r_c_fech_data_from_psql)
+print(r_c_convert_date_col_to_date_time_format)
 
 
 def validate_data_type_and_range():
     pass
 
-def standardize_col_name():
-    pass
+
+
+def standardize_col_name(raw_data_from_:dict)->dict:
+
+    for table_name, df in raw_data_from_.items():
+        if df.empty:
+            raise ValueError("Pas de donnees")
+        else:
+            try:
+                df_clone = df.copy()
+                df_clone.columns = (df_clone.columns.str.strip().str.lower().str.replace(' ', '_',regex=False).str.replace('.','_',regex=False))
+                print(f"Column standartized for the table:  {table_name}")
+                # affiche le avant et le apres
+            except Exception as e:
+                print(f"L'erreur est {e}")
+
+    return raw_data_from_
+
+
+data_clean_final = standardize_col_name(r_c_fech_data_from_psql)
+
 
 
 
