@@ -1,79 +1,8 @@
 # ════════════════════════════════════════════════════
-# STEP 3 — CLEAN
+#  — CLEAN
 # ════════════════════════════════════════════════════
 from data.loader import r_c_fech_data_from_psql
 from config.settings import *
-
-
-
-
-# print(f"\n🧹 CLEANING")
-# my_df_init_clean = my_df_init.copy()
-
-# # Rating -> madiane par categorie
-# my_df_init_clean["rating"] = my_df_init_clean.groupby("category")["rating"].transform(lambda x : x.fillna(x.median()))
-
-# #Payement -> mode global
-# my_df_init_clean ["payment_method"] = (my_df_init_clean["payment_method"]).fillna(my_df_init_clean["payment_method"].mode()[0])
-
-# print(f"\nMissing Before: {my_df_init.isnull().sum().sum()}")
-# print(f"\n✅ Missing After: {my_df_init_clean.isnull().sum().sum()}")
-
-
-# methode by fucntion
-
-def cleaning(raw_data_from_:dict):
-    print(f"\n🧹 CLEANING")
-
-    colonnes_numeriques = []
-    colonnes_texte = []
-    cleaned_data={}
-    for table_name, df in raw_data_from_.items():
-        if df.empty:
-            print("ok")
-            raise ValueError("Erman The data is not avaible")
-        else:
-            print("ok_1")
-            try:
-                raw_data_from_clean = df.copy()
-                for col in raw_data_from_clean.columns:
-                    print("ok_4")
-                    # colonnes numériques
-                    if raw_data_from_clean[col].dtype in ["int64", "float64"] or pd.api.types.is_numeric_dtype(
-                            raw_data_from_clean[col]):  ## C"EST CA QUE JE VAIS FUSIONNER L"INGINE FINALE
-                        raw_data_from_clean[col] = raw_data_from_clean[col].fillna(raw_data_from_clean[col].median())
-                        colonnes_numeriques.append(col)
-                        print(colonnes_numeriques)
-
-                    # colonnes texte
-                    if raw_data_from_clean[col].dtype == "object" or pd.api.types.is_object_dtype(
-                            raw_data_from_clean[col]) or pd.api.types.is_categorical_dtype(
-                            raw_data_from_clean[col]):  ## C"EST CA QUE JE VAIS FUSIONNER L"INGINE FINALE
-                        raw_data_from_clean[col] = raw_data_from_clean[col].fillna(raw_data_from_clean[col].mode()[0])
-                        colonnes_texte.append(col)
-                        print(colonnes_texte)
-                    # more than 30% missing values  a coder
-                    # if raw_data_from_clean[col].isnull():
-                cleaned_data[table_name] = raw_data_from_clean
-            except Exception as e:
-                print(f"Erman The error is {e}")
-
-        return cleaned_data
-
-
-r_c_cleaning = cleaning(r_c_fech_data_from_psql)
-missing_before = sum(df.isnull().sum().sum() for df in r_c_fech_data_from_psql.values()) # cette ecriture car r_c_fech_data_from_psql est un dictionnaire
-missing_after = sum(df.isnull().sum().sum() for df in r_c_cleaning.values()) # cette ecriture car r_c_cleaning est un dictionnaire
-
-print(f"\nMissing Before: {missing_before}")
-print(f"\n✅Missing Before: {missing_after}")
-# print(f"\n✅ Missing After: {r_c_cleaning.isnull().sum().sum()}") # cas si r_c_cleaning est un dataFrame
-
-"""
-README:
-note que selon que ce soit un dataframe ou un dictionnaire la difference est tres minime. mais fait attention au faux positifs silencieux
-"""
-
 
 def handle_missing_values(raw_data_from_:dict)->dict:
     all_is_missing={}
@@ -190,22 +119,146 @@ r_c_convert_date_col_to_date_time_format = convert_date_col_to_date_time_format(
 print(r_c_convert_date_col_to_date_time_format)
 
 
-def validate_data_type_and_range():
-    pass
-
-
-
-def standardize_col_name(raw_data_from_:dict)->dict:
-
+def validate_data_type_and_range(raw_data_from_: dict, expected_schema: dict) -> dict | bool:
+    final_report = {}
     for table_name, df in raw_data_from_.items():
         if df.empty:
             raise ValueError("Pas de donnees")
         else:
             try:
                 df_clone = df.copy()
-                df_clone.columns = (df_clone.columns.str.strip().str.lower().str.replace(' ', '_',regex=False).str.replace('.','_',regex=False))
+                for col_name in df_clone.columns:
+                    results = {
+                        "column": col_name,
+                        "errors": []
+                    }
+
+
+                    table_schema = expected_schema.get(table_name,
+                                                       {})
+
+                    col_rules = table_schema.get(col_name,
+                                                 {})
+                    expected_type = col_rules.get("type")
+                    min_val = col_rules.get("min")
+                    max_val = col_rules.get("max")
+
+                    # 0. vérifier le type réel
+                    if expected_type is None:
+                        results["errors"].append("Colonne non définie dans schema")
+                        final_report[f"{table_name}.{col_name}"] = results["errors"]
+                        # raise ValueError(f"Colonne {col_name} non définie dans le schema") # Ça rend ton moteur :trop strict, pas flexible, pas “data pipeline friendly”
+                        continue
+
+                    # 1. NUMERIC
+                    if expected_type == "numeric":
+                        if not pd.api.types.is_numeric_dtype(df_clone[col_name]):
+                            results["errors"].append(f"{col_name} n'est pas numérique")
+
+                        # 1.1. min
+                        if min_val is not None and df_clone[col_name].min() < min_val:
+                            results["errors"].append("Valeur min dépassée")
+
+                        # 1.2. max
+                        if max_val is not None and df_clone[col_name].max() > max_val:
+                            results["errors"].append("Valeur max dépassée")
+
+                    # 2. TEXT
+                    elif expected_type == "text":
+                        if not pd.api.types.is_object_dtype(df_clone[col_name]):
+                            results["errors"].append("Type non texte")
+
+                    # 3. DATETIME
+                    elif expected_type == "datetime":
+                        if not pd.api.types.is_datetime64_any_dtype(df_clone[col_name]):
+                            results["errors"].append("Type non datetime")
+
+                    # 4. MISSING (TOUS TYPES)
+                    missing_count = df_clone[col_name].isnull().sum()
+                    if missing_count > 0:
+                        results["errors"].append(f"{missing_count} valeurs manquantes")
+
+                    # 5. STORE RESULT
+
+                    if results["errors"]:
+                        final_report[f"{table_name}.{col_name}"] = results['errors']
+                        print(f"❌ Error on the results {results['errors']}, for the columns {results['column']}  ")
+                    else:
+                        print(f"{col_name} ✅  YOU are good to go data validated!!")
+            except Exception as e:
+
+                print(f"L'erreur est {e}")
+    return final_report
+
+
+# need tu put my real column in the schema not yet done ( later please)
+expected_schema = {
+
+    "customers": {
+
+        "customer_id": {
+            "type": "numeric",
+            "required": True,
+            "unique": True,
+            "min": 1
+        },
+
+        "name": {
+            "type": "text",
+            "required": True
+        },
+
+        "birth_date": {
+            "type": "datetime"
+        },
+
+        "salary": {
+            "type": "numeric",
+            "min": 0,
+            "max": 100000
+        }
+
+    },
+
+    "orders": {
+
+        "id": {
+            "type": "numeric",
+            "unique": True
+        },
+
+        "amount": {
+            "type": "numeric",
+            "min": 0
+        },
+
+        "order_date": {
+            "type": "datetime"
+        }
+
+    }
+
+}
+r_c_validate_data_type_and_range = validate_data_type_and_range(r_c_fech_data_from_psql, expected_schema)
+print(r_c_validate_data_type_and_range)
+
+
+def standardize_col_name(raw_data_from_: dict) -> dict:
+    cleaned_data = {}
+    for table_name, df in raw_data_from_.items():
+        if df.empty:
+            raise ValueError("Pas de donnees")
+        else:
+            try:
+                df_clone = df.copy()
+                df_clone.columns = (df_clone.columns
+                                    .str.strip()
+                                    .str.lower()
+                                    .str.replace(' ', '_', regex=False)
+                                    .str.replace('.', '_', regex=False))
+                cleaned_data[table_name] = df_clone
                 print(f"Column standartized for the table:  {table_name}")
-                # affiche le avant et le apres
+                # pense a  affiche le avant et le apres :)
             except Exception as e:
                 print(f"L'erreur est {e}")
 
@@ -216,5 +269,56 @@ data_clean_final = standardize_col_name(r_c_fech_data_from_psql)
 
 
 
+def cleaning(raw_data_from_:dict):
+    print(f"\n🧹 CLEANING")
+
+    colonnes_numeriques = []
+    colonnes_texte = []
+    cleaned_data={}
+    for table_name, df in raw_data_from_.items():
+        if df.empty:
+            print("ok")
+            raise ValueError("Erman The data is not avaible")
+        else:
+            print("ok_1")
+            try:
+                raw_data_from_clean = df.copy()
+                for col in raw_data_from_clean.columns:
+                    print("ok_4")
+                    # colonnes numériques
+                    if raw_data_from_clean[col].dtype in ["int64", "float64"] or pd.api.types.is_numeric_dtype(
+                            raw_data_from_clean[col]):  ## C"EST CA QUE JE VAIS FUSIONNER L"INGINE FINALE
+                        raw_data_from_clean[col] = raw_data_from_clean[col].fillna(raw_data_from_clean[col].median())
+                        colonnes_numeriques.append(col)
+                        print(colonnes_numeriques)
+
+                    # colonnes texte
+                    if raw_data_from_clean[col].dtype == "object" or pd.api.types.is_object_dtype(
+                            raw_data_from_clean[col]) or pd.api.types.is_categorical_dtype(
+                            raw_data_from_clean[col]):  ## C"EST CA QUE JE VAIS FUSIONNER L"INGINE FINALE
+                        raw_data_from_clean[col] = raw_data_from_clean[col].fillna(raw_data_from_clean[col].mode()[0])
+                        colonnes_texte.append(col)
+                        print(colonnes_texte)
+                    # more than 30% missing values  a coder
+                    # if raw_data_from_clean[col].isnull():
+                cleaned_data[table_name] = raw_data_from_clean
+            except Exception as e:
+                print(f"Erman The error is {e}")
+
+        return cleaned_data
+
+
+r_c_cleaning = cleaning(r_c_fech_data_from_psql)
+missing_before = sum(df.isnull().sum().sum() for df in r_c_fech_data_from_psql.values()) # cette ecriture car r_c_fech_data_from_psql est un dictionnaire
+missing_after = sum(df.isnull().sum().sum() for df in r_c_cleaning.values()) # cette ecriture car r_c_cleaning est un dictionnaire
+
+print(f"\nMissing Before: {missing_before}")
+print(f"\n✅Missing Before: {missing_after}")
+# print(f"\n✅ Missing After: {r_c_cleaning.isnull().sum().sum()}") # cas si r_c_cleaning est un dataFrame
+
+"""
+README:
+note que selon que ce soit un dataframe ou un dictionnaire la difference est tres minime. mais fait attention au faux positifs silencieux
+"""
 
 

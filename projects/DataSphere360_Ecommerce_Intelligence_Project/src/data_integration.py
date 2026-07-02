@@ -65,7 +65,3 @@ print(r_data_integration.isnull().sum().sort_values(
     ascending=False))  # Last verification to see if null values has been created after the fusion
 
 
-
-
-
-
