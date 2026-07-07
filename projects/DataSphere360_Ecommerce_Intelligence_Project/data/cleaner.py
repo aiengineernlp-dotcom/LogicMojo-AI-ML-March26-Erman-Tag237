@@ -34,7 +34,7 @@ def handle_missing_values(raw_data_from_:dict)->dict:
                                 median_col_value = col_value.median()
                                 # Replace by the median
                                 df_clone[col_name] = col_value.fillna(median_col_value)
-                                print(f"Numerical:{col_name} - Median is : {median_col_value}")
+                                # print(f"Numerical:{col_name} - Median is : {median_col_value}")
 
                             #- 3.2 Mode for categorial variables
                             elif pd.api.types.is_object_dtype(col_value) or pd.api.types.is_categorical_dtype(col_value):
@@ -42,7 +42,7 @@ def handle_missing_values(raw_data_from_:dict)->dict:
                                 mode_col_value = col_value.mode()[0] #  [0] because .mode() always return a list. and i can not put a list in a dataframe (exel file) so i just take the first value
                                 # Replace by the mode (la valeur la plus frequente)
                                 df_clone[col_name] = col_value.fillna(mode_col_value)
-                                print(f"categorial:{col_name} - mode is: {mode_col_value}\n")
+                                # print(f"categorial:{col_name} - mode is: {mode_col_value}\n")
                         else:
                             # print(f"🟢 {col_name} : all is fine")
                             print()
@@ -277,20 +277,20 @@ def cleaning(raw_data_from_:dict):
     cleaned_data={}
     for table_name, df in raw_data_from_.items():
         if df.empty:
-            print("ok")
+            # print("ok")
             raise ValueError("Erman The data is not avaible")
         else:
-            print("ok_1")
+            # print("ok_1")
             try:
                 raw_data_from_clean = df.copy()
                 for col in raw_data_from_clean.columns:
-                    print("ok_4")
+                    # print("ok_4")
                     # colonnes numériques
                     if raw_data_from_clean[col].dtype in ["int64", "float64"] or pd.api.types.is_numeric_dtype(
                             raw_data_from_clean[col]):  ## C"EST CA QUE JE VAIS FUSIONNER L"INGINE FINALE
                         raw_data_from_clean[col] = raw_data_from_clean[col].fillna(raw_data_from_clean[col].median())
                         colonnes_numeriques.append(col)
-                        print(colonnes_numeriques)
+                        # print(colonnes_numeriques)
 
                     # colonnes texte
                     if raw_data_from_clean[col].dtype == "object" or pd.api.types.is_object_dtype(
@@ -298,14 +298,14 @@ def cleaning(raw_data_from_:dict):
                             raw_data_from_clean[col]):  ## C"EST CA QUE JE VAIS FUSIONNER L"INGINE FINALE
                         raw_data_from_clean[col] = raw_data_from_clean[col].fillna(raw_data_from_clean[col].mode()[0])
                         colonnes_texte.append(col)
-                        print(colonnes_texte)
+                        # print(colonnes_texte)
                     # more than 30% missing values  a coder
                     # if raw_data_from_clean[col].isnull():
                 cleaned_data[table_name] = raw_data_from_clean
             except Exception as e:
                 print(f"Erman The error is {e}")
 
-        return cleaned_data
+    return cleaned_data
 
 
 r_c_cleaning = cleaning(r_c_fech_data_from_psql)

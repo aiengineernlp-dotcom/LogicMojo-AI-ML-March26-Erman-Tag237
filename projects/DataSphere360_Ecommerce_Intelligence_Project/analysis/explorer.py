@@ -2,10 +2,10 @@
 from config.settings import *
 from data.loader import r_c_fech_data_from_psql
 
-print("=" * 60)
-print(f"{'UAE RETAIL EDA - ERMAN':^60}")
-print(f"{'LogicMojo Batch Mars 2026':^60}")
-print("=" * 60)
+# print("=" * 60)
+# print(f"{'UAE RETAIL EDA - ERMAN':^60}")
+# print(f"{'LogicMojo Batch Mars 2026':^60}")
+# print("=" * 60)
 
 # data_overview
 def data_overview(my_df_init: pd.DataFrame) -> dict:
@@ -14,31 +14,31 @@ def data_overview(my_df_init: pd.DataFrame) -> dict:
     else:
         try:
             for table_name, df in my_df_init.items():
-                print(f"---✅Traitement de la table: {table_name}---")
+                # print(f"---✅Traitement de la table: {table_name}---")
 
                 # 1 - Analyse structurelle automatique
-                print(df.columns)  # Affiche les colonnes de chaque table
+                # print(df.columns)  # Affiche les colonnes de chaque table
                 Shape = (f"{df.shape}"f"\n")
-                print(Shape)
+                # print(Shape)
                 Columns = (f"{list(df.columns)}\n")
-                print(Columns)
+                # print(Columns)
                 Total_oders = (f"{len(df):,}")
-                print(Total_oders)
+                # print(Total_oders)
 
                 # 2 - Types de données et premier aperçu
                 dtypes = (f"{df.dtypes}")
-                print(dtypes)
-                print("--- Aperçu (3 premières lignes) ---")
-                print(f"{df.head(3).to_string()}\n")
+                # print(dtypes)
+                # print("--- Aperçu (3 premières lignes) ---")
+                # print(f"{df.head(3).to_string()}\n")
                 tree_3_first_rows = (f"{df.head(3).to_string()}")
-                print(tree_3_first_rows)
+                # print(tree_3_first_rows)
 
                 # 3- Détection dynamique des valeurs manquantes
                 missing_value = (df.isnull().sum()[df.isnull().sum() > 0])
-                print(missing_value)
+                # print(missing_value)
                 missing_value = df.isnull().sum()[df.isnull().sum() > 0]
-                print("--- Valeurs manquantes détectées ---")
-                print(f"{missing_value.to_string() if not missing_value.empty else 'Aucune'}\n")
+                # print("--- Valeurs manquantes détectées ---")
+                # print(f"{missing_value.to_string() if not missing_value.empty else 'Aucune'}\n")
 
                 # 4. SÉCURISATION DYNAMIQUE DES DATES
                 # avant pour gerer les dates j'avais juste
@@ -51,14 +51,14 @@ def data_overview(my_df_init: pd.DataFrame) -> dict:
                 if not date_cols:
                     date_cols = [col for col in df.columns if 'date' in col.lower() or 'time' in col.lower()]
                     if date_cols:
-                        print("--- Périodes temporelles détectées ---")
+                        # print("--- Périodes temporelles détectées ---")
                         for col in date_cols:
                             try:
                                 temp_series = pd.to_datetime(df[col])
-                                print(f"  •{col} : {temp_series.min().date()} -> {temp_series.max().date()}")
+                                # print(f"  •{col} : {temp_series.min().date()} -> {temp_series.max().date()}")
                             except Exception as e:
                                 pass
-                        print()
+                        # print()
 
                 # 5. SÉCURISATION DYNAMIQUE DES STATISTIQUES NUMÉRIQUES
                 # avant pour gerer les numerimeriques j'avais juste
@@ -70,8 +70,9 @@ def data_overview(my_df_init: pd.DataFrame) -> dict:
                 numeric_df = df.select_dtypes(include='number')
 
                 if not numeric_df.empty:
-                    print("--- Statistiques numériques automatiques ---")
-                    print(f"{numeric_df.describe().round(2)}\n")
+                    # print("--- Statistiques numériques automatiques ---")
+                    # print(f"{numeric_df.describe().round(2)}\n")
+                    print()
         except Exception as e:
             print(f"Erman The error : ->  {e}")
     return my_df_init
@@ -82,6 +83,9 @@ print((r_c_data_overview))
 
 
 def f_identify_fk_pk(data_fetch_from_sql:dict)->dict:
+    '''
+    --->>Quelles colonnes ressemblent à des clés ?
+    '''
     all_data = {}
     all_key_pot_save = {}
     unique_key ={}
@@ -100,22 +104,23 @@ def f_identify_fk_pk(data_fetch_from_sql:dict)->dict:
             key = f"{data_table}.{col}"
             type_key = "PK (Primary Key)" if is_unique else "FK (Foreing Key)"
             unique_key[key] = type_key
-            print(f"Table [{data_table}] -> Key DEtected : {col} --- Type: ({type_key})\n {'-' * 50} ")
-    return unique_key
+            # print(f"Table [{data_table}] -> Key DEtected : {col} --- Type: ({type_key})\n {'-' * 50} ")
+    # return unique_key, all_key_pot_save  # ou choisis ce dont tu as besoin
+    return unique_key  # ou choisis ce dont tu as besoin
 
 r_c_f_identify_fk_pk = f_identify_fk_pk(r_c_fech_data_from_psql)
 
 
 def understanding_relation_between_tables(data_fetch_from_sql: dict) -> dict | str:
     # look_keys_pattern = re.compile(r'.*(id|pk|code|fk|pk).*', re.IGNORECASE)
-    look_keys_pattern = re.compile(r'.*(id|_id|code|pk|fk|zip_code).*', re.IGNORECASE)
+    look_keys_pattern = re.compile(r'(id|_id|code|pk|fk|zip_code)', re.IGNORECASE)
     relation_dict = {}
     if not data_fetch_from_sql:
         raise ValueError("❌ Donnees pas trouvees")
     else:
         try:
             for data_table, df in data_fetch_from_sql.items():
-                potential_cols = [col for col in df.columns if look_keys_pattern.match(col)]
+                potential_cols = [col for col in df.columns if look_keys_pattern.search(col)]
 
                 for col in potential_cols:
                     is_unique = df[col].nunique() == len(df)
@@ -153,7 +158,7 @@ for table_colonne_a, type_a in r_c_understanding_relation_between_tables.items()
         table_name_b, col_name_b = table_colonne_b.split(".")
 
         if table_name_a != table_name_b and col_name_a == col_name_b:
-            print(f"[{table_name_a}   <----------{'Connection via'}: {col_name_a}---------->   {table_name_b}]")
+            print(f"[{table_name_a} <----------{'Connection via'}: {col_name_a}----------> {table_name_b}]")
 
 
 # NOTE CL0DE T"AS DONNER UN TRUC POUR REFLECHIR SUR LA CFONCTION
