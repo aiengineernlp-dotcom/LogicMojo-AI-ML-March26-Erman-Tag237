@@ -1,7 +1,7 @@
 
 from data.cleaner import r_c_cleaning
-from data.data_iintegration_je_doute_de_location import data_integration
-from data.feature import f_feature_engineering
+from data.data_integration import data_integration
+from data.feature_eng_auto import f_feature_engineering
 
 r_data_integration = data_integration(r_c_cleaning)
 r_features = f_feature_engineering(r_data_integration)

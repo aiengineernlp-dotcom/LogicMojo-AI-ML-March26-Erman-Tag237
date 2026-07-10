@@ -1,7 +1,7 @@
 from data.loader import r_c_fech_data_from_psql
 from config.settings import *
 from data.cleaner import r_c_cleaning
-from analysis.explorer import f_identify_fk_pk ,understanding_relation_between_tables
+from analysis.explorer_eda_1 import f_identify_fk_pk ,understanding_relation_between_tables
 
 
 def f_check_merge_cardinality(df_child: pd.DataFrame, key_col: str) -> str:
