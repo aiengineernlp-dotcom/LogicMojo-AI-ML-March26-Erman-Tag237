@@ -1,7 +1,6 @@
 # engineer.py
 from config.settings import *
 from itertools import combinations
-from data.data_integration import r_data_integration
 
 def f_detect_column_types(df_ingrated: pd.DataFrame, max_categories: int = 30) -> dict:
     """
@@ -129,9 +128,6 @@ def f_feature_engineering(df_ingrated: pd.DataFrame) -> pd.DataFrame:
 
     print(f"✅ Colonnes finales : {len(df_ingrated.columns)}")
     return df_ingrated
-
-r_c_f_feature_engineering = f_feature_engineering(r_data_integration)
-
 
 
 # claude tkh : # Erreur AttributeError sur keys.items() et ermanwilliant@gmail.com

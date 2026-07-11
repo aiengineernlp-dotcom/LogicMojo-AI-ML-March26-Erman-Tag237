@@ -37,30 +37,5 @@ def push_data_to_sql(csv_filepath: str, table_name: str) -> str:
     return what_is_up
 
 
-###❌✅
-customers = push_data_to_sql('../dataset/E_commerce_datasets/customers.csv', "customers")
-orders = push_data_to_sql('../dataset/E_commerce_datasets/orders.csv', "orders")
-order_item = push_data_to_sql('../dataset/E_commerce_datasets/order_item.csv',"order_item")
-payments = push_data_to_sql('../dataset/E_commerce_datasets/payments.csv',"payments")
-reviews = push_data_to_sql('../dataset/E_commerce_datasets/reviews.csv',"reviews")
-products = push_data_to_sql('../dataset/E_commerce_datasets/products.csv',"products")
-sellers = push_data_to_sql('../dataset/E_commerce_datasets/sellers.csv',"sellers")
-location = push_data_to_sql('../dataset/E_commerce_datasets/location.csv',"location")
-category_translation = push_data_to_sql('../dataset/E_commerce_datasets/category_translation.csv',"category_translation")
-
-print(customers)
-print(orders)
-print(order_item)
-print(payments)
-print(reviews)
-print(products)
-print(sellers)
-print(location)
-print(category_translation)
-
-df_customers  = pd.read_sql('SELECT * FROM customers LIMIT 10',engine)
-# print(df_customers.info())
-
-
 
 

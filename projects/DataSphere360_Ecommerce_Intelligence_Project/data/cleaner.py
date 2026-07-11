@@ -1,7 +1,6 @@
 # ════════════════════════════════════════════════════
 #  — CLEAN
 # ════════════════════════════════════════════════════
-from data.loader import r_c_fech_data_from_psql
 from config.settings import *
 
 def handle_missing_values(raw_data_from_:dict)->dict:
@@ -51,9 +50,7 @@ def handle_missing_values(raw_data_from_:dict)->dict:
 
     return  raw_data_from_
 
-# r_c_handle_missing_values = handle_missing_values(r_c_fech_data_from_psql) # no problem here.
-imputation = handle_missing_values(r_c_fech_data_from_psql)
-print(imputation)
+
 
 
 def remove_duplicated_record(raw_data_from_: dict):
@@ -78,9 +75,6 @@ def remove_duplicated_record(raw_data_from_: dict):
 
     return duplicated_records
 
-
-r_c_remove_duplicated_record = remove_duplicated_record(r_c_fech_data_from_psql)
-print(r_c_remove_duplicated_record)
 
 
 def convert_date_col_to_date_time_format(raw_data_from_: dict):
@@ -114,9 +108,6 @@ def convert_date_col_to_date_time_format(raw_data_from_: dict):
 
     return converted_tables, converted_columns
 
-
-r_c_convert_date_col_to_date_time_format = convert_date_col_to_date_time_format(r_c_fech_data_from_psql)
-print(r_c_convert_date_col_to_date_time_format)
 
 
 def validate_data_type_and_range(raw_data_from_: dict, expected_schema: dict) -> dict | bool:
@@ -239,8 +230,7 @@ expected_schema = {
     }
 
 }
-r_c_validate_data_type_and_range = validate_data_type_and_range(r_c_fech_data_from_psql, expected_schema)
-print(r_c_validate_data_type_and_range)
+
 
 
 def standardize_col_name(raw_data_from_: dict) -> dict:
@@ -264,8 +254,6 @@ def standardize_col_name(raw_data_from_: dict) -> dict:
 
     return raw_data_from_
 
-
-data_clean_final = standardize_col_name(r_c_fech_data_from_psql)
 
 
 
@@ -308,17 +296,9 @@ def cleaning(raw_data_from_:dict):
     return cleaned_data
 
 
-r_c_cleaning = cleaning(r_c_fech_data_from_psql)
-missing_before = sum(df.isnull().sum().sum() for df in r_c_fech_data_from_psql.values()) # cette ecriture car r_c_fech_data_from_psql est un dictionnaire
-missing_after = sum(df.isnull().sum().sum() for df in r_c_cleaning.values()) # cette ecriture car r_c_cleaning est un dictionnaire
+if __name__ == "__main__":
+    pass
 
-print(f"\nMissing Before: {missing_before}")
-print(f"\n✅Missing Before: {missing_after}")
-# print(f"\n✅ Missing After: {r_c_cleaning.isnull().sum().sum()}") # cas si r_c_cleaning est un dataFrame
 
-"""
-README:
-note que selon que ce soit un dataframe ou un dictionnaire la difference est tres minime. mais fait attention au faux positifs silencieux
-"""
 
 

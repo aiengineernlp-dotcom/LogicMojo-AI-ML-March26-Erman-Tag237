@@ -1,6 +1,5 @@
 
 from config.settings import *
-from data.loader import r_c_fech_data_from_psql
 
 # print("=" * 60)
 # print(f"{'UAE RETAIL EDA - ERMAN':^60}")
@@ -14,7 +13,7 @@ def data_overview(my_df_init: pd.DataFrame) -> dict:
     else:
         try:
             for table_name, df in my_df_init.items():
-                # print(f"---✅Traitement de la table: {table_name}---")
+                print(f"---✅Traitement de la table: {table_name}---")
 
                 # 1 - Analyse structurelle automatique
                 # print(df.columns)  # Affiche les colonnes de chaque table
@@ -23,7 +22,7 @@ def data_overview(my_df_init: pd.DataFrame) -> dict:
                 Columns = (f"{list(df.columns)}\n")
                 # print(Columns)
                 Total_oders = (f"{len(df):,}")
-                # print(Total_oders)
+                #print(Total_oders)
 
                 # 2 - Types de données et premier aperçu
                 dtypes = (f"{df.dtypes}")
@@ -78,8 +77,6 @@ def data_overview(my_df_init: pd.DataFrame) -> dict:
     return my_df_init
 
 
-r_c_data_overview = data_overview(r_c_fech_data_from_psql)
-print((r_c_data_overview))
 
 
 def f_identify_fk_pk(data_fetch_from_sql:dict)->dict:
@@ -108,8 +105,6 @@ def f_identify_fk_pk(data_fetch_from_sql:dict)->dict:
     # return unique_key, all_key_pot_save  # ou choisis ce dont tu as besoin
     return unique_key  # ou choisis ce dont tu as besoin
 
-r_c_f_identify_fk_pk = f_identify_fk_pk(r_c_fech_data_from_psql)
-
 
 def understanding_relation_between_tables(data_fetch_from_sql: dict) -> dict | str:
     # look_keys_pattern = re.compile(r'.*(id|pk|code|fk|pk).*', re.IGNORECASE)
@@ -134,8 +129,7 @@ def understanding_relation_between_tables(data_fetch_from_sql: dict) -> dict | s
     return relation_dict
 
 
-r_c_understanding_relation_between_tables = understanding_relation_between_tables(r_c_fech_data_from_psql)
-print(r_c_understanding_relation_between_tables)
+
 
 
 # ❌ je ne vois pas l'erreur ici mais il en a. Je dois corriger et valider ce code et non celui du bas (pense a le deposer dans le groupe)
@@ -151,17 +145,20 @@ print(r_c_understanding_relation_between_tables)
 #     print(f" The relation is:  {relation_type}")
 
 
-for table_colonne_a, type_a in r_c_understanding_relation_between_tables.items():
-    table_name_a, col_name_a = table_colonne_a.split(".")
-
-    for table_colonne_b, type_b in r_c_understanding_relation_between_tables.items():
-        table_name_b, col_name_b = table_colonne_b.split(".")
-
-        if table_name_a != table_name_b and col_name_a == col_name_b:
-            print(f"[{table_name_a} <----------{'Connection via'}: {col_name_a}----------> {table_name_b}]")
-
+#❌✅❌✅❌✅❌✅❌✅❌✅❌✅❌✅  ICI DOIT ETTRE BIEN GERER STP CAR IL FAUT L"INTEGRER ❌✅❌✅❌✅❌✅❌✅❌✅❌✅❌✅❌✅❌✅❌✅
+# for table_colonne_a, type_a in .items():
+#     table_name_a, col_name_a = table_colonne_a.split(".")
+#
+#     for table_colonne_b, type_b in .items():
+#         table_name_b, col_name_b = table_colonne_b.split(".")
+#
+#         if table_name_a != table_name_b and col_name_a == col_name_b:
+#             print(f"[{table_name_a} <----------{'Connection via'}: {col_name_a}----------> {table_name_b}]")
+#
 
 # NOTE CL0DE T"AS DONNER UN TRUC POUR REFLECHIR SUR LA CFONCTION
 ###❌✅
 
 
+if __name__ == "__main__":
+    pass

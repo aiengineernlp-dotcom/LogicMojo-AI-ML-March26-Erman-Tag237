@@ -27,8 +27,8 @@ def fech_data_from_psql(connextion_to_psql: str) -> dict:
             print(f"the error is {e}")
     return all_data_fech_from_psql
 
+if __name__ == "__main__":
+    pass
 
-r_c_fech_data_from_psql = fech_data_from_psql(engine)
-print(r_c_fech_data_from_psql.keys())
 
 

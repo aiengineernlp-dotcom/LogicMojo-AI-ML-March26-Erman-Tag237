@@ -1,6 +1,4 @@
-from data.loader import r_c_fech_data_from_psql
 from config.settings import *
-from data.cleaner import r_c_cleaning
 from analysis.explorer_eda_1 import f_identify_fk_pk ,understanding_relation_between_tables
 
 
@@ -90,7 +88,6 @@ def data_integration(data_clean_from_sql: dict) -> pd.DataFrame:
     return main_df
 
 
-r_data_integration = data_integration(r_c_cleaning)
-print(r_data_integration.isnull().sum().sort_values(ascending=False))
-print(type(r_data_integration))
-print("Lignes après merge :", len(r_data_integration))  # Si ce nombre est > à celui d'avant, le merge a dupliqué des lignes (relation 1-to-many mal gérée)
+
+if __name__ == "__main__":
+    pass
