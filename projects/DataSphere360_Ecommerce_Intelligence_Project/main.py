@@ -1,3 +1,5 @@
+from plotly.graph_objs.layout.slider import Step
+
 from config.settings import *
 from data.loader import fech_data_from_psql
 #r_c_fech_data_from_psql
@@ -11,7 +13,9 @@ from data.feature_eng_auto import f_feature_engineering
 #r_c_f_feature_engineering
 from data.feature_eng_manu import f_feature_eng_manu
 
-from data.eda_2 import f_generate_eda_report
+from data.eda_auto import f_generate_eda_report
+
+from data.eda_auto import f_generate_eda_report
 
 
 #Step  du Push
@@ -68,8 +72,8 @@ r_c_data_overview = data_overview(raw_data)
 clean_data = cleaning(raw_data)
 missing_before = sum(df.isnull().sum().sum() for df in raw_data.values()) # cette ecriture car r_c_fech_data_from_psql est un dictionnaire
 missing_after = sum(df.isnull().sum().sum() for df in clean_data.values()) # cette ecriture car r_c_cleaning est un dictionnaire
-print(f"\nMissing Before: {missing_before}")
-print(f"\n✅Missing Before: {missing_after}")
+# print(f"\nMissing Before: {missing_before}")
+# print(f"\n✅Missing Before: {missing_after}")
 # #==========
 #
 #
@@ -113,14 +117,17 @@ print(features_auto) # [112650 rows x 81 columns]
 # #==========
 # Step 6 - Feature Engineering Manuel
 df_final = f_feature_eng_manu(features_auto)
-print(df_final) # [112650 rows x 86 columns]
+# print(df_final) # [112650 rows x 86 columns]
 # #==========
 
 # Step 6 - EDA Auto
-f_generate_eda_report(df_final, "output/eda_auto_report.html")
+# f_generate_eda_report(df_final, "output/eda_auto_report.html")
 
 # Step 7 - EDA Métier
 # f_generate_eda_metier_report(df_final, "output/eda_metier_report.html")
+f_generate_eda_metier_report = f_generate_eda_report(features_auto)
+print(f_generate_eda_metier_report)
+
 
 # chaque fichier    → contient les fonctions
 # main.py           → appelle tout dans l'ordre
