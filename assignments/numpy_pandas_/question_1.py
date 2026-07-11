@@ -50,29 +50,29 @@ def extract_features(data: pd.DataFrame) -> np.ndarray:
     return data_arr, mean_data_arr, median_data_arr, std_data_arr, var_data_arr, data_arr_sepal_width
 
 data_arr, mean_data_arr, median_data_arr, std_data_arr, var_data_arr, data_arr_sepal_width = extract_features(data)
-print(f"{"█" * 70} TEST RESULTS {"█" * 55}")
+print(f"{'█' * 70} TEST RESULTS {'█' * 55}")
 print(data)
 print(f" Extract feature matrix as NumPy array:")
-print(f'{'-' * 50}')
+print(f'{"-" * 50}')
 print(f"{data_arr}\n")
 # ====================
 print(f" Computations:")
-print(f'{'-' * 50}')
+print(f'{"-" * 50}')
 print(f" Mean:  {mean_data_arr:.2f}\n")
 # ====================
-print(f'{'-' * 50}')
+print(f'{"-" * 50}')
 print(f" MeDian:  {median_data_arr:.2f}\n")
 # ====================
-print(f'{'-' * 50}')
+print(f'{"-" * 50}')
 print(f" Standarddeviation:\n{std_data_arr}\n")
 # ====================
-print(f'{'-' * 50}')
+print(f'{"-" * 50}')
 print(f" Variance:\n{var_data_arr}")
 
 print("\n========Curent type======")
 # print(type(r))
 print(type(data))
-print(f"{"█" * 70} ANALYSIS {"█" * 60}")
+print(f"{'█' * 70} ANALYSIS {'█' * 60}")
 print("Which feature has highest variability and why it matters in ML")
 print(
     " ==>> Base on Standarddeviation and Variance,  sepal_length has the highest variability. It matters in ML because the help us to know if they are extremes values on our data. Also the model can thing that somme values are more importants than others just because of highs numbers ")

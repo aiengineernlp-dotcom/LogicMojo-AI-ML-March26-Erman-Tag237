@@ -34,7 +34,6 @@ def Featuretransformation(data: pd.DataFrame) -> pd.DataFrame:
 
     return results
 
-
 r = Featuretransformation(data)
 
 print(r)
