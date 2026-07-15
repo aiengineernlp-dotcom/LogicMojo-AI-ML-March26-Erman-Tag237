@@ -106,10 +106,10 @@ missing_after = sum(df.isnull().sum().sum() for df in clean_data.values()) # cet
 #
 # # Step 4 - Integration
 integrated_data = data_integration(clean_data)
-# print(integrated_data.isnull().sum().sort_values(ascending=False))
-# print(type(integrated_data))
-# print("Lignes après merge :", len(integrated_data))  # Si ce nombre est > à celui d'avant, le merge a dupliqué des lignes (relation 1-to-many mal gérée)
-# #==========
+print(integrated_data.isnull().sum().sort_values(ascending=False))
+print((integrated_data))
+print("Lignes après merge :", len(integrated_data))  # Si ce nombre est > à celui d'avant, le merge a dupliqué des lignes (relation 1-to-many mal gérée)
+#==========
 #
 # Step 5 - Feature Engineering Auto
 features_auto = f_feature_engineering(integrated_data)
@@ -117,7 +117,7 @@ print(features_auto) # [112650 rows x 81 columns]
 # #==========
 # Step 6 - Feature Engineering Manuel
 df_final = f_feature_eng_manu(features_auto)
-# print(df_final) # [112650 rows x 86 columns]
+print(f" les 86 columns:  {df_final.columns}") # [112650 rows x 86 columns]
 # #==========
 
 # Step 6 - EDA Auto
@@ -125,8 +125,8 @@ df_final = f_feature_eng_manu(features_auto)
 
 # Step 7 - EDA Métier
 # f_generate_eda_metier_report(df_final, "output/eda_metier_report.html")
-f_generate_eda_metier_report = f_generate_eda_report(features_auto)
-print(f_generate_eda_metier_report)
+# f_generate_eda_metier_report = f_generate_eda_report(features_auto)
+# print(f_generate_eda_metier_report)
 
 
 # chaque fichier    → contient les fonctions
