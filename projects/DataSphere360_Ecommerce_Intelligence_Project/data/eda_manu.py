@@ -1,7 +1,14 @@
-from pexpect.pxssh import pxssh
 
-from config.settings import *
-from data.feature_eng_auto import f_feature_engineering
+import plotly.express as px
+
+"""
+2-3 catégories + proportion       → pie chart
+Beaucoup de catégories            → bar
+Tendance dans le temps            → line
+Distribution d'une variable       → histogram
+Relation entre deux variables     → scatter
+Corrélation globale               → heatmap
+"""
 def f_eda_metier_new_vs_repeat(df):
     # calculer la fréquence par client
     # classifier nouveau vs repeat
@@ -156,10 +163,6 @@ def f_eda_metier_revenue_by_category(df):
 
     return fig
 
-
-
-
-
 def f_eda_metier_product_demand(df):
     # compter combien de fois chaque produit est commandé
     product_demand = df["product_id"].value_counts()
@@ -216,6 +219,122 @@ def f_eda_metier_seller_distribution(df):
     fig = px.bar( x=seller_distribution.index,y=seller_distribution.values,title="Seller Distribution")
     return fig
 
+def f_eda_metier_review_distribution(df):
+    # histogram de review_score
+    # retourner figure
+    review_distribution = df["review_score"]
+    fig = px.histogram(
+        x=review_distribution,
+        title="Review Score Distribution"
+    )
+
+    return fig
+
+
+def f_eda_metier_delivery_vs_rating(df):
+    # scatter plot
+    # x = delta_order_estimated_delivery_date_minus_order_purchase_timestamp_days
+    # y = review_score
+    # retourner figure
+
+    # ✅ on accède à la colonne via df
+    x = df["delta_order_estimated_delivery_date_minus_order_purchase_timestamp_days"]
+    y = df["review_score"]
+    fig = px.scatter(
+        df,
+        x=x,
+        y=y,
+        title="Delivery Time vs Review Score",
+    )
+    return fig
+
+
+def f_eda_metier_dissatisfaction_patterns(df):
+    # filtrer review_score <= 2
+    # groupby product_category_name
+    # compter les commandes
+    # top 10
+    # barplot
+    # retourner figure
+    insatisfaits = df[df["review_score"] <= 2]
+    order = insatisfaits.groupby("product_category_name")["order_id"].nunique().sort_values(ascending=False).head(10)
+
+    fig = px.bar(
+        x=order.index,
+        y=order.values,
+        title="Dissatisfaction Patterns - Top 10 Categories"
+    )
+    return fig
+
+
+def f_generate_eda_metier_report(df, output_path="eda_metier_report.html"):
+
+    # ======= Customer Analysis =======
+    fig1 = f_eda_metier_new_vs_repeat(df)           # New vs Repeat Customers
+    fig2 = f_eda_metier_high_vs_low_value(df)        # High vs Low Value Customers
+    fig3 = f_eda_metier_geographic_distribution(df)  # Geographic Distribution
+
+    # ======= Revenue and Order Analysis =======
+    fig4 = f_eda_metier_monthly_revenue(df)          # Monthly Revenue Trends
+    fig5 = f_eda_metier_order_volume(df)             # Order Volume Trends
+    fig6 = f_eda_metier_peak_sales(df)               # Peak Sales Periods
+
+    # ======= Product Analysis =======
+    fig7 = f_eda_metier_top_categories(df)           # Top Selling Categories
+    fig8 = f_eda_metier_revenue_by_category(df)      # Revenue by Category
+    fig9 = f_eda_metier_product_demand(df)           # Product Demand Distribution
+
+    # ======= Seller Analysis =======
+    fig10 = f_eda_metier_top_sellers(df)             # Top Sellers
+    fig11 = f_eda_metier_seller_revenue(df)          # Seller Revenue
+    fig12 = f_eda_metier_seller_distribution(df)     # Seller Distribution
+
+    # ======= Review and Satisfaction Analysis =======
+    fig13 = f_eda_metier_review_distribution(df)         # Review Score Distribution
+    fig14 = f_eda_metier_delivery_vs_rating(df)          # Delivery Time vs Rating
+    fig15 = f_eda_metier_dissatisfaction_patterns(df)    # Dissatisfaction Patterns
+
+    # ======= Assembler en HTML =======
+    html = "<html><body>"
+    html += "<h1>EDA Métier Report</h1>"
+
+    # Customer Analysis
+    html += "<h2>Customer Analysis</h2>"
+    html += fig1.to_html(full_html=False, include_plotlyjs='cdn')  # charge plotly une seule fois
+    html += fig2.to_html(full_html=False, include_plotlyjs=False)  # réutilise plotly déjà chargé
+    html += fig3.to_html(full_html=False, include_plotlyjs=False)
+
+    # Revenue and Order Analysis
+    html += "<h2>Revenue and Order Analysis</h2>"
+    html += fig4.to_html(full_html=False, include_plotlyjs=False)
+    html += fig5.to_html(full_html=False, include_plotlyjs=False)
+    html += fig6.to_html(full_html=False, include_plotlyjs=False)
+
+    # Product Analysis
+    html += "<h2>Product Analysis</h2>"
+    html += fig7.to_html(full_html=False, include_plotlyjs=False)
+    html += fig8.to_html(full_html=False, include_plotlyjs=False)
+    html += fig9.to_html(full_html=False, include_plotlyjs=False)
+
+    # Seller Analysis
+    html += "<h2>Seller Analysis</h2>"
+    html += fig10.to_html(full_html=False, include_plotlyjs=False)
+    html += fig11.to_html(full_html=False, include_plotlyjs=False)
+    html += fig12.to_html(full_html=False, include_plotlyjs=False)
+
+    # Review and Satisfaction Analysis
+    html += "<h2>Review and Satisfaction Analysis</h2>"
+    html += fig13.to_html(full_html=False, include_plotlyjs=False)
+    html += fig14.to_html(full_html=False, include_plotlyjs=False)
+    html += fig15.to_html(full_html=False, include_plotlyjs=False)
+
+    html += "</body></html>"
+
+    # ======= Écrire le fichier HTML =======
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(html)
+
+    print(f"✅ Rapport EDA Métier généré : {output_path}")
 
 '''
 2-3 catégories + proportion  → pie chart
@@ -224,6 +343,10 @@ Tendance dans le temps       → line
 Distribution d'une variable  → histogram
 Outliers                     → boxplot
 Corrélation entre variables  → scatter ou heatmap
+scatter plot                 → montre la relation entre deux variables numériques
+                                axe x → délai de livraison
+                                axe y → review_score
+                                chaque point → une commande
 '''
 if __name__ == "__main__":
     # r_c_f_eda_metier_high_vs_low_value = f_eda_metier_high_vs_low_value (f_feature_engineering)

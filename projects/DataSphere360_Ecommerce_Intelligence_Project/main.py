@@ -1,6 +1,7 @@
 from plotly.graph_objs.layout.slider import Step
 
 from config.settings import *
+from data.eda_manu import f_generate_eda_metier_report
 from data.loader import fech_data_from_psql
 #r_c_fech_data_from_psql
 from analysis.explorer_eda_1 import data_overview , f_identify_fk_pk, understanding_relation_between_tables
@@ -15,6 +16,7 @@ from data.feature_eng_manu import f_feature_eng_manu
 
 from data.eda_auto import f_generate_eda_report
 
+from data.eda_auto import f_generate_eda_report
 from data.eda_auto import f_generate_eda_report
 
 
@@ -124,9 +126,12 @@ print(f" les 86 columns:  {df_final.columns}") # [112650 rows x 86 columns]
 # f_generate_eda_report(df_final, "output/eda_auto_report.html")
 
 # Step 7 - EDA Métier
-# f_generate_eda_metier_report(df_final, "output/eda_metier_report.html")
-# f_generate_eda_metier_report = f_generate_eda_report(features_auto)
-# print(f_generate_eda_metier_report)
+
+# Step 6 - EDA Auto
+f_generate_eda_report(df_final, "output/eda_auto_report.html")
+
+# Step 7 - EDA Métier
+f_generate_eda_metier_report(df_final, "output/eda_metier_report.html")
 
 
 # chaque fichier    → contient les fonctions
