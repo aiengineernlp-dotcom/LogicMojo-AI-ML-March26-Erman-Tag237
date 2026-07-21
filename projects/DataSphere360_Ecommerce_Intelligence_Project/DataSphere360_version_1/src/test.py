@@ -80,6 +80,10 @@ def fetch_data_from_psql(
     Returns :
         - Dict: a dictionnary with my data inside
 
+
+
+
+
     """
     query = "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' "  # this is like a prompt who follows the path location of my data in postgreSQL. Im just saying that i want to SELECT all table table.schema.
     tables = pd.read_sql(query, con=engine_erman_connexion_to___)[
