@@ -1,2 +1,0 @@
-- nouvblie pas que dans un chat claude il ya le comment gerer les fonctions et les question a presque toujours se poser
-- 
