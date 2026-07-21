@@ -205,3 +205,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# DataSphere360_Ecommerce_Intelligence_Project
+projects/DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_dev
+projects/DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_dev/output/
+projects/DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/output/
+projects/DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_stable
+
