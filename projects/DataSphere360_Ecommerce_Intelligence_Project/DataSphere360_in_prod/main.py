@@ -12,6 +12,8 @@ from data.eda_manu import f_generate_eda_metier_report
 raw_data = fech_data_from_psql(engine)
 
 
+
+
 # Step 2 - EDA 1 (observation)
 data_overview(raw_data)
 understanding_relation_between_tables(raw_data)
