@@ -1,0 +1,61 @@
+from DataSphere360_in_prod.config.settings import *
+
+engine = create_engine('postgresql://postgres:postgres@localhost:5551/datasphere360_customer_ecommerce')
+
+if engine:
+    print('Connected to PostgreSQL')
+else:
+    print('Not Connected to PostgreSQL')
+
+def push_data_to_sql(csv_filepath: str, table_name: str) -> str:
+    """
+    :param csv_filepath:
+    :param table_name:
+    :return:
+
+    """
+    if not csv_filepath:
+        # si le fichier n'existe pas , on pert pas le temps on block le programme avec raise
+        raise ValueError("❌ Chemin de fichier incorrect ou pas trouvee! ")
+    else:
+        # si le fichier exsite
+        try:
+            df = pd.read_csv(csv_filepath)
+            table_name = os.path.splitext(os.path.basename(csv_filepath))[0]  # la sortie ici sera juste le nom de la table sans extension ".csv"
+            df.to_sql(table_name, con=engine, if_exists='replace', index=False)
+            what_is_up = f"✅ Table {table_name} a ete creer !"
+        except Exception as e:
+            what_is_up = f"❌ Table {table_name} pas creer !❌ -> "f" L'erreur est {e}"
+
+    return what_is_up
+
+#==================== > Step 0   du Push
+customers = push_data_to_sql('E_commerce_datasets/customers.csv', "customers")
+orders = push_data_to_sql('E_commerce_datasets/orders.csv', "orders")
+order_item = push_data_to_sql('E_commerce_datasets/order_item.csv', "order_item")
+payments = push_data_to_sql('E_commerce_datasets/payments.csv', "payments")
+reviews = push_data_to_sql('E_commerce_datasets/reviews.csv', "reviews")
+products = push_data_to_sql('E_commerce_datasets/products.csv', "products")
+sellers = push_data_to_sql('E_commerce_datasets/sellers.csv', "sellers")
+location = push_data_to_sql('E_commerce_datasets/location.csv', "location")
+category_translation = push_data_to_sql('E_commerce_datasets/category_translation.csv', "category_translation")
+print(customers)
+print(orders)
+print(order_item)
+print(payments)
+print(reviews)
+print(products)
+print(sellers)
+print(location)
+print(category_translation)
+df_customers  = pd.read_sql('SELECT * FROM customers LIMIT 10',engine)
+print(df_customers.info())
+
+
+
+
+# dans push_data.py directement
+if __name__ == "__main__":
+    # push_data_to_sql(...)
+    pass
+
