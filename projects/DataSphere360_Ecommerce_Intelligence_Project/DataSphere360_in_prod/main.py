@@ -28,13 +28,13 @@ if __name__ == "__main__":
     features_auto = f_feature_engineering(integrated_data)
 
     # # Step 6 - Feature Engineering Manuel
-    # df_final = f_feature_eng_manu(features_auto)
+    df_final = f_feature_eng_manu(features_auto)
 
     # Step 7 - EDA Auto
     f_generate_eda_report(features_auto, "output/reports/eda_auto_report.html")
 
     # # Step 8 - EDA Métier
-    # f_generate_eda_metier_report(df_final, "output/reports/eda_metier_report.html")
+    f_generate_eda_metier_report(df_final, "output/reports/eda_metier_report.html")
 
 
 

@@ -28,8 +28,7 @@ def push_data_to_sql(csv_filepath: str, table_name: str) -> str:
     return what_is_up
 
 
-''' PROJECT DATA SPHERE 360
-# ========================START===================PROJECT DATA SPHERE 360
+
 customers = push_data_to_sql('E_commerce_datasets/customers.csv', "customers")
 orders = push_data_to_sql('E_commerce_datasets/orders.csv', "orders")
 order_item = push_data_to_sql('E_commerce_datasets/order_item.csv', "order_item")
@@ -50,15 +49,9 @@ print(location)
 print(category_translation)
 df_customers  = pd.read_sql('SELECT * FROM customers LIMIT 10',engine)
 print(df_customers.info())
-# ========================END===================PROJECT DATA SPHERE 360
-'''
 
 
-"""  PROJECT Problem 1: Simple Linear Regression - Study Hours vs Marks Scored
-# ========================START===================Problem 1: Simple Linear Regression - Study Hours vs Marks Scored
-#student_marks = push_data_to_sql('../dataset/students_datasets/student_marks.csv', "student_marks")
-# ========================END===================PROJECT Simple Linear Regression - Study Hours vs Marks Scored
-"""
+
 
 
 
@@ -66,7 +59,9 @@ print(df_customers.info())
 
 if __name__ == "__main__":
     from config.settings import *
-    student_marks = push_data_to_sql('../dataset/students_datasets/student_marks.csv', "student_marks")
-    print(student_marks)
+
+    location = push_data_to_sql('E_commerce_datasets/location.csv', "location")
+
+    print(location)
 
 
