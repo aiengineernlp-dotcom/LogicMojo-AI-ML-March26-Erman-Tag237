@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c19a1af0-a0ba-4069-81a0-18bb0757912d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/.idea/DataSphere360_Ecommerce_Intelligence_Project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/.env.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/.idea/DataSphere360_in_dev.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/MAITRE.MD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/analysis/correlations.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/analysis/distributions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/analysis/explorer_eda_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/config/imports.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/config/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/data/cleaner.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/data/data_integration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/data/eda_auto.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/data/eda_manu.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/data/feature_eng_auto.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/data/feature_eng_manu.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/data/feature_selection_reduction.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/data/loader.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/data/modelisation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/data/validator.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/dataset/ Entity Relationship Diagram/datasphere360_ Entity Relationship Diagram.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/dataset/E_commerce_datasets/category_translation.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/dataset/E_commerce_datasets/customers.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/dataset/E_commerce_datasets/location.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/dataset/E_commerce_datasets/order_item.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/dataset/E_commerce_datasets/orders.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/dataset/E_commerce_datasets/payments.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/dataset/E_commerce_datasets/products.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/dataset/E_commerce_datasets/reviews.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/dataset/E_commerce_datasets/sellers.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/dataset/push_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/notebook/LABO.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/notebook/data_cleaning_evolution.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/reporting/insights.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/visualization/charts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/.env.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/.idea/DataSphere360_in_dev.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/MAITRE.MD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/analysis/correlations.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/analysis/distributions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/analysis/explorer_eda_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/config/imports.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/config/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/data/cleaner.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/data/data_integration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/data/eda_auto.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/data/eda_manu.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/data/feature_eng_auto.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/data/feature_eng_manu.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/data/feature_selection_reduction.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/data/loader.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/data/modelisation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/data/validator.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/dataset/ Entity Relationship Diagram/datasphere360_ Entity Relationship Diagram.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/dataset/E_commerce_datasets/category_translation.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/dataset/E_commerce_datasets/customers.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/dataset/E_commerce_datasets/location.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/dataset/E_commerce_datasets/order_item.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/dataset/E_commerce_datasets/orders.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/dataset/E_commerce_datasets/payments.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/dataset/E_commerce_datasets/products.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/dataset/E_commerce_datasets/reviews.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/dataset/E_commerce_datasets/sellers.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/dataset/push_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/notebook/LABO.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/notebook/data_cleaning_evolution.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/output/reports/eda_auto_report.html.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/output/reports/eda_metier_report.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/reporting/insights.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod_e-commerce/visualization/charts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/Visual Outputs/ Geographic distribution of customers.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/Visual Outputs/&quot;Review distribution.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/Visual Outputs/Customer lifetime value .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/Visual Outputs/Heatmaps.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/Visual Outputs/Identification of dissatisfaction patterns.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/Visual Outputs/Monthly revenue trends .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/Visual Outputs/Order volume trends.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/Visual Outputs/Product demand distribution.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/Visual Outputs/Relationship between delivery time and ratings.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/Visual Outputs/Seller contribution to revenue .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/Visual Outputs/Top-performing sellers.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/Visual Outputs/Top-selling product categories.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/Visual Outputs/customer_state.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/Visual Outputs/custumers repartitions New vs Repeat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/_archives/Analytics360.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/_archives/Analytics360.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/_archives/Untitled.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/_archives/datasphere_one_file.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/_archives/load_data_version_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/_archives/load_data_version_2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/_archives/load_data_version_3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/_archives/load_data_version_3_ongoing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/cleaning_prepro.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/data_integration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/docus/Business Insights and Recommendations.MD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/docus/Project Report.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/exploratory_data_analysis.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/feature_engineering.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/initial_exploration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/load_data_to_psql.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_version_1.0/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/DataSphere360_Ecommerce_Intelligence_Project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/DataSphere360_in_dev.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAITRE.MD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis/correlations.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis/distributions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis/explorer_eda_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/imports.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaner.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data_integration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eda_auto.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eda_manu.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/feature_eng_auto.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/feature_eng_manu.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/feature_selection_reduction.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/loader.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/modelisation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/validator.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/ Entity Relationship Diagram/datasphere360_ Entity Relationship Diagram.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/E_commerce_datasets/category_translation.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/E_commerce_datasets/customers.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/E_commerce_datasets/location.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/E_commerce_datasets/order_item.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/E_commerce_datasets/orders.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/E_commerce_datasets/payments.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/E_commerce_datasets/products.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/E_commerce_datasets/reviews.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/E_commerce_datasets/sellers.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/push_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebook/LABO.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebook/data_cleaning_evolution.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/reports/eda_auto_report.html.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/reports/eda_metier_report.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reporting/insights.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualization/charts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/.env.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/.idea/DataSphere360_in_dev.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/MAITRE.MD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/analysis/correlations.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/analysis/distributions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/analysis/explorer_eda_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/config/imports.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/config/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/data/cleaner.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/data/data_integration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/data/eda_auto.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/data/eda_manu.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/data/feature_eng_auto.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/data/feature_eng_manu.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/data/feature_selection_reduction.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/data/loader.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/data/modelisation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/data/validator.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/dataset/ Entity Relationship Diagram/datasphere360_ Entity Relationship Diagram.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/dataset/E_commerce_datasets/category_translation.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/dataset/E_commerce_datasets/customers.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/dataset/E_commerce_datasets/location.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/dataset/E_commerce_datasets/order_item.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/dataset/E_commerce_datasets/orders.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/dataset/E_commerce_datasets/payments.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/dataset/E_commerce_datasets/products.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/dataset/E_commerce_datasets/reviews.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/dataset/E_commerce_datasets/sellers.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/dataset/push_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/dataset/students_datasets/student_marks.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/notebook/LABO.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/notebook/data_cleaning_evolution.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/output/reports/eda_auto_report.html.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/reporting/insights.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_dev/visualization/charts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/.env.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/.idea/DataSphere360_in_dev.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/MAITRE.MD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/analysis/correlations.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/analysis/distributions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/analysis/explorer_eda_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/config/imports.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/config/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/data/cleaner.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/data/data_integration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/data/eda_auto.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/data/eda_manu.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/data/feature_eng_auto.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/data/feature_eng_manu.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/data/feature_selection_reduction.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/data/loader.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/data/modelisation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/data/validator.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/dataset/ Entity Relationship Diagram/datasphere360_ Entity Relationship Diagram.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/dataset/E_commerce_datasets/category_translation.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/dataset/E_commerce_datasets/customers.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/dataset/E_commerce_datasets/location.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/dataset/E_commerce_datasets/order_item.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/dataset/E_commerce_datasets/orders.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/dataset/E_commerce_datasets/payments.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/dataset/E_commerce_datasets/products.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/dataset/E_commerce_datasets/reviews.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/dataset/E_commerce_datasets/sellers.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/dataset/push_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/dataset/students_datasets/student_marks.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/notebook/LABO.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/notebook/data_cleaning_evolution.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/output/reports/eda_auto_report.html.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/reporting/insights.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_in_prod_students_datasets/visualization/charts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_raw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_students_datasets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/Visual Outputs/ Geographic distribution of customers.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/Visual Outputs/&quot;Review distribution.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/Visual Outputs/Customer lifetime value .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/Visual Outputs/Heatmaps.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/Visual Outputs/Identification of dissatisfaction patterns.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/Visual Outputs/Monthly revenue trends .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/Visual Outputs/Order volume trends.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/Visual Outputs/Product demand distribution.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/Visual Outputs/Relationship between delivery time and ratings.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/Visual Outputs/Seller contribution to revenue .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/Visual Outputs/Top-performing sellers.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/Visual Outputs/Top-selling product categories.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/Visual Outputs/customer_state.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/Visual Outputs/custumers repartitions New vs Repeat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/_archives/Analytics360.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/_archives/Analytics360.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/_archives/Untitled.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/_archives/datasphere_one_file.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/_archives/load_data_version_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/_archives/load_data_version_2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/_archives/load_data_version_3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/_archives/load_data_version_3_ongoing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/cleaning_prepro.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/data_integration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/docus/Business Insights and Recommendations.MD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/docus/Project Report.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/exploratory_data_analysis.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/feature_engineering.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/initial_exploration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/load_data_to_psql.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataSphere360_version_1.0/test.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;aiengineernlp-dotcom&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/aiengineernlp-dotcom/LogicMojo-AI-ML-March26-Erman-Tag237.git&quot;,
+    &quot;accountId&quot;: &quot;d133b041-20ae-4aae-921e-42bf99eac6e1&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="3H5MYppxj7dHuqlkgCxiC7wEHlI" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.docker-compose.yml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.cleaner.executor&quot;: &quot;Run&quot;,
+    &quot;Python.data_integration.executor&quot;: &quot;Run&quot;,
+    &quot;Python.explorer_eda_1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.loader.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.push_data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.python -m config.settings.executor&quot;: &quot;Run&quot;,
+    &quot;Python.settings.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ermanw/Documents/LOGIC-MOJO-AI-ML/LogicMojo-AI-ML-March26-Erman-Tag237/projects/DataSphere360_Projects/DataSphere360_e-commerce&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="cleaner" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DataSphere360_in_dev" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data/cleaner.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="data_integration" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DataSphere360_in_dev" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data/data_integration.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DataSphere360_in_dev" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="push_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DataSphere360_in_dev" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dataset" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dataset/push_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="python -m config.settings" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="DataSphere360_in_dev" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="config.settings" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="true" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.data_integration" />
+        <item itemvalue="Python.cleaner" />
+        <item itemvalue="Python.push_data" />
+        <item itemvalue="Python.python -m config.settings" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-2653e85de345-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.31033.139" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c19a1af0-a0ba-4069-81a0-18bb0757912d" name="Changes" comment="" />
+      <created>1785153526798</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1785153526798</updated>
+    </task>
+    <servers />
+  </component>
+</project>
