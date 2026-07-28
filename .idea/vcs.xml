@@ -3,5 +3,10 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/projects/DataSphere360_in_dev" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/projects/DataSphere360_raw" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/projects/DataSphere360_students_datasets" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/projects/LogicMojo-AI-ML-Projects/DataSphere360_e-commerce" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/projects/LogicMojo-AI-ML-Projects/DataSphere360_version_1.0" vcs="Git" />
   </component>
 </project>
