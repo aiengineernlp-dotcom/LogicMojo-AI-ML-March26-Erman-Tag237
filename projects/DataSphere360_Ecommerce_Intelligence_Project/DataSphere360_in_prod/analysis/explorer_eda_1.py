@@ -1,19 +1,19 @@
 
-from DataSphere360_in_prod.config.settings import *
+from config.settings import *
 
 # data_overview
-def data_overview(my_df_init: pd.DataFrame) -> dict:
-    if not my_df_init:
-        raise ValueError("Erman Not data availble")
+def data_overview(my_df_init: dict) -> dict:
+    if  not my_df_init:
+        raise ValueError("Erman Not dictionary data availble")
     else:
-        try:
-            for table_name, df in my_df_init.items():
+        for table_name, df in my_df_init.items():
+            try:
+                print(my_df_init.keys())
                 print(f"---✅Traitement de la table: {table_name}---")
                 print(df.columns)
                 Shape = (f"{df.shape}"f"\n")
                 print(Shape)
 
-                # print(Shape)
                 Columns = (f"{list(df.columns)}\n")
                 print(Columns)
                 Total_oders = (f"{len(df):,}")
@@ -46,21 +46,19 @@ def data_overview(my_df_init: pd.DataFrame) -> dict:
                             except Exception as e:
                                 pass
                         # print()
-
-                numeric_stats = df[["quantity","unit_price","total_aed","rating"]].describe().round(2)
-                print(numeric_stats)
-
                 numeric_df = df.select_dtypes(include='number')
 
                 if not numeric_df.empty:
                     print("--- Statistiques numériques automatiques ---")
                     print(f"{numeric_df.describe().round(2)}\n")
                     print()
-        except Exception as e:
-            print(f"Erman The error : ->  {e}")
+
+                # numeric_stats = df[["quantity","unit_price","total_aed","rating"]].describe().round(2)  # ‼️‼️🚨🔔 manual entries detected
+                # print(numeric_stats)
+            except Exception as e:
+                print(f"Erman The error : ->  {e}")
+
     return my_df_init
-
-
 
 
 def f_identify_fk_pk(data_fetch_from_sql:dict)->dict:
@@ -112,6 +110,6 @@ def understanding_relation_between_tables(data_fetch_from_sql: dict) -> dict | s
 
     return relation_dict
 
-
 if __name__ == "__main__":
-    pass
+    from data.loader import fech_data_from_psql
+    print(data_overview(fech_data_from_psql(engine)))

@@ -1,5 +1,5 @@
-from DataSphere360_in_prod.config.settings import *
-from DataSphere360_in_prod.analysis.explorer_eda_1 import f_identify_fk_pk
+from config.settings import *
+from analysis.explorer_eda_1 import f_identify_fk_pk
 
 
 def f_check_merge_cardinality(df_child: pd.DataFrame, key_col: str) -> str:
@@ -11,6 +11,13 @@ def data_integration(data_clean_from_sql: dict) -> pd.DataFrame:
 
     print("--- ANALYSE DE LA STRUCTURE RELATIONNELLE ---")
     print(f"📋 Tables reçues : {list(data_clean_from_sql.keys())}")
+
+    # Cas particulier : une seule table → pas de relation à chercher, on la retourne telle quelle
+    if len(list(data_clean_from_sql.keys())) == 1:
+        seule_table_name = list(data_clean_from_sql.keys())[0]
+        print(f"ℹ️ Une seule table détectée : '{seule_table_name}' → aucune intégration nécessaire")
+        return data_clean_from_sql[seule_table_name].copy()
+
 
     # Step 1 : detect keys
     keys = f_identify_fk_pk(data_clean_from_sql)
@@ -81,4 +88,12 @@ def data_integration(data_clean_from_sql: dict) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    pass
+    from data.cleaner import cleaning
+    from data.loader import fech_data_from_psql
+    from config.settings import engine  # ← la connexion centralisée qu'on a mise en place
+
+    donnees_brutes = fech_data_from_psql(engine)      # ← on APPELLE avec l'engine
+    donnees_propres = cleaning(donnees_brutes)         # ← on passe le RÉSULTAT (dict)
+    resultat = data_integration(donnees_propres)
+    print(resultat)
+

@@ -1,5 +1,20 @@
 # ── CONFIGURATION ─────────────────────────────────────
-from DataSphere360_in_prod.config.imports import *
+from config.imports import *
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Remonte à la racine du projet peu importe d'où le script est lancé
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL n'est pas défini dans le fichier .env")
+
+engine = create_engine(DATABASE_URL)
+
 
 # sns.set_theme(style="whitegrid", font_scale=1.05)
 # plt.rcParams.update({
@@ -24,9 +39,15 @@ from DataSphere360_in_prod.config.imports import *
 
 
 # def save_fig(name: str) -> None:
-#     # Utilisation correcte de pathlib et de la f-string
 #     plt.savefig(OUTPUT_DIR / f"{name}.png", dpi=150, bbox_inches='tight', facecolor='white')
 #     plt.close()
 #     print(f"Save: {name}.png")
 
-engine = create_engine('postgresql://postgres:postgres@localhost:5551/datasphere360_customer_ecommerce')
+if __name__ == "__main__":
+    print(f"DATABASE_URL chargée : {DATABASE_URL}")
+    print("Connexion à l'engine créée avec succès ✅")
+    #python -m config.settings
+    '''
+        # -m dit à Python : "traite cet argument comme un nom de module (pas un chemin de fichier), et lance-le comme 
+        si c'était le point d'entrée"
+    '''

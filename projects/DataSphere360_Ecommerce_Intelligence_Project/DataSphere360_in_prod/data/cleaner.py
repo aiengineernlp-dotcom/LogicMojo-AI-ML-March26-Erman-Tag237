@@ -1,4 +1,4 @@
-from DataSphere360_in_prod.config.settings import *
+from config.settings import *
 
 def handle_missing_values(raw_data_from_:dict)->dict:
     all_is_missing={}
@@ -286,6 +286,7 @@ def cleaning(raw_data_from_:dict):
                     # more than 30% missing values  a coder
                     # if raw_data_from_clean[col].isnull():
                 cleaned_data[table_name] = raw_data_from_clean
+                print(f" cleaning DONE!")
             except Exception as e:
                 print(f"Erman The error is {e}")
 
@@ -293,8 +294,10 @@ def cleaning(raw_data_from_:dict):
 
 
 if __name__ == "__main__":
-    pass
-
+    from analysis.explorer_eda_1 import data_overview,f_identify_fk_pk,understanding_relation_between_tables
+    from data.loader import fech_data_from_psql
+    r_c_cleaning = cleaning(fech_data_from_psql(engine))
+    print(r_c_cleaning)
 
 
 

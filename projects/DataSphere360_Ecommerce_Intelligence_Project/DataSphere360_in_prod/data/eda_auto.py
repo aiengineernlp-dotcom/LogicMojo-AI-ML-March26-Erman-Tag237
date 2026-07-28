@@ -1,4 +1,4 @@
-from DataSphere360_in_prod.config.settings import *
+from config.settings import *
 import plotly.express as px
 
 
@@ -21,10 +21,13 @@ def f_eda_section2(df_final: pd.DataFrame) -> dict:
 
 
 def f_eda_section3(df_final: pd.DataFrame) -> dict:
+    categorical_df = df_final.select_dtypes(include='object')
 
     return {
         "numeric_stats": df_final.select_dtypes(include='number').describe().round(2),
-        "categorical_stats": df_final.select_dtypes(include='object').describe(),
+        "categorical_stats": categorical_df.describe() if not categorical_df.empty else None,
+        # voire claude: (theknowhow.ae@gmail.com) Organisation des imports entre fichiers Python
+        #cmd+f : Fix n°1 — f_eda_section3
     }
 
 
@@ -101,7 +104,13 @@ def f_generate_eda_report(df_final: pd.DataFrame, output_path: str = "eda_report
     # Section 3
     html += "<h1>Section 3 - Statistiques descriptives</h1>"
     html += f"{section3['numeric_stats'].to_html()}"
-    html += f"{section3['categorical_stats'].to_html()}"
+    if section3['categorical_stats'] is not None:
+        html += f"{section3['categorical_stats'].to_html()}"
+    else:
+        html += "<p><em>Aucune colonne catégorielle détectée.</em></p>"
+    # voire claude: (theknowhow.ae@gmail.com) Organisation des imports entre fichiers Python
+    # cmd+f : Fix n°2 — dans f_generate_eda_report, où categorical_stats est affiché
+
 
     # Sections 4, 5, 6 → graphiques plotly
     html += f"<h1> Section 4 - Distributions </h1>"
@@ -117,6 +126,8 @@ def f_generate_eda_report(df_final: pd.DataFrame, output_path: str = "eda_report
         html += fig.to_html(full_html=False, include_plotlyjs=False)
 
     # Section 7
+    # voire claude: (theknowhow.ae@gmail.com) Organisation des imports entre fichiers Python
+    # cmd+f : Une chose à surveiller aussi : Section 7
     html += "<h1>Section 7 - Catégorielles</h1>"
     for fig in section7['figures']:
         html += fig.to_html(full_html=False, include_plotlyjs=False)

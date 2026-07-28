@@ -27,4 +27,5 @@ def f_feature_eng_manu(df):
     aoc = df.groupby("customer_unique_id")["payment_value"].mean().rename("average_order_value_per_customer")
     df = df.join(aoc, on="customer_unique_id")
 
+    print(f"✅ Colonnes finales COMPLETES  apres le f_feature_engineering MANUEL : {len(df.columns)} -> {df.shape}")
     return df

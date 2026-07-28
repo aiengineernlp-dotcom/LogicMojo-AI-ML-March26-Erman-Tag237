@@ -1,6 +1,4 @@
-from DataSphere360_in_prod.config.settings import *
-
-engine = create_engine('postgresql://postgres:postgres@localhost:5551/datasphere360_customer_ecommerce')
+from config.settings import *
 
 if engine:
     print('Connected to PostgreSQL')
@@ -29,16 +27,18 @@ def push_data_to_sql(csv_filepath: str, table_name: str) -> str:
 
     return what_is_up
 
-#==================== > Step 0   du Push
-customers = push_data_to_sql('../dataset/E_commerce_datasets/customers.csv', "customers")
-orders = push_data_to_sql('../dataset/E_commerce_datasets/orders.csv', "orders")
-order_item = push_data_to_sql('../dataset/E_commerce_datasets/order_item.csv',"order_item")
-payments = push_data_to_sql('../dataset/E_commerce_datasets/payments.csv',"payments")
-reviews = push_data_to_sql('../dataset/E_commerce_datasets/reviews.csv',"reviews")
-products = push_data_to_sql('../dataset/E_commerce_datasets/products.csv',"products")
-sellers = push_data_to_sql('../dataset/E_commerce_datasets/sellers.csv',"sellers")
-location = push_data_to_sql('../dataset/E_commerce_datasets/location.csv',"location")
-category_translation = push_data_to_sql('../dataset/E_commerce_datasets/category_translation.csv',"category_translation")
+
+''' PROJECT DATA SPHERE 360
+# ========================START===================PROJECT DATA SPHERE 360
+customers = push_data_to_sql('E_commerce_datasets/customers.csv', "customers")
+orders = push_data_to_sql('E_commerce_datasets/orders.csv', "orders")
+order_item = push_data_to_sql('E_commerce_datasets/order_item.csv', "order_item")
+payments = push_data_to_sql('E_commerce_datasets/payments.csv', "payments")
+reviews = push_data_to_sql('E_commerce_datasets/reviews.csv', "reviews")
+products = push_data_to_sql('E_commerce_datasets/products.csv', "products")
+sellers = push_data_to_sql('E_commerce_datasets/sellers.csv', "sellers")
+location = push_data_to_sql('E_commerce_datasets/location.csv', "location")
+category_translation = push_data_to_sql('E_commerce_datasets/category_translation.csv', "category_translation")
 print(customers)
 print(orders)
 print(order_item)
@@ -50,12 +50,23 @@ print(location)
 print(category_translation)
 df_customers  = pd.read_sql('SELECT * FROM customers LIMIT 10',engine)
 print(df_customers.info())
+# ========================END===================PROJECT DATA SPHERE 360
+'''
+
+
+"""  PROJECT Problem 1: Simple Linear Regression - Study Hours vs Marks Scored
+# ========================START===================Problem 1: Simple Linear Regression - Study Hours vs Marks Scored
+#student_marks = push_data_to_sql('../dataset/students_datasets/student_marks.csv', "student_marks")
+# ========================END===================PROJECT Simple Linear Regression - Study Hours vs Marks Scored
+"""
 
 
 
 
-# dans push_data.py directement
+
 if __name__ == "__main__":
-    # push_data_to_sql(...)
-    pass
+    from config.settings import *
+    student_marks = push_data_to_sql('../dataset/students_datasets/student_marks.csv', "student_marks")
+    print(student_marks)
+
 

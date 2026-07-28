@@ -1,5 +1,5 @@
 # engineer.py
-from DataSphere360_in_prod.config.settings import *
+from config.settings import *
 from itertools import combinations
 
 def f_detect_column_types(df_ingrated: pd.DataFrame, max_categories: int = 30) -> dict:
@@ -104,7 +104,7 @@ def f_feature_engineering(df_ingrated: pd.DataFrame) -> pd.DataFrame:
     df_ingrated, id_cols = f_isolate_id_columns(df_ingrated, types["id_like"]) # stub
     df_ingrated = f_encode_categorical(df_ingrated, types["categorial"])
 
-    print(f"✅ Colonnes finales : {len(df_ingrated.columns)}")
+    print(f"✅ Colonnes finales apres le f_feature_engineering automatiques : {len(df_ingrated.columns)} -> {df_ingrated.shape}")
     return df_ingrated
 
 

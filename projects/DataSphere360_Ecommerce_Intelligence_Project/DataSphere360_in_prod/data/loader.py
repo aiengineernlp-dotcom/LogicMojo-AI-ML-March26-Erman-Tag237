@@ -1,7 +1,7 @@
-from DataSphere360_in_prod.config.settings import *
-
+from config.settings import *
 # importation des donnees from psql.
 def fech_data_from_psql(connextion_to_psql: str) -> dict:
+    all_data_fech_from_psql={}
     """
 
     """
@@ -19,15 +19,16 @@ def fech_data_from_psql(connextion_to_psql: str) -> dict:
             all_data_fech_from_psql = {}
             for table in tables:
                 query_table = f"SELECT * FROM {table}"  # for each table, i collect the content
-                all_data_fech_from_psql[table] = pd.read_sql(query_table,
-                                                             con=connextion_to_psql)  # then I field my dictionnary with the combo (key: values) created
+                all_data_fech_from_psql[table] = pd.read_sql(query_table, con=connextion_to_psql)  # then I field my dictionnary with the combo (key: values) created
             # print(tables)
         except Exception as e:
             print(f"the error is {e}")
     return all_data_fech_from_psql
 
 if __name__ == "__main__":
-    pass
+    from config.settings import  engine
+    print(fech_data_from_psql(engine))
+
 
 
 
