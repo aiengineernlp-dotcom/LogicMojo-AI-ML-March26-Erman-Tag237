@@ -212,3 +212,74 @@ projects/DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_dev/outpu
 projects/DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_in_prod/output/
 projects/DataSphere360_Ecommerce_Intelligence_Project/DataSphere360_raw
 
+
+#Machine-Learning-Labs
+projects/Machine-Learning-Labs/00_ML_Template
+projects/Machine-Learning-Labs/13_ML_Template
+projects/Machine-Learning-Labs/14_ML_Projects
+projects/Machine-Learning-Labs/_practices
+projects/Machine-Learning-Labs/toools
+projects/Machine-Learning-Labs/Exercices_ML_Cas_Entreprise.md
+projects/Machine-Learning-Labs/Erman_V2_test_2.ipynb
+
+
+# Data-Scientist-Labs
+projects/Data-Scientist-Labs/DataSphere360_in_dev
+projects/Data-Scientist-Labs/_practices
+projects/Data-Scientist-Labs/DataSphere360_raw
+projects/Machine-Learning-Labs/01_Simple_Linear_Regression/Simple-Linear-Regression_project-1.ipynb
+projects/Machine-Learning-Labs/01_Simple_Linear_Regression/FuelConsumption-Co2-prediction/model/Simple-Linear-Regression.ipynb
+projects/Machine-Learning-Labs/01_Simple_Linear_Regression/FuelConsumption-Co2-prediction/notebook/Simple-Linear-Regression.ipynb
+projects/Machine-Learning-Labs/01_Simple_Linear_Regression/FuelConsumption-Co2-prediction/notebook/Labo.ipynb
+projects/Machine-Learning-Labs/01_Simple_Linear_Regression/FuelConsumption-Co2-prediction/notebook/.ipynb_checkpoints
+projects/Machine-Learning-Labs/01_Simple_Linear_Regression/FuelConsumption-Co2-prediction/MAITRE.MD
+projects/Machine-Learning-Labs/01_Simple_Linear_Regression/FuelConsumption-Co2-prediction/organisation_framework_env.md
+projects/Machine-Learning-Labs/01_Simple_Linear_Regression/Simple-Linear-Regression_project-1.ipynb
+projects/Machine-Learning-Labs/02_Multiple_Linear_Regression/Model_Train_Marketing_Budget_vs_Site_Web_Trafic/model/Simple-Linear-Regression.ipynb
+projects/Machine-Learning-Labs/02_Multiple_Linear_Regression/Model_Train_Marketing_Budget_vs_Site_Web_Trafic/notebook/Labo.ipynb
+projects/Machine-Learning-Labs/02_Multiple_Linear_Regression/Model_Train_Marketing_Budget_vs_Site_Web_Trafic/notebook/NOTES.MD
+projects/Machine-Learning-Labs/02_Multiple_Linear_Regression/Model_Train_Marketing_Budget_vs_Site_Web_Trafic/notebook/.ipynb_checkpoints
+projects/Machine-Learning-Labs/02_Multiple_Linear_Regression/Model_Train_Marketing_Budget_vs_Site_Web_Trafic/Exercices_ML_Cas_Entreprise.md
+projects/Machine-Learning-Labs/02_Multiple_Linear_Regression/Model_Train_Marketing_Budget_vs_Site_Web_Trafic/MAITRE.MD
+projects/Machine-Learning-Labs/02_Multiple_Linear_Regression/Model_Train_Marketing_Budget_vs_Site_Web_Trafic/organisation_framework_env.md
+
+projects/Machine-Learning-Labs/02_Multiple_Linear_Regression/salary_prediction_model/model/.ipynb_checkpoints
+projects/Machine-Learning-Labs/02_Multiple_Linear_Regression/salary_prediction_model/model/Labo.ipynb
+projects/Machine-Learning-Labs/02_Multiple_Linear_Regression/salary_prediction_model/notebook/Labo.ipynb
+projects/Machine-Learning-Labs/02_Multiple_Linear_Regression/salary_prediction_model/notebook/.ipynb_checkpoints
+projects/Machine-Learning-Labs/02_Multiple_Linear_Regression/salary_prediction_model/Exercices_ML_Cas_Entreprise.md
+projects/Machine-Learning-Labs/02_Multiple_Linear_Regression/salary_prediction_model/MAITRE.MD
+projects/Machine-Learning-Labs/02_Multiple_Linear_Regression/salary_prediction_model/organisation_framework_env.md
+
+assignments/AI:ML Mathematics Quiz Questions probabilities/Answers to Assignment4.ipynb
+assignments/AI:ML Mathematics Quiz Questions probabilities/Assignment 4.ipynb
+assignments/listes-boucles-/Assignment 1 LogicMojo.ipynb
+assignments/numpy_pandas_/CHEATSHEET_q8_.fillna_.ma().md
+assignments/numpy_pandas_/CHEATSHEET_q11_.fillna_.ma().md
+assignments/numpy_pandas_/CHEATSHEET_q15_.fillna_.ma().md
+assignments/Assignment 1 LogicMojo_jour4_.ipynb
+assignments/Assignment 2+3 LogicMojo_jour_7.ipynb
+assignments/Assignment 3 LogicMojo_jour_11_12.ipynb
+
+
+module_resumes/Module4_5_Master_Notebook.ipynb
+practice/LogicMojo_AIML_Surprise_Test (3).docx
+ressources/bloc_2_MATHS_STATS_/Module4_5_Master_Notebook.ipynb
+
+
+
+
+
+#GIT COMMANDS
+# 1. Supprimez tout le cache de Git (sans supprimer vos fichiers réels)
+#git rm -r --cached .
+
+# 2. Ajoutez à nouveau tous les fichiers (le .gitignore sera appliqué)
+#git add .
+
+# 3. Créez un commit pour enregistrer le nettoyage
+#git commit -m "Mise à jour du cache .gitignore"
+
+# 4. Poussez les modifications vers votre dépôt distant
+#git push
+
