@@ -194,6 +194,11 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
+.DS_Store
+.idea/
+*.iml
+__pycache__/
+
 # Cursor
 #  Cursor is an AI-powered code editor. `.cursorignore` specifies files/directories to
 #  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
@@ -266,9 +271,15 @@ ressources/bloc_2_MATHS_STATS_/Module4_5_Master_Notebook.ipynb
 
 
 
+# Machine-Learning-Labs
 projects/Machine-Learning-Labs/01_Simple_Linear_Regression/FuelConsumption-Co2-prediction/model/Simple-Linear-Regression_project-1.ipynb
-
 projects/Machine-Learning-Labs/01_Simple_Linear_Regression/FuelConsumption-Co2-prediction/notebook_lab
+projects/Machine-Learning-Labs/000_END to END PIPELINE
+
+
+
+
+
 
 #GIT COMMANDS
 # 1. Supprimez tout le cache de Git (sans supprimer vos fichiers réels)
