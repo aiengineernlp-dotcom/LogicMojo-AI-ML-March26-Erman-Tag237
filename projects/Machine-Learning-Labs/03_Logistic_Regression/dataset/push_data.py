@@ -28,12 +28,12 @@ def push_data_to_sql(csv_filepath: str, table_name: str) -> str:
     return what_is_up
 
 
-FuelConsumptionCo2 = push_data_to_sql('fuelconsumptionco2/fuelconsumptionco2.csv', "fuelconsumptionco2")
+ChurnData = push_data_to_sql('logistic_regressiosn_1/churndata.csv', "logistic_regressiosn_1")
 
 
 if __name__ == "__main__":
     from config.settings import *
-    FuelConsumptionCo2 = push_data_to_sql('fuelconsumptionco2/fuelconsumptionco2.csv', "fuelconsumptionco2")
-    print(FuelConsumptionCo2)
+    ChurnData = push_data_to_sql('logistic_regressiosn_1/churndata.csv', "logistic_regressiosn_1")
+    print(ChurnData)
 
 

@@ -3,7 +3,7 @@ from config.settings import *
 
 # data_overview
 def data_overview(my_df_init: dict) -> dict:
-    if  not my_df_init:
+    if not my_df_init:
         raise ValueError("Erman Not dictionary data availble")
     else:
         for table_name, df in my_df_init.items():
