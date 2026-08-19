@@ -1,5 +1,4 @@
-from config.settings import *
-
+from teleCust1000t.config.settings import *
 if engine:
     print('Connected to PostgreSQL')
 else:
@@ -28,12 +27,12 @@ def push_data_to_sql(csv_filepath: str, table_name: str) -> str:
     return what_is_up
 
 
-FuelConsumptionCo2 = push_data_to_sql('fuelconsumptionco2/fuelconsumptionco2.csv', "fuelconsumptionco2")
+telecust1000t = push_data_to_sql('telecust1000t/telecust1000t.csv', "telecust1000t")
 
 
 if __name__ == "__main__":
-    from config.settings import *
-    FuelConsumptionCo2 = push_data_to_sql('fuelconsumptionco2/fuelconsumptionco2.csv', "fuelconsumptionco2")
-    print(FuelConsumptionCo2)
+    from teleCust1000t.config.settings import *
+    telecust1000t = push_data_to_sql('telecust1000t/telecust1000t.csv', "telecust1000t")
+    print(telecust1000t)
 
 

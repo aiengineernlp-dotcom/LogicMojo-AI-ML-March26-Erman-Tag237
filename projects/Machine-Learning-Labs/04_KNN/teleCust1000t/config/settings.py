@@ -1,5 +1,5 @@
 # ── CONFIGURATION ─────────────────────────────────────
-from config.imports import *
+from teleCust1000t.config.imports import *
 import os
 from pathlib import Path
 from dotenv import load_dotenv
