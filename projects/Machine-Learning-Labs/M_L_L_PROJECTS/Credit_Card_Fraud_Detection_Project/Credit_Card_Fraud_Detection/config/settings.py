@@ -1,9 +1,5 @@
 # ── CONFIGURATION ─────────────────────────────────────
 from config.imports import *
-import os
-from pathlib import Path
-from dotenv import load_dotenv
-
 # Remonte à la racine du projet peu importe d'où le script est lancé
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")

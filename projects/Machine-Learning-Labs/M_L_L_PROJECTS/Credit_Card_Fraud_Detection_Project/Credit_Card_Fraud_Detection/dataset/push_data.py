@@ -32,7 +32,6 @@ creditcard = push_data_to_sql('creditcard/creditcard.csv', "creditcard")
 
 
 if __name__ == "__main__":
-    from config.settings import *
     creditcard = push_data_to_sql('creditcard/creditcard.csv', "creditcard")
     print(creditcard)
 

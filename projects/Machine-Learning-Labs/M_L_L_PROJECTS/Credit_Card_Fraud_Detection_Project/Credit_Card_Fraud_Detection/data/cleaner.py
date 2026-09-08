@@ -30,7 +30,7 @@ def handle_missing_values(raw_data_from_:dict)->dict:
                                 median_col_value = col_value.median()
                                 # Replace by the median
                                 df_clone[col_name] = col_value.fillna(median_col_value)
-                                # print(f"Numerical:{col_name} - Median is : {median_col_value}")
+                                print(f"Numerical:{col_name} - Median is : {median_col_value}")
 
                             #- 3.2 Mode for categorial variables
                             elif pd.api.types.is_object_dtype(col_value) or pd.api.types.is_categorical_dtype(col_value):
@@ -38,9 +38,9 @@ def handle_missing_values(raw_data_from_:dict)->dict:
                                 mode_col_value = col_value.mode()[0] #  [0] because .mode() always return a list. and i can not put a list in a dataframe (exel file) so i just take the first value
                                 # Replace by the mode (la valeur la plus frequente)
                                 df_clone[col_name] = col_value.fillna(mode_col_value)
-                                # print(f"categorial:{col_name} - mode is: {mode_col_value}\n")
+                                print(f"categorial:{col_name} - mode is: {mode_col_value}\n")
                         else:
-                            # print(f"🟢 {col_name} : all is fine")
+                            print(f"🟢 {col_name} : all is fine")
                             print()
             except Exception as e:
                 print("STOP l'erreur est : ->", e)

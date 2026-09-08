@@ -1,4 +1,3 @@
-
 from config.settings import *
 
 # data_overview
@@ -12,7 +11,7 @@ def data_overview(my_df_init: dict) -> dict:
                 print(f"---✅Traitement de la table: {table_name}---")
                 print(df.columns)
                 Shape = (f"{df.shape}"f"\n")
-                print(Shape)
+                print(f" The shape of the table is {Shape}" )
 
                 Columns = (f"{list(df.columns)}\n")
                 print(Columns)
