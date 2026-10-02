@@ -291,6 +291,7 @@ projects/Machine-Learning-Labs/03_Logistic_Regression/notebook_lab/Logistic_Regr
 
 #git rm -r --cached .
 
+
 #4. Recréer un commit propre et pousserAjoutez à nouveau vos fichiers (les gros fichiers seront désormais correctement ignorés grâce au .gitignore modifié), créez le commit, puis envoyez le tout :
 
 git add .
